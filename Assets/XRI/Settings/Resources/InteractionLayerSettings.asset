@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LayerNames:
   - Default
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - wood
+  - tool1
+  - tool2
+  - tool3
+  - tool4
+  - tool5
   - 
   - 
   - 
