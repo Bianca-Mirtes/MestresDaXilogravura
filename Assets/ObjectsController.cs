@@ -16,26 +16,33 @@ public class ObjectsController : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.name.Equals("wood"))
-        {
-            Debug.Log("coliddiuuu");
-            if (transform.name.Equals("tool1"))
-            {
-                collision.transform.GetComponent<MeshRenderer>().material.color = Color.red;
-            }
-        }
-    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name.Equals("wood"))
+        if (other.gameObject.name.Equals("tool1"))
         {
-            Debug.Log("coliddiuuu trigeer");
-            if (transform.name.Equals("tool1"))
-            {
-                other.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
-            }
+            Debug.Log("Muda a coorrr");
+            transform.GetComponent<MeshRenderer>().material.color = Color.red;
         }
+        if (other.gameObject.name.Equals("tool2"))
+        {
+            Debug.Log("Muda a coorrr");
+            transform.GetComponent<MeshRenderer>().material.color = Color.blue;
+        }
+        if (other.gameObject.name.Equals("tool3"))
+        {
+            Debug.Log("Muda a coorrr");
+            transform.GetComponent<MeshRenderer>().material.color = Color.green;
+        }
+        if (other.gameObject.name.Equals("tool4"))
+        {
+            Debug.Log("Muda a coorrr");
+            transform.GetComponent<MeshRenderer>().material.color = Color.yellow;
+        }
+        if (other.gameObject.name.Equals("ink"))
+        {
+            Debug.Log("Muda a coorrr");
+            transform.GetComponent<MeshRenderer>().material.color = Color.black;
+        }
+
     }
 }
