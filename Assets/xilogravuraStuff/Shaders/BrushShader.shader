@@ -6,8 +6,8 @@ Shader "Unlit/BrushShader"
         _Coordinates("Coordinate", Vector) = (0,0,0,0)
         _Color("Draw Color", Color) = (0,0,0,0)
         _Strength("Strength", Range(0,1)) = 1
-        _Size("Size", Range(1, 20)) = 0
-        _Hardness("Hardness", Range(1, 5)) = 3
+        _Size("Size", Range(1, 40)) = 0
+        _Hardness("Hardness", Range(1, 15)) = 3
     }
     SubShader
     {

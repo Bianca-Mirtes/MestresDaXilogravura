@@ -53,12 +53,20 @@ Material:
         m_Texture: {fileID: 2800000, guid: 23bf8cb105562a94eab663a3ee4b1947, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _NormalMask:
+    - _NormalFromTexture_3df64ad250934782a9de3512e144c079_Texture_0_Texture2D:
         m_Texture: {fileID: 2800000, guid: da035bff0a0bf2c4c9ea2d6bc1f54052, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: f6d55cf4f0837234aae3e2571decb4cd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _NormalSculpt:
-        m_Texture: {fileID: 2800000, guid: 1f30c251bfbdcb54ea51b1545ae94cef, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalTeste:

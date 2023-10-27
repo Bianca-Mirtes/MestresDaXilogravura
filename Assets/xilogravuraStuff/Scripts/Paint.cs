@@ -15,8 +15,8 @@ public class Paint : MonoBehaviour
 
     private int[] dimensions = {2048, 2048};
 
-    [SerializeField][Range(1, 20)] private float size;
-    [SerializeField][Range(1, 5)] private float hardness;
+    [SerializeField][Range(1, 25)] private float size;
+    [SerializeField][Range(1, 15)] private float hardness;
     [SerializeField][Range(0, 1)] private float strength;
 
     public bool mascaraDeEscultura = false, mascaraDePintura = false;
@@ -59,18 +59,20 @@ public class Paint : MonoBehaviour
                 //TO DO
                 //Alguma logica que seta a mascara certa a ser pintada de acordo com a ferramenta atual
                 mask = textureDictionary["SketchMask"];
+                SetBrush(5f, 5f, 1f);
 
                 //Provisorio pra efeito de testes
-                if (mascaraDeEscultura)
+                if (Mouse.current.rightButton.isPressed)
                 {
                     mask = textureDictionary["SculptMask"];
+                    SetBrush(15f, 12f, 1f);
                 }
-                if (mascaraDePintura)
+                if (Mouse.current.middleButton.isPressed)
                 {
                     mask = textureDictionary["PaintMask"];
+                    SetBrush(40f, 10f, 0.8f);
                 }
 
-                SetBrush(6f, 5f, 1f);
                 PaintMask(mask);
             }
         }
