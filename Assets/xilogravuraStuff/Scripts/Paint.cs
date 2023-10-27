@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Paint : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class Paint : MonoBehaviour
     [SerializeField][Range(1, 20)] private float size;
     [SerializeField][Range(1, 5)] private float hardness;
     [SerializeField][Range(0, 1)] private float strength;
+
+    public bool mascaraDeEscultura = false, mascaraDePintura = false;
 
     void Start()
     {
@@ -46,9 +49,10 @@ public class Paint : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Mouse.current.leftButton.isPressed)
         {
-            if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit))
+            int layerMask = 1 << 10;
+            if (Physics.Raycast(cam.ScreenPointToRay(Mouse.current.position.ReadValue()), out hit, Mathf.Infinity, layerMask))
             {
                 RenderTexture mask;
 
@@ -56,11 +60,15 @@ public class Paint : MonoBehaviour
                 //Alguma logica que seta a mascara certa a ser pintada de acordo com a ferramenta atual
                 mask = textureDictionary["SketchMask"];
 
-                //if (Input.GetKey(KeyCode.Z))
-                //{
-                //    print("trocando");
-                //    mask = textureDictionary["PaintMask"];
-                //}
+                //Provisorio pra efeito de testes
+                if (mascaraDeEscultura)
+                {
+                    mask = textureDictionary["SculptMask"];
+                }
+                if (mascaraDePintura)
+                {
+                    mask = textureDictionary["PaintMask"];
+                }
 
                 SetBrush(6f, 5f, 1f);
                 PaintMask(mask);
@@ -77,6 +85,7 @@ public class Paint : MonoBehaviour
 
     void PaintMask(RenderTexture mask)
     {
+        Debug.Log("pintando");
         drawMaterial.SetVector("_Coordinates", new Vector4(hit.textureCoord.x, hit.textureCoord.y, 0, 0));
 
         RenderTexture temp = RenderTexture.GetTemporary(mask.width, mask.height, 0, RenderTextureFormat.ARGBFloat);
