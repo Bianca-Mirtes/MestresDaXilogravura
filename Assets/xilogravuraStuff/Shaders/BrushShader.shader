@@ -8,6 +8,10 @@ Shader "Unlit/BrushShader"
         _Strength("Strength", Range(0,1)) = 1
         _Size("Size", Range(1, 40)) = 0
         _Hardness("Hardness", Range(1, 15)) = 3
+
+        _IsRoundBrush("RoundBrush", Range(0,1)) = 1
+        _BrushWidth("BrushWidth", Range(1, 50)) = 45
+        _BrushHeight("BrushHeight", Range(1, 50)) = 15
     }
     SubShader
     {
@@ -40,6 +44,8 @@ Shader "Unlit/BrushShader"
             float4 _MainTex_ST;
             fixed4 _Coordinates,_Color;
             half _Size, _Strength, _Hardness;
+            half _BrushWidth, _BrushHeight;
+            half _IsRoundBrush;
 
             v2f vert (appdata v)
             {
@@ -53,7 +59,20 @@ Shader "Unlit/BrushShader"
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
-                float draw = pow(saturate(1 - distance(i.uv, _Coordinates.xy)), 500 / _Size * _Hardness);
+                float draw;
+
+                if (_IsRoundBrush == 1)
+                {
+                    draw = pow(saturate(1 - distance(i.uv, _Coordinates.xy)), 500 / _Size * _Hardness);
+                }
+                else
+                {
+                    float2 diff = abs(i.uv - _Coordinates.xy);
+                    float2 brushSize = float2(_BrushWidth, _BrushHeight);
+                    float2 falloff = 1.0 - saturate(diff / (brushSize * 0.5));
+                    draw = pow(min(falloff.x, falloff.y), 500 / _BrushWidth * 10 * _Hardness);
+                }
+
                 fixed4 drawcol = _Color * (draw * _Strength);
                 //UNITY_APPLY_FOG(i.fogCoord, col);
                 return saturate(col + drawcol);
