@@ -18,24 +18,31 @@ public class ObjectsController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name.Equals("wood"))
+        if (collision.gameObject.name.Equals("tool1"))
         {
-            Debug.Log("coliddiuuu");
-            if (transform.name.Equals("tool1"))
-            {
-                collision.transform.GetComponent<MeshRenderer>().material.color = Color.red;
-            }
+            Debug.Log("Desenhar");
+
+            transform.GetComponent<MeshRenderer>().material.color = Color.red;
         }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.name.Equals("wood"))
+        if (collision.gameObject.name.Equals("tool2"))
         {
-            Debug.Log("coliddiuuu trigeer");
-            if (transform.name.Equals("tool1"))
-            {
-                other.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
-            }
+            Debug.Log("entalhar - alto relevo");
+            transform.GetComponent<MeshRenderer>().material.color = Color.blue;
+        }
+        if (collision.gameObject.name.Equals("tool3"))
+        {
+            Debug.Log("Lixar - melhorar o acabamento da imagem entalhada (um sprite com a entalhação meio paia, tipo umas pontas de madeira e tals, e depois o mesmo só que mais uniforme)");
+            transform.GetComponent<MeshRenderer>().material.color = Color.green;
+        }
+        if (collision.gameObject.name.Equals("tool4"))
+        {
+            Debug.Log("Pega o Rolo de Tinta e passa no pote de tinta");
+            transform.GetComponent<MeshRenderer>().material.color = Color.yellow;
+        }
+        if (collision.gameObject.name.Equals("ink"))
+        {
+            Debug.Log("Pega o pote de tinta e bota na mesa");
+            transform.GetComponent<MeshRenderer>().material.color = Color.black;
         }
     }
 }
