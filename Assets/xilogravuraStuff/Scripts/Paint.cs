@@ -47,9 +47,37 @@ public class Paint : MonoBehaviour
         }
     }
 
+    public void Draw()
+    {
+        int layerMask = 1 << 10;
+        if (Physics.Raycast(cam.ScreenPointToRay(Mouse.current.position.ReadValue()), out hit, Mathf.Infinity, layerMask))
+        {
+            RenderTexture mask;
+
+            //TO DO
+            //Alguma logica que seta a mascara certa a ser pintada de acordo com a ferramenta atual
+            mask = textureDictionary["SketchMask"];
+            SetBrush(5f, 5f, 1f);
+
+            //Provisorio pra efeito de testes
+            if (Mouse.current.rightButton.isPressed)
+            {
+                mask = textureDictionary["SculptMask"];
+                SetBrush(15f, 12f, 1f);
+            }
+            if (Mouse.current.middleButton.isPressed)
+            {
+                mask = textureDictionary["PaintMask"];
+                SetBrush(40f, 10f, 0.8f);
+            }
+
+            PaintMask(mask);
+        }
+    }
+
     void Update()
     {
-        if (Mouse.current.leftButton.isPressed)
+        /*if (Mouse.current.leftButton.isPressed)
         {
             int layerMask = 1 << 10;
             if (Physics.Raycast(cam.ScreenPointToRay(Mouse.current.position.ReadValue()), out hit, Mathf.Infinity, layerMask))
@@ -75,7 +103,7 @@ public class Paint : MonoBehaviour
 
                 PaintMask(mask);
             }
-        }
+        }*/
     }
 
     void SetBrush(float size, float hardness, float strength)
