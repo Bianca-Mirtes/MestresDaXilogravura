@@ -16,33 +16,32 @@ public class ObjectsController : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.name.Equals("tool1"))
+        if (collision.gameObject.name.Equals("tool1"))
         {
             Debug.Log("Muda a coorrr");
             transform.GetComponent<MeshRenderer>().material.color = Color.red;
         }
-        if (other.gameObject.name.Equals("tool2"))
+        if (collision.gameObject.name.Equals("tool2"))
         {
             Debug.Log("Muda a coorrr");
             transform.GetComponent<MeshRenderer>().material.color = Color.blue;
         }
-        if (other.gameObject.name.Equals("tool3"))
+        if (collision.gameObject.name.Equals("tool3"))
         {
             Debug.Log("Muda a coorrr");
             transform.GetComponent<MeshRenderer>().material.color = Color.green;
         }
-        if (other.gameObject.name.Equals("tool4"))
+        if (collision.gameObject.name.Equals("tool4"))
         {
             Debug.Log("Muda a coorrr");
             transform.GetComponent<MeshRenderer>().material.color = Color.yellow;
         }
-        if (other.gameObject.name.Equals("ink"))
+        if (collision.gameObject.name.Equals("ink"))
         {
             Debug.Log("Muda a coorrr");
             transform.GetComponent<MeshRenderer>().material.color = Color.black;
         }
-
     }
 }
