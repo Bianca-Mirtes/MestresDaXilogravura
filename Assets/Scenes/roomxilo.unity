@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2530,9 +2530,6 @@ PrefabInstance:
       addedObject: {fileID: 809192309}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 84681043ee76b124d8c29e2d13629b21, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 809192313}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 84681043ee76b124d8c29e2d13629b21, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 809192314}
   m_SourcePrefab: {fileID: 100100000, guid: 84681043ee76b124d8c29e2d13629b21, type: 3}
 --- !u!1 &809192308 stripped
@@ -2562,33 +2559,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4493585093827132993, guid: 84681043ee76b124d8c29e2d13629b21, type: 3}
---- !u!54 &809192313
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 809192308}
-  serializedVersion: 4
-  m_Mass: 100
-  m_Drag: 1
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 2
 --- !u!114 &809192314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3175,7 +3145,6 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 1487704658}
   m_Colliders:
   - {fileID: 885401542}
-  - {fileID: 809192309}
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -3339,7 +3308,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 90
   m_CollisionDetection: 1
 --- !u!136 &885401542
 CapsuleCollider:

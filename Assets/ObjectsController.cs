@@ -21,7 +21,7 @@ public class ObjectsController : MonoBehaviour
         if (collision.gameObject.name.Equals("tool1"))
         {
             Debug.Log("Desenhar");
-
+            FindObjectOfType<XiloController>().Draw(collision.gameObject.transform);
             transform.GetComponent<MeshRenderer>().material.color = Color.red;
         }
         if (collision.gameObject.name.Equals("tool2"))
