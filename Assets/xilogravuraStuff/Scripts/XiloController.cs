@@ -35,7 +35,7 @@ public class XiloController : MonoBehaviour
     public void Draw(Transform tool)
     {
         int layerMask = 3;
-        if (Physics.Raycast(cam.ScreenPointToRay(tool.position), out hit, Mathf.Infinity, layerMask))
+        if (Physics.Raycast(cam.ScreenPointToRay(tool.position/*Mouse.current.position.ReadValue()*/), out hit, Mathf.Infinity, layerMask))
         {
             RenderTexture mask;
 
@@ -45,7 +45,7 @@ public class XiloController : MonoBehaviour
             painter.SetBrush(5f, 1f, 5f);
 
             //Provisorio pra efeito de testes
-            /*if (Mouse.current.rightButton.isPressed)
+            if (Mouse.current.rightButton.isPressed)
             {
                 //currentMaterial.SetInt("teste", 1); 
                 mask = textureDictionary["SculptMask"];
@@ -55,7 +55,7 @@ public class XiloController : MonoBehaviour
             {
                 mask = textureDictionary["PaintMask"];
                 painter.SetBrush(10f, 0.8f, 30f, 12f);
-            }*/
+            }
 
             painter.PaintMask(mask, hit);
         }
