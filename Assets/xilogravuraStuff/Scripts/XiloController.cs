@@ -42,19 +42,19 @@ public class XiloController : MonoBehaviour
             //TO DO
             //Alguma logica que seta a mascara certa a ser pintada de acordo com a ferramenta atual
             mask = textureDictionary["SketchMask"];
-            painter.SetBrush(5f, 5f, 1f);
+            painter.SetBrush(5f, 1f, 5f);
 
             //Provisorio pra efeito de testes
             if (Mouse.current.rightButton.isPressed)
             {
                 //currentMaterial.SetInt("teste", 1); 
                 mask = textureDictionary["SculptMask"];
-                painter.SetBrush(15f, 12f, 1f);
+                painter.SetBrush(10f, 0.8f, 15f, 18f);
             }
             if (Mouse.current.middleButton.isPressed)
             {
                 mask = textureDictionary["PaintMask"];
-                painter.SetBrush(40f, 10f, 0.8f);
+                painter.SetBrush(10f, 0.8f, 30f, 12f);
             }
 
             painter.PaintMask(mask, hit);

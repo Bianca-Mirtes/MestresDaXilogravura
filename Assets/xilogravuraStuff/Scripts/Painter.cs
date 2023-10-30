@@ -35,9 +35,19 @@ public class Painter : MonoBehaviour
     {
     }
 
-    public void SetBrush(float size, float hardness, float strength)
+    public void SetBrush(float hardness, float strength, float size)
     {
+        drawMaterial.SetFloat("_IsRoundBrush", 1);
         drawMaterial.SetFloat("_Size", size);
+        drawMaterial.SetFloat("_Hardness", hardness);
+        drawMaterial.SetFloat("_Strength", strength);
+    }
+
+    public void SetBrush(float hardness, float strength, float width, float height)
+    {
+        drawMaterial.SetFloat("_IsRoundBrush", 0);
+        drawMaterial.SetFloat("_BrushWidth", width);
+        drawMaterial.SetFloat("_BrushHeight", height);
         drawMaterial.SetFloat("_Hardness", hardness);
         drawMaterial.SetFloat("_Strength", strength);
     }

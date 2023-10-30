@@ -42,7 +42,7 @@ public class GlassController : MonoBehaviour
             RenderTexture mask;
 
             mask = textureDictionary["InkMask"];
-            painter.SetBrush(5f, 5f, 1f);
+            painter.SetBrush(5f, 1f, 5f);
             painter.PaintMask(mask, hit);
         }
     }
