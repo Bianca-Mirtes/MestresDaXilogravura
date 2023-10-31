@@ -2675,7 +2675,7 @@ MonoBehaviour:
   painter: {fileID: 2010382326}
   lapisDeRascunho: {fileID: 885401540}
   goiva: {fileID: 898198296}
-  roloDeTinta: {fileID: 873768812}
+  roloDeTinta: {fileID: 873768810}
 --- !u!1 &824051527
 GameObject:
   m_ObjectHideFlags: 0
@@ -7159,7 +7159,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.3211911
+  m_Radius: 1.81
   m_Center: {x: 0.08028852, y: 0, z: -0.88327694}
 --- !u!1 &1909676054
 GameObject:

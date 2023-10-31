@@ -17,7 +17,7 @@ public class InkRollerController : MonoBehaviour
         
     }
 
-    public void checkRegion()
+    public void enableInk()
     {
         isInk = true;
     }

@@ -19,6 +19,8 @@ public class GlassController : MonoBehaviour
     public XRGrabInteractable tinta;
     public GameObject roloDeTinta;
 
+    private bool isInkEnable = false;
+
     void Start()
     {
         currentMaterial = GetComponent<MeshRenderer>().materials[0];
@@ -46,18 +48,19 @@ public class GlassController : MonoBehaviour
             {
                 print("to colocanto tinta");
                 RenderTexture mask = textureDictionary["InkMask"];
-                painter.SetBrush(5f, 1f, 15f);
+                painter.SetBrush(5f, 1f, 30f);
                 painter.PaintMask(mask, hit);
+                isInkEnable = true;
             }
         }
 
         if (painter.isGrabbed(roloDeTinta.GetComponent<XRGrabInteractable>()))
         {
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(roloDeTinta.GetComponent<XRGrabInteractable>()));
-            if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
+            if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && isInkEnable)
             {
                 print("to pegando tinta");
-                roloDeTinta.GetComponent<InkRollerController>().checkRegion();
+                roloDeTinta.GetComponent<InkRollerController>().enableInk();
             }
         }
 
@@ -70,6 +73,7 @@ public class GlassController : MonoBehaviour
                 RenderTexture mask = textureDictionary["InkMask"];
                 painter.SetBrush(5f, 1f, 15f);
                 painter.PaintMask(mask, hit);
+                isInkEnable = true;
             }
         }
     }

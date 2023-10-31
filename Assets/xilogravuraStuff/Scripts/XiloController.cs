@@ -50,7 +50,7 @@ public class XiloController : MonoBehaviour
             {
                 print("to rascunhando");
                 mask = textureDictionary["SketchMask"];
-                painter.SetBrush(5f, 1f, 5f);
+                painter.SetBrush(5f, 1f, 10f);
             }
         }
 
@@ -61,7 +61,7 @@ public class XiloController : MonoBehaviour
             {
                 print("to entalhando");
                 mask = textureDictionary["SculptMask"];
-                painter.SetBrush(10f, 0.8f, 15f, 18f);
+                painter.SetBrush(10f, 0.8f, 20f, 26f);
             }
         }
 
@@ -90,7 +90,7 @@ public class XiloController : MonoBehaviour
             if (Physics.Raycast(cam.ScreenPointToRay(Mouse.current.position.ReadValue()), out hit, Mathf.Infinity, layerMask))
             {
                 mask = textureDictionary["SketchMask"];
-                painter.SetBrush(5f, 1f, 5f);
+                painter.SetBrush(5f, 1f, 10f);
             }
         }
         if (Mouse.current.rightButton.isPressed)
@@ -99,7 +99,7 @@ public class XiloController : MonoBehaviour
             {
                 //currentMaterial.SetInt("teste", 1);
                 mask = textureDictionary["SculptMask"];
-                painter.SetBrush(10f, 0.8f, 15f, 18f);
+                painter.SetBrush(10f, 0.8f, 20f, 26f);
             }
         }
         if (Mouse.current.middleButton.isPressed)
