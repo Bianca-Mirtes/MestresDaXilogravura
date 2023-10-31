@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class GlassController : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class GlassController : MonoBehaviour
     private int[] dimensions = {2048, 2048};
 
     public Painter painter;
+
+    public XRGrabInteractable tinta;
+    public GameObject roloDeTinta;
 
     void Start()
     {
@@ -35,15 +39,38 @@ public class GlassController : MonoBehaviour
     public void Draw()
     {
         int layerMask = 1 << 11; //Fix layer
-        //TO DO
-        //Alguma logica que permite apenas o uso da tinta
-        if (Physics.Raycast(cam.ScreenPointToRay(Mouse.current.position.ReadValue()), out hit, Mathf.Infinity, layerMask))
+        if (painter.isGrabbed(tinta))
         {
-            RenderTexture mask;
+            Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(tinta));
+            if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
+            {
+                print("to colocanto tinta");
+                RenderTexture mask = textureDictionary["InkMask"];
+                painter.SetBrush(5f, 1f, 15f);
+                painter.PaintMask(mask, hit);
+            }
+        }
 
-            mask = textureDictionary["InkMask"];
-            painter.SetBrush(5f, 1f, 5f);
-            painter.PaintMask(mask, hit);
+        if (painter.isGrabbed(roloDeTinta.GetComponent<XRGrabInteractable>()))
+        {
+            Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(roloDeTinta.GetComponent<XRGrabInteractable>()));
+            if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
+            {
+                print("to pegando tinta");
+                roloDeTinta.GetComponent<InkRollerController>().checkRegion();
+            }
+        }
+
+        //Provisorio pra efeito de testes
+        //Provisorio pra efeito de testes
+        if (Mouse.current.leftButton.isPressed)
+        {
+            if (Physics.Raycast(cam.ScreenPointToRay(Mouse.current.position.ReadValue()), out hit, Mathf.Infinity, layerMask))
+            {
+                RenderTexture mask = textureDictionary["InkMask"];
+                painter.SetBrush(5f, 1f, 15f);
+                painter.PaintMask(mask, hit);
+            }
         }
     }
 
@@ -51,4 +78,5 @@ public class GlassController : MonoBehaviour
     {
         Draw();
     }
+
 }

@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class Painter : MonoBehaviour
 {
     [SerializeField] private Shader drawShader;
 
-    [SerializeField][Range(1, 25)] private float size;
+    [SerializeField][Range(0, 25)] private float size;
     [SerializeField][Range(1, 15)] private float hardness;
     [SerializeField][Range(0, 1)] private float strength;
 
@@ -61,5 +62,30 @@ public class Painter : MonoBehaviour
         Graphics.Blit(mask, temp);
         Graphics.Blit(temp, mask, drawMaterial);
         RenderTexture.ReleaseTemporary(temp); 
+    }
+
+    public bool isGrabbed(XRGrabInteractable ferramenta)
+    {
+        Transform transform = ferramenta.GetComponent<Transform>();
+        if (transform.childCount > 0)
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                Transform child = transform.GetChild(i);
+                if (child.name.Contains("[Ray Interactor]"))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public Vector3 isToolInteraction(XRGrabInteractable ferramenta)
+    {
+        Transform transform = ferramenta.GetComponent<Transform>();
+        Transform point = transform.GetChild(0);
+
+        return point.position;
     }
 }
