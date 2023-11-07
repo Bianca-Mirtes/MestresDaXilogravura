@@ -37,7 +37,7 @@ public class XiloController : MonoBehaviour
         }
     }
 
-    public void Draw(Transform tool)
+    public void Draw()
     {
         int layerMask = 1 << 10;
         
