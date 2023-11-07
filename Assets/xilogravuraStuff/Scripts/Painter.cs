@@ -8,7 +8,7 @@ public class Painter : MonoBehaviour
 {
     [SerializeField] private Shader drawShader;
 
-    [SerializeField][Range(0, 25)] private float size;
+    [SerializeField][Range(0, 40)] private float size;
     [SerializeField][Range(1, 15)] private float hardness;
     [SerializeField][Range(0, 1)] private float strength;
 

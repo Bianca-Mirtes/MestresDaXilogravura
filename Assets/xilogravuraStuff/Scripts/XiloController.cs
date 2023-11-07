@@ -54,37 +54,34 @@ public class XiloController : MonoBehaviour
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
                 print("to rascunhando");
+                //Comeca SFX
                 mask = textureDictionary["SketchMask"];
                 painter.SetBrush(5f, 1f, 10f);
                 marcarEtapa(ref isSculped);
             }
-        }
-
-        if (painter.isGrabbed(goiva) && isSculped)
+        } else if (painter.isGrabbed(goiva) && isSculped)
         {
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(goiva));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
                 print("to entalhando");
+                //Comeca SFX
                 mask = textureDictionary["SculptMask"];
                 painter.SetBrush(10f, 0.8f, 20f, 26f);
                 marcarEtapa(ref isSketched);
             }
-        }
-
-        if (painter.isGrabbed(lixa) && isSketched)
+        }else if (painter.isGrabbed(lixa) && isSketched)
         {
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(lixa));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
                 print("to lixando");
+                //Comeca SFX
                 mask = textureDictionary["SandpaperMask"];
                 painter.SetBrush(10f, 0.8f, 20f, 20f);
                 marcarEtapa(ref isSanded);
             }
-        }
-
-        if (painter.isGrabbed(roloDeTinta.GetComponent<XRGrabInteractable>()) && isSanded)
+        }else if (painter.isGrabbed(roloDeTinta.GetComponent<XRGrabInteractable>()) && isSanded)
         {
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(roloDeTinta.GetComponent<XRGrabInteractable>()));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
@@ -92,6 +89,7 @@ public class XiloController : MonoBehaviour
                 if (roloDeTinta.GetComponent<InkRollerController>().isInkEnable())
                 {
                     print("to pintando");
+                    //Comeca SFX
                     mask = textureDictionary["PaintMask"];
                     painter.SetBrush(10f, 0.8f, 30f, 12f);
                 }else
@@ -99,6 +97,10 @@ public class XiloController : MonoBehaviour
                     painter.SetBrush(10f, 0.8f, 0f);
                 }
             }
+        }
+        else
+        {
+            //Para todos os SFX
         }
 
 
