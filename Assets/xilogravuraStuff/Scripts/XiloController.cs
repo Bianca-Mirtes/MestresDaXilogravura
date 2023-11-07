@@ -18,14 +18,19 @@ public class XiloController : MonoBehaviour
 
     public XRGrabInteractable lapisDeRascunho;
     public XRGrabInteractable goiva;
+    public XRGrabInteractable lixa;
     public GameObject roloDeTinta;
+
+    private bool isSketched = false;
+    private bool isSculped = false;
+    private bool isSanded = false;
 
     void Start()
     {
         currentMaterial = GetComponent<MeshRenderer>().materials[0];
 
         textureDictionary = new Dictionary<string, RenderTexture>();
-        string[] textureNames = { "SketchMask", "SculptMask", "PaintMask", "PrintMask" };
+        string[] textureNames = { "SketchMask", "SculptMask", "SandpaperMask", "PaintMask", "PrintMask" };
 
         for (int i = 0; i < textureNames.Length; i++)
         {
@@ -51,10 +56,11 @@ public class XiloController : MonoBehaviour
                 print("to rascunhando");
                 mask = textureDictionary["SketchMask"];
                 painter.SetBrush(5f, 1f, 10f);
+                marcarEtapa(ref isSculped);
             }
         }
 
-        if (painter.isGrabbed(goiva))
+        if (painter.isGrabbed(goiva) && isSculped)
         {
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(goiva));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
@@ -62,10 +68,23 @@ public class XiloController : MonoBehaviour
                 print("to entalhando");
                 mask = textureDictionary["SculptMask"];
                 painter.SetBrush(10f, 0.8f, 20f, 26f);
+                marcarEtapa(ref isSketched);
             }
         }
 
-        if (painter.isGrabbed(roloDeTinta.GetComponent<XRGrabInteractable>()))
+        if (painter.isGrabbed(lixa) && isSketched)
+        {
+            Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(lixa));
+            if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
+            {
+                print("to lixando");
+                mask = textureDictionary["SandpaperMask"];
+                painter.SetBrush(10f, 0.8f, 20f, 20f);
+                marcarEtapa(ref isSanded);
+            }
+        }
+
+        if (painter.isGrabbed(roloDeTinta.GetComponent<XRGrabInteractable>()) && isSanded)
         {
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(roloDeTinta.GetComponent<XRGrabInteractable>()));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
@@ -118,5 +137,13 @@ public class XiloController : MonoBehaviour
     void Update()
     {
         Draw();
+    }
+
+    void marcarEtapa(ref bool etapa)
+    {
+        if (!etapa)
+        {
+            etapa = true;
+        }
     }
 }

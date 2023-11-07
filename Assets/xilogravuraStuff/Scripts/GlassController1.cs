@@ -71,7 +71,7 @@ public class GlassController : MonoBehaviour
             if (Physics.Raycast(cam.ScreenPointToRay(Mouse.current.position.ReadValue()), out hit, Mathf.Infinity, layerMask))
             {
                 RenderTexture mask = textureDictionary["InkMask"];
-                painter.SetBrush(5f, 1f, 15f);
+                painter.SetBrush(15f, 1f, 15f);
                 painter.PaintMask(mask, hit);
                 isInkEnable = true;
             }
