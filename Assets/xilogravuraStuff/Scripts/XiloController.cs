@@ -108,28 +108,28 @@ public class XiloController : MonoBehaviour
         //Provisorio pra efeito de testes
         if (Mouse.current.leftButton.isPressed)
         {
-            if (Physics.Raycast(cam.ScreenPointToRay(Mouse.current.position.ReadValue()), out hit, Mathf.Infinity, layerMask))
-            {
-                mask = textureDictionary["SketchMask"];
-                painter.SetBrush(5f, 1f, 10f);
-            }
+            //if (Physics.Raycast(cam.ScreenPointToRay(Mouse.current.position.ReadValue()), out hit, Mathf.Infinity, layerMask))
+            //{
+            //    mask = textureDictionary["SketchMask"];
+            //    painter.SetBrush(5f, 1f, 10f);
+            //}
         }
         if (Mouse.current.rightButton.isPressed)
         {
-            if (Physics.Raycast(cam.ScreenPointToRay(Mouse.current.position.ReadValue()), out hit, Mathf.Infinity, layerMask))
-            {
-                //currentMaterial.SetInt("teste", 1);
-                mask = textureDictionary["SculptMask"];
-                painter.SetBrush(10f, 0.8f, 20f, 26f);
-            }
+            //if (Physics.Raycast(cam.ScreenPointToRay(Mouse.current.position.ReadValue()), out hit, Mathf.Infinity, layerMask))
+            //{
+            //    //currentMaterial.SetInt("teste", 1);
+            //    mask = textureDictionary["SculptMask"];
+            //    painter.SetBrush(10f, 0.8f, 20f, 26f);
+            //}
         }
         if (Mouse.current.middleButton.isPressed)
         {
-            if (Physics.Raycast(cam.ScreenPointToRay(Mouse.current.position.ReadValue()), out hit, Mathf.Infinity, layerMask))
-            {
-                mask = textureDictionary["PaintMask"];
-                painter.SetBrush(10f, 0.8f, 30f, 12f);
-            }
+            //if (Physics.Raycast(cam.ScreenPointToRay(Mouse.current.position.ReadValue()), out hit, Mathf.Infinity, layerMask))
+            //{
+            //    mask = textureDictionary["PaintMask"];
+            //    painter.SetBrush(10f, 0.8f, 30f, 12f);
+            //}
         }
 
         painter.PaintMask(mask, hit);

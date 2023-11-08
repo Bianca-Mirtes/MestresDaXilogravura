@@ -65,6 +65,17 @@ public class PaperController : MonoBehaviour
     void Update()
     {
         Draw();
-    }
 
+        if (Mouse.current.middleButton.isPressed)
+        {
+            Animator animator = GetComponent<Animator>();
+            animator.SetBool("isPrint", true);
+        }
+        if (Mouse.current.rightButton.isPressed)
+        {
+            Animator animator = GetComponent<Animator>();
+            animator.SetBool("isResult", true);
+        }
+    }
+    
 }
