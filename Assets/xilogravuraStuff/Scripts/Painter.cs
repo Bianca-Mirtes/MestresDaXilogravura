@@ -55,7 +55,7 @@ public class Painter : MonoBehaviour
 
     public void PaintMask(RenderTexture mask, RaycastHit hit)
     {
-        Debug.Log("pintando");
+        //Debug.Log("pintando");
         drawMaterial.SetVector("_Coordinates", new Vector4(hit.textureCoord.x, hit.textureCoord.y, 0, 0));
 
         RenderTexture temp = RenderTexture.GetTemporary(mask.width, mask.height, 0, RenderTextureFormat.ARGBFloat);

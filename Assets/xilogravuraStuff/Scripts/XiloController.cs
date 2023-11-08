@@ -30,7 +30,7 @@ public class XiloController : MonoBehaviour
         currentMaterial = GetComponent<MeshRenderer>().materials[0];
 
         textureDictionary = new Dictionary<string, RenderTexture>();
-        string[] textureNames = { "SketchMask", "SculptMask", "SandpaperMask", "PaintMask", "PrintMask" };
+        string[] textureNames = { "SketchMask", "SculptMask", "SandpaperMask", "PaintMask", "PrintMaskOld" };
 
         for (int i = 0; i < textureNames.Length; i++)
         {
@@ -147,5 +147,10 @@ public class XiloController : MonoBehaviour
         {
             etapa = true;
         }
+    }
+
+    public Texture getTexture(string chave)
+    {
+        return textureDictionary[chave];
     }
 }
