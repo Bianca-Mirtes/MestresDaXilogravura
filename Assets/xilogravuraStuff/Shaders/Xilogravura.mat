@@ -33,6 +33,14 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - Resultado:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - SandpaperMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - SculptMask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -50,7 +58,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTexture:
-        m_Texture: {fileID: 2800000, guid: 23bf8cb105562a94eab663a3ee4b1947, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3d25acfa57a957945b8298de68956ac6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalFromTexture_3df64ad250934782a9de3512e144c079_Texture_0_Texture2D:
@@ -58,7 +66,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: f6d55cf4f0837234aae3e2571decb4cd, type: 3}
+        m_Texture: {fileID: 2800000, guid: f5a17129b452472438bb7fc00323d475, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMask:
@@ -86,7 +94,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _WoodBelowTexture:
-        m_Texture: {fileID: 2800000, guid: 847c537b61a5ee449888e55a938de93b, type: 3}
+        m_Texture: {fileID: 2800000, guid: a22640f26ba91be4ba96802850261a73, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _heightMapTeste:
@@ -131,6 +139,7 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     - _ZWriteControl: 0
+    - teste: 0
     m_Colors:
     - _ColorRemove: {r: 1, g: 1, b: 1, a: 0}
     - _ColorReveal: {r: 1, g: 1, b: 1, a: 0}

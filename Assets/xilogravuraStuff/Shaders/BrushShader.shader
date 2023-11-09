@@ -63,14 +63,14 @@ Shader "Unlit/BrushShader"
 
                 if (_IsRoundBrush == 1)
                 {
-                    draw = pow(saturate(1 - distance(i.uv, _Coordinates.xy)), 500 / _Size * _Hardness);
+                    draw = pow(saturate(1 - distance(i.uv, _Coordinates.xy)), 500 / _Size * _Hardness * 0.35);
                 }
                 else
                 {
                     float2 diff = abs(i.uv - _Coordinates.xy);
                     float2 brushSize = float2(_BrushWidth, _BrushHeight);
                     float2 falloff = 1.0 - saturate(diff / (brushSize * 0.5));
-                    draw = pow(min(falloff.x, falloff.y), 500 / _BrushWidth * 10 * _Hardness);
+                    draw = pow(min(falloff.x, falloff.y), 500 / _BrushWidth * 10 * _Hardness * 0.35);
                 }
 
                 fixed4 drawcol = _Color * (draw * _Strength);
