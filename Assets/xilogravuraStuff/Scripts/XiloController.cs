@@ -21,6 +21,9 @@ public class XiloController : MonoBehaviour
     public XRGrabInteractable lixa;
     public GameObject roloDeTinta;
 
+    public ParticleSystem lascasDeMadeira;
+    public ParticleSystem pingosDeTinta;
+
     private bool isSketched = false;
     private bool isSculped = false;
     private bool isSanded = false;
@@ -68,6 +71,7 @@ public class XiloController : MonoBehaviour
                 //Comeca SFX
                 mask = textureDictionary["SculptMask"];
                 painter.SetBrush(10f, 0.8f, 20f, 26f);
+                instanciarParticulas(lascasDeMadeira);
                 marcarEtapa(ref isSketched);
             }
         }else if (painter.isGrabbed(lixa) && isSketched)
@@ -91,6 +95,7 @@ public class XiloController : MonoBehaviour
                     print("to pintando");
                     //Comeca SFX
                     mask = textureDictionary["PaintMask"];
+                    instanciarParticulas(pingosDeTinta);
                     painter.SetBrush(10f, 0.8f, 30f, 12f);
                 }else
                 {
@@ -98,38 +103,10 @@ public class XiloController : MonoBehaviour
                 }
             }
         }
-        else
+        if(hit.collider == null)
         {
             //Para todos os SFX
-        }
-
-
-        //Provisorio pra efeito de testes
-        //Provisorio pra efeito de testes
-        if (Mouse.current.leftButton.isPressed)
-        {
-            //if (Physics.Raycast(cam.ScreenPointToRay(Mouse.current.position.ReadValue()), out hit, Mathf.Infinity, layerMask))
-            //{
-            //    mask = textureDictionary["SketchMask"];
-            //    painter.SetBrush(5f, 1f, 10f);
-            //}
-        }
-        if (Mouse.current.rightButton.isPressed)
-        {
-            //if (Physics.Raycast(cam.ScreenPointToRay(Mouse.current.position.ReadValue()), out hit, Mathf.Infinity, layerMask))
-            //{
-            //    //currentMaterial.SetInt("teste", 1);
-            //    mask = textureDictionary["SculptMask"];
-            //    painter.SetBrush(10f, 0.8f, 20f, 26f);
-            //}
-        }
-        if (Mouse.current.middleButton.isPressed)
-        {
-            //if (Physics.Raycast(cam.ScreenPointToRay(Mouse.current.position.ReadValue()), out hit, Mathf.Infinity, layerMask))
-            //{
-            //    mask = textureDictionary["PaintMask"];
-            //    painter.SetBrush(10f, 0.8f, 30f, 12f);
-            //}
+            desligarParticulas();
         }
 
         painter.PaintMask(mask, hit);
@@ -147,6 +124,21 @@ public class XiloController : MonoBehaviour
         {
             etapa = true;
         }
+    }
+
+    void instanciarParticulas(ParticleSystem particulas)
+    {
+        particulas.gameObject.SetActive(true);
+        particulas.transform.position = hit.point;
+        particulas.Play();
+    }
+
+    void desligarParticulas()
+    {
+        lascasDeMadeira.Pause();
+        lascasDeMadeira.gameObject.SetActive(false);
+        pingosDeTinta.Pause();
+        pingosDeTinta.gameObject.SetActive(false);
     }
 
     public Texture getTexture(string chave)
