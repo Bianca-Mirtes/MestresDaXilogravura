@@ -22,7 +22,6 @@ public class XiloController : MonoBehaviour
     public GameObject roloDeTinta;
 
     public ParticleSystem lascasDeMadeira;
-    public ParticleSystem pingosDeTinta;
 
     private bool isSketched = false;
     private bool isSculped = false;
@@ -57,7 +56,7 @@ public class XiloController : MonoBehaviour
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
                 print("to rascunhando");
-                //Comeca SFX
+                //Comeca SFX de lapis
                 mask = textureDictionary["SketchMask"];
                 painter.SetBrush(5f, 1f, 10f);
                 marcarEtapa(ref isSculped);
@@ -68,10 +67,10 @@ public class XiloController : MonoBehaviour
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
                 print("to entalhando");
-                //Comeca SFX
+                //Comeca SFX de entalhe
                 mask = textureDictionary["SculptMask"];
                 painter.SetBrush(10f, 0.8f, 20f, 26f);
-                instanciarParticulas(lascasDeMadeira);
+                painter.instanciarParticulas(lascasDeMadeira, hit);
                 marcarEtapa(ref isSketched);
             }
         }else if (painter.isGrabbed(lixa) && isSketched)
@@ -80,7 +79,7 @@ public class XiloController : MonoBehaviour
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
                 print("to lixando");
-                //Comeca SFX
+                //Comeca SFX de lixa
                 mask = textureDictionary["SandpaperMask"];
                 painter.SetBrush(10f, 0.8f, 20f, 20f);
                 marcarEtapa(ref isSanded);
@@ -93,9 +92,8 @@ public class XiloController : MonoBehaviour
                 if (roloDeTinta.GetComponent<InkRollerController>().isInkEnable())
                 {
                     print("to pintando");
-                    //Comeca SFX
+                    //Comeca SFX de rolin de tinta
                     mask = textureDictionary["PaintMask"];
-                    instanciarParticulas(pingosDeTinta);
                     painter.SetBrush(10f, 0.8f, 30f, 12f);
                 }else
                 {
@@ -105,8 +103,8 @@ public class XiloController : MonoBehaviour
         }
         if(hit.collider == null)
         {
-            //Para todos os SFX
-            desligarParticulas();
+            //Parar todos os SFX
+            painter.desligarParticulas(lascasDeMadeira);
         }
 
         painter.PaintMask(mask, hit);
@@ -124,21 +122,6 @@ public class XiloController : MonoBehaviour
         {
             etapa = true;
         }
-    }
-
-    void instanciarParticulas(ParticleSystem particulas)
-    {
-        particulas.gameObject.SetActive(true);
-        particulas.transform.position = hit.point;
-        particulas.Play();
-    }
-
-    void desligarParticulas()
-    {
-        lascasDeMadeira.Pause();
-        lascasDeMadeira.gameObject.SetActive(false);
-        pingosDeTinta.Pause();
-        pingosDeTinta.gameObject.SetActive(false);
     }
 
     public Texture getTexture(string chave)

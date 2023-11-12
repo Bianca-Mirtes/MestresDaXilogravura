@@ -1733,6 +1733,7 @@ MonoBehaviour:
   painter: {fileID: 2010382326}
   tinta: {fileID: 1227431155}
   roloDeTinta: {fileID: 873768810}
+  pingosDeTinta: {fileID: 1308374053}
 --- !u!54 &426879758
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3264,7 +3265,6 @@ MonoBehaviour:
   lixa: {fileID: 1074824169}
   roloDeTinta: {fileID: 873768810}
   lascasDeMadeira: {fileID: 0}
-  pingosDeTinta: {fileID: 0}
 --- !u!1 &824051527
 GameObject:
   m_ObjectHideFlags: 0
@@ -5362,6 +5362,7 @@ MonoBehaviour:
   painter: {fileID: 2010382326}
   tinta: {fileID: 1227431155}
   roloDeTinta: {fileID: 873768810}
+  pingosDeTinta: {fileID: 0}
 --- !u!54 &1084314078
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6035,7 +6036,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 44b2a3a1458da6a4a94c228d967474ad, type: 2}
+  - {fileID: -876546973899608171, guid: 74018db41d5c35e4388979b66a385d90, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6095,7 +6096,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1308374051}
   serializedVersion: 8
   lengthInSec: 5
-  simulationSpeed: 1
+  simulationSpeed: 0.26
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -6169,7 +6170,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.38
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -6340,8 +6341,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
-      minScalar: 0.2
+      scalar: 0
+      minScalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -6552,7 +6553,7 @@ ParticleSystem:
     startRotationY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.7853981
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -6660,11 +6661,11 @@ ParticleSystem:
     maxNumParticles: 1000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
-    rotation3D: 0
+    rotation3D: 1
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.5
+      scalar: 0.16
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -6721,7 +6722,7 @@ ParticleSystem:
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
-    radiusThickness: 1
+    radiusThickness: 0.35
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
@@ -6792,7 +6793,7 @@ ParticleSystem:
     m_SpriteRenderer: {fileID: 0}
     m_UseMeshMaterialIndex: 0
     m_UseMeshColors: 1
-    alignToDirection: 0
+    alignToDirection: 1
     m_Texture: {fileID: 0}
     m_TextureClipChannel: 3
     m_TextureClipThreshold: 0
@@ -6804,7 +6805,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 2
+      value: 0.37
       mode: 0
       spread: 0
       speed:
@@ -6923,7 +6924,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 20
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -6976,7 +6977,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 3.3
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -10817,13 +10818,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1308374051}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 1.42, y: 1.32, z: 0.78}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1316084220
 GameObject:
   m_ObjectHideFlags: 0
@@ -12049,7 +12050,6 @@ MonoBehaviour:
   lixa: {fileID: 1074824169}
   roloDeTinta: {fileID: 873768810}
   lascasDeMadeira: {fileID: 1655991622}
-  pingosDeTinta: {fileID: 1308374053}
 --- !u!114 &1590503465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12243,7 +12243,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6f5aa76632f2022448fc10d876a8c1dc, type: 2}
+  - {fileID: 2100000, guid: d9f6adea2e25dfb41bdc5d51f3833d5c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12303,7 +12303,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1655991620}
   serializedVersion: 8
   lengthInSec: 5
-  simulationSpeed: 1
+  simulationSpeed: 0.7
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -12548,8 +12548,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
-      minScalar: 0.2
+      scalar: 1.4
+      minScalar: 0.6
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -12706,9 +12706,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationX:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
-      minScalar: 0
+      minMaxState: 3
+      scalar: -0.114144534
+      minScalar: 0.07260569
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -12759,9 +12759,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationY:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
-      minScalar: 0
+      minMaxState: 3
+      scalar: -0.069115035
+      minScalar: 0.37070793
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -12812,9 +12812,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotation:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
-      minScalar: 0
+      minMaxState: 3
+      scalar: -0.5235988
+      minScalar: 0.5235988
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -12868,7 +12868,7 @@ ParticleSystem:
     maxNumParticles: 1000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
-    rotation3D: 0
+    rotation3D: 1
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
@@ -12926,7 +12926,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 25
+    angle: 50
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -13012,7 +13012,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 0.5
       mode: 0
       spread: 0
       speed:

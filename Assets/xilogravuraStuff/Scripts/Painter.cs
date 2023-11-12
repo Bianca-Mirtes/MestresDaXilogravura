@@ -88,4 +88,17 @@ public class Painter : MonoBehaviour
 
         return point.position;
     }
+
+    public void instanciarParticulas(ParticleSystem particulas, RaycastHit hit)
+    {
+        particulas.gameObject.SetActive(true);
+        particulas.transform.position = hit.point;
+        particulas.Play();
+    }
+
+    public void desligarParticulas(ParticleSystem particulas)
+    {
+        particulas.Pause();
+        particulas.gameObject.SetActive(false);
+    }
 }
