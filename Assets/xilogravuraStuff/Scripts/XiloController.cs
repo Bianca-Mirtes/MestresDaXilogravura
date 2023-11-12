@@ -22,6 +22,7 @@ public class XiloController : MonoBehaviour
     public GameObject roloDeTinta;
 
     public ParticleSystem lascasDeMadeira;
+    public ParticleSystem poDeMadeira;
 
     private bool isSketched = false;
     private bool isSculped = false;
@@ -81,7 +82,8 @@ public class XiloController : MonoBehaviour
                 print("to lixando");
                 //Comeca SFX de lixa
                 mask = textureDictionary["SandpaperMask"];
-                painter.SetBrush(10f, 0.8f, 20f, 20f);
+                painter.SetBrush(10f, 0.8f, 25f, 25f);
+                painter.instanciarParticulas(poDeMadeira, hit);
                 marcarEtapa(ref isSanded);
             }
         }else if (painter.isGrabbed(roloDeTinta.GetComponent<XRGrabInteractable>()) && isSanded)
@@ -105,6 +107,7 @@ public class XiloController : MonoBehaviour
         {
             //Parar todos os SFX
             painter.desligarParticulas(lascasDeMadeira);
+            painter.desligarParticulas(poDeMadeira);
         }
 
         painter.PaintMask(mask, hit);
