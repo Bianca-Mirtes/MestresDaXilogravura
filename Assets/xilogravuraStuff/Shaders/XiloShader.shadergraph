@@ -263,6 +263,9 @@
         },
         {
             "m_Id": "968b9f3f7b1948f38b5d5eab4ce36c9a"
+        },
+        {
+            "m_Id": "643968e8e8314fa4b6dcfcb8a0aeefd1"
         }
     ],
     "m_GroupDatas": [
@@ -671,6 +674,20 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
+                    "m_Id": "643968e8e8314fa4b6dcfcb8a0aeefd1"
+                },
+                "m_SlotId": 1
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "1ccca40dc5c0491ba8264e004cb9fc45"
+                },
+                "m_SlotId": 2
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
                     "m_Id": "665782ca9554487c85a54a69c96f63c7"
                 },
                 "m_SlotId": 0
@@ -985,9 +1002,9 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "1ccca40dc5c0491ba8264e004cb9fc45"
+                    "m_Id": "643968e8e8314fa4b6dcfcb8a0aeefd1"
                 },
-                "m_SlotId": 2
+                "m_SlotId": 0
             }
         },
         {
@@ -4231,7 +4248,7 @@
     "m_DefaultRefNameVersion": 1,
     "m_RefNameGeneratedByDisplayName": "SketchTexture",
     "m_DefaultReferenceName": "_SketchTexture",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "SketchTexture",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
@@ -4241,7 +4258,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"1f4da51238d69394198213f8e92dac57\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"9f9481c13e0c4df41ac861fcae6b9793\",\"type\":3}}",
         "m_Guid": ""
     },
     "isMainTexture": false,
@@ -4924,6 +4941,45 @@
         "w": 0.0
     },
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.InvertColorsNode",
+    "m_ObjectId": "643968e8e8314fa4b6dcfcb8a0aeefd1",
+    "m_Group": {
+        "m_Id": "3d155ba35b8f409ebb1f054793e8fb61"
+    },
+    "m_Name": "Invert Colors",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -3948.0,
+            "y": -46.0,
+            "width": 160.0,
+            "height": 207.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "da309927a27a4f2781ac0205f50f2193"
+        },
+        {
+            "m_Id": "cc44891f130044bf88db44b417567169"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": false,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_RedChannel": true,
+    "m_GreenChannel": true,
+    "m_BlueChannel": true
 }
 
 {
@@ -8160,6 +8216,30 @@
 {
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
+    "m_ObjectId": "cc44891f130044bf88db44b417567169",
+    "m_Id": 1,
+    "m_DisplayName": "Out",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "cc4de7ee556f4078a06e707097d0c911",
     "m_Id": 1,
     "m_DisplayName": "",
@@ -8523,6 +8603,30 @@
     "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
+    "m_ObjectId": "da309927a27a4f2781ac0205f50f2193",
+    "m_Id": 0,
+    "m_DisplayName": "In",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "In",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
     }
 }
 

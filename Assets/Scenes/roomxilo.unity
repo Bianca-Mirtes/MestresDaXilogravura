@@ -8556,7 +8556,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 44927363fe7062d42b635b61623245be, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9f9481c13e0c4df41ac861fcae6b9793, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -12543,10 +12543,11 @@ MonoBehaviour:
   left: {fileID: 2135046041}
   right: {fileID: 720717249}
   desenhos:
-  - {fileID: 21300000, guid: a3a6566ec9f18404b98fefdd82a7b695, type: 3}
-  - {fileID: 21300000, guid: b23c663e84dbbb149ab14597502ead1d, type: 3}
-  - {fileID: 21300000, guid: 44927363fe7062d42b635b61623245be, type: 3}
-  - {fileID: 21300000, guid: afb4bc7a54da27941b30c1257a669776, type: 3}
+  - {fileID: 21300000, guid: 9f9481c13e0c4df41ac861fcae6b9793, type: 3}
+  - {fileID: 21300000, guid: 3de6a7bcc5830ad49a9af70c0ebd66a0, type: 3}
+  - {fileID: 21300000, guid: 22ef21bd8e886c744a6b926d9d862250, type: 3}
+  matriz: {fileID: 1590503462}
+  papel: {fileID: 450551913}
 --- !u!4 &1305382183
 Transform:
   m_ObjectHideFlags: 0

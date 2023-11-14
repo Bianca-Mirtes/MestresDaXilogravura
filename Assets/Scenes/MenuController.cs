@@ -14,6 +14,8 @@ public class MenuController : MonoBehaviour
     private int indice=0;
     private bool verifStart = false;
     public Sprite[] desenhos;
+    public GameObject matriz;
+    public GameObject papel;
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +72,7 @@ public class MenuController : MonoBehaviour
         GameObject canva = GameObject.Find("Menu");
         if (canva != null)
         {
+            setDesenhoEscolhido();
             canva.SetActive(false);
         }
         /*GameObject.Find("tool1").GetComponent<XRGrabInteractable>().enabled = true;
@@ -78,6 +81,26 @@ public class MenuController : MonoBehaviour
         GameObject.Find("rolinho").GetComponent<XRGrabInteractable>().enabled = true;
         GameObject.Find("tinta").GetComponent<XRGrabInteractable>().enabled = true;
         GameObject.Find("colher").GetComponent<XRGrabInteractable>().enabled = true;*/
+    }
+
+    void setDesenhoEscolhido()
+    {
+        Sprite spriteAtual = drawingCurrent.GetComponent<Image>().sprite;
+        if (spriteAtual != null)
+        {
+            Texture2D desenho = new Texture2D((int)spriteAtual.rect.width, (int)spriteAtual.rect.height);
+
+            desenho.SetPixels(spriteAtual.texture.GetPixels((int)spriteAtual.rect.x, (int)spriteAtual.rect.y,
+                (int)spriteAtual.rect.width, (int)spriteAtual.rect.height));
+
+            desenho.Apply();
+
+            Material xiloMaterial = matriz.GetComponent<MeshRenderer>().materials[0];
+            xiloMaterial.SetTexture("SketchTexture", desenho);
+
+            Material paperMaterial = papel.GetComponent<MeshRenderer>().materials[0];
+            paperMaterial.SetTexture("SketchTexture", desenho);
+        }
     }
     
 }
