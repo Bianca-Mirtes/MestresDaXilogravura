@@ -96,7 +96,7 @@ public class XiloController : MonoBehaviour
                     print("to pintando");
                     //Comeca SFX de rolin de tinta
                     mask = textureDictionary["PaintMask"];
-                    painter.SetBrush(10f, 0.8f, 30f, 12f);
+                    painter.SetBrush(10f, 0.8f, 28f, 12f);
                 }else
                 {
                     painter.SetBrush(10f, 0.8f, 0f);

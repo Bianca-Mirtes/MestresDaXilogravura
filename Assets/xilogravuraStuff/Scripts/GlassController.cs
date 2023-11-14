@@ -48,7 +48,7 @@ public class GlassController : MonoBehaviour
             {
                 print("to colocanto tinta");
                 RenderTexture mask = textureDictionary["InkMask"];
-                painter.SetBrush(5f, 1f, 40f);
+                painter.SetBrush(20f, 1f, 40f);
                 painter.PaintMask(mask, hit);
                 isInkEnable = true;
             }
