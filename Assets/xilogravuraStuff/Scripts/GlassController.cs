@@ -18,6 +18,7 @@ public class GlassController : MonoBehaviour
 
     public XRGrabInteractable tinta;
     public GameObject roloDeTinta;
+    public ParticleSystem tintaDerramada;
 
     private bool isInkEnable = false;
 
@@ -50,6 +51,7 @@ public class GlassController : MonoBehaviour
                 RenderTexture mask = textureDictionary["InkMask"];
                 painter.SetBrush(20f, 1f, 40f);
                 painter.PaintMask(mask, hit);
+                painter.instanciarParticulas(tintaDerramada, painter.isToolInteraction(tinta));
                 isInkEnable = true;
             }
         }
@@ -67,6 +69,7 @@ public class GlassController : MonoBehaviour
         if (hit.collider == null)
         {
             //Parar todos os SFX
+            painter.desligarParticulas(tintaDerramada);
         }
     }
 

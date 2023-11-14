@@ -71,7 +71,7 @@ public class XiloController : MonoBehaviour
                 //Comeca SFX de entalhe
                 mask = textureDictionary["SculptMask"];
                 painter.SetBrush(10f, 0.8f, 20f, 26f);
-                painter.instanciarParticulas(lascasDeMadeira, hit);
+                painter.instanciarParticulas(lascasDeMadeira, hit.point);
                 marcarEtapa(ref isSketched);
             }
         }else if (painter.isGrabbed(lixa) && isSketched)
@@ -83,7 +83,7 @@ public class XiloController : MonoBehaviour
                 //Comeca SFX de lixa
                 mask = textureDictionary["SandpaperMask"];
                 painter.SetBrush(10f, 0.8f, 25f, 25f);
-                painter.instanciarParticulas(poDeMadeira, hit);
+                painter.instanciarParticulas(poDeMadeira, hit.point);
                 marcarEtapa(ref isSanded);
             }
         }else if (painter.isGrabbed(roloDeTinta.GetComponent<XRGrabInteractable>()) && isSanded)

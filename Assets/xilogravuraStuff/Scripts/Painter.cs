@@ -89,10 +89,10 @@ public class Painter : MonoBehaviour
         return point.position;
     }
 
-    public void instanciarParticulas(ParticleSystem particulas, RaycastHit hit)
+    public void instanciarParticulas(ParticleSystem particulas, Vector3 point)
     {
         particulas.gameObject.SetActive(true);
-        particulas.transform.position = hit.point;
+        particulas.transform.position = point;
         particulas.Play();
     }
 
