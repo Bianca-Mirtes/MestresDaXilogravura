@@ -53,6 +53,6 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _isTinta: 0
-    - isTinta: 1
+    - isTinta: 0
     m_Colors: []
   m_BuildTextureStacks: []
