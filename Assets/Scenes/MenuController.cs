@@ -16,6 +16,7 @@ public class MenuController : MonoBehaviour
     public Sprite[] desenhos;
     public GameObject matriz;
     public GameObject papel;
+    public Rect cropRect;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +38,8 @@ public class MenuController : MonoBehaviour
         start.onClick.AddListener(() => StartExp());
         if (!verifStart)
         {
-            drawingCurrent.GetComponent<Image>().sprite = desenhos[indice];
+            Sprite spriteTexture = Sprite.Create(desenhos[indice].texture, cropRect, new Vector2(0.5f, 0.5f));
+            drawingCurrent.GetComponent<Image>().sprite = spriteTexture;
         }
 
     }
@@ -85,7 +87,7 @@ public class MenuController : MonoBehaviour
 
     void setDesenhoEscolhido()
     {
-        Sprite spriteAtual = drawingCurrent.GetComponent<Image>().sprite;
+        Sprite spriteAtual = desenhos[indice];
         if (spriteAtual != null)
         {
             Texture2D desenho = new Texture2D((int)spriteAtual.rect.width, (int)spriteAtual.rect.height);
