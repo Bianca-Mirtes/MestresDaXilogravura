@@ -22,10 +22,30 @@ public class InkRollerController : MonoBehaviour
     {
         isInk = true;
         borracha.SetFloat("isTinta", 1);
+        borracha.SetFloat("inkLevel", 1);
+        StartCoroutine(DecreaseInkLevelOverTime());
     }
 
     public bool isInkEnable()
     {
         return isInk;
+    }
+
+    IEnumerator DecreaseInkLevelOverTime()
+    {
+        float currentTime = 0f;
+        float startInkLevel = 1f;
+        float endInkLevel = 0f;
+        float duration = 1.25f;
+
+        while (currentTime < duration)
+        {
+            currentTime += Time.deltaTime;
+            float newInkLevel = Mathf.Lerp(startInkLevel, endInkLevel, currentTime / duration);
+            borracha.SetFloat("inkLevel", newInkLevel);
+            yield return null;
+        }
+
+        borracha.SetFloat("inkLevel", endInkLevel);
     }
 }
