@@ -64,23 +64,6 @@ public class Painter : MonoBehaviour
         RenderTexture.ReleaseTemporary(temp); 
     }
 
-    public bool isGrabbed(XRGrabInteractable ferramenta)
-    {
-        Transform transform = ferramenta.GetComponent<Transform>();
-        if (transform.childCount > 0)
-        {
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                Transform child = transform.GetChild(i);
-                if (child.name.Contains("[Ray Interactor]"))
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
     public Vector3 isToolInteraction(XRGrabInteractable ferramenta)
     {
         Transform transform = ferramenta.GetComponent<Transform>();

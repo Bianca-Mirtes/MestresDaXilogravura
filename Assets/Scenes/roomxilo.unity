@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -17892,8 +17892,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.002000004, y: 0.032}
-  m_SizeDelta: {x: 4.47, y: 3.65}
+  m_AnchoredPosition: {x: 0.002000004, y: 0.081}
+  m_SizeDelta: {x: 4.974, y: 3.995}
   m_Pivot: {x: 0.5000001, y: 0.5}
 --- !u!114 &648558624
 MonoBehaviour:
@@ -18687,15 +18687,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Iniciar
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 50a0a875911ca9d42916e693afad0799, type: 2}
+  m_sharedMaterial: {fileID: -575998762881257569, guid: 50a0a875911ca9d42916e693afad0799, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4279135647
+  m_fontColor: {r: 0.6226415, g: 0.425556, b: 0.055802763, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -18712,13 +18712,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 17
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -21984,7 +21984,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.052000046, y: 0.123000026}
+  m_AnchoredPosition: {x: -0.019000053, y: 0.123000026}
   m_SizeDelta: {x: 389.92, y: 323.646}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1248919871
@@ -22007,12 +22007,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Tutorial:\n1. Pegue o l\xE1pis para desenhar a imagem a ser entalhada
-    na matriz;\n2. Pegue a ferramenta de entalhe para entalhar a imagem na matriz;\n3.
+  m_text: "Tutorial:\n\n1. Pegue o l\xE1pis para desenhar a imagem a ser entalhada
+    na matriz;\n \n2. Pegue a ferramenta de entalhe para entalhar a imagem na matriz;\n\n3.
     Pegue a lixa e esfregue sobre a matriz;"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 50a0a875911ca9d42916e693afad0799, type: 2}
+  m_sharedMaterial: {fileID: -575998762881257569, guid: 50a0a875911ca9d42916e693afad0799, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -22036,14 +22036,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28
-  m_fontSizeBase: 28
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 8
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -29497,13 +29497,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Tutorial:\n4. Pegue o pote de tinta a base de petr\xF3leo e derrame sobre
-    a placa de acr\xEDlico;\n5. Pegue o rolo de tinta e passe na tinta para pintar
-    a matriz;\n6. Pegue a colher de madeira e passe por cima da folha para fixar
-    bem a imagem."
+  m_text: "Tutorial:\n\n4. Pegue o pote de tinta a base de petr\xF3leo e derrame
+    sobre a placa de acr\xEDlico;\n\n5. Pegue o rolo de tinta e passe na tinta para
+    pintar a matriz;\n\n6. Pegue a colher de madeira e passe por cima da folha para
+    fixar bem a imagem."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 50a0a875911ca9d42916e693afad0799, type: 2}
+  m_sharedMaterial: {fileID: -575998762881257569, guid: 50a0a875911ca9d42916e693afad0799, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -29527,14 +29527,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28
-  m_fontSizeBase: 28
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 8
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -31195,7 +31195,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.009, y: 1.122}
+  m_AnchoredPosition: {x: 0.009, y: 1.171}
   m_SizeDelta: {x: 2.1841, y: 0.433}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1919400066
@@ -31220,8 +31220,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Escolha o desenho
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 50a0a875911ca9d42916e693afad0799, type: 2}
+  m_sharedMaterial: {fileID: -575998762881257569, guid: 50a0a875911ca9d42916e693afad0799, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -31245,8 +31245,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.2
-  m_fontSizeBase: 0.2
+  m_fontSize: 0.18
+  m_fontSizeBase: 0.18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -32026,8 +32026,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.028, y: -0.0013000071}
-  m_SizeDelta: {x: 4.47, y: 3.65}
+  m_AnchoredPosition: {x: 0.162, y: -0.0013000071}
+  m_SizeDelta: {x: 4.739, y: 3.65}
   m_Pivot: {x: 0.5000001, y: 0.5}
 --- !u!114 &2037448091
 MonoBehaviour:
