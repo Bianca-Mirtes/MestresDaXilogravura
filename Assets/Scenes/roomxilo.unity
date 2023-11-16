@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -17866,7 +17866,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.002000004, y: 0.032}
-  m_SizeDelta: {x: 4.426, y: 3.077}
+  m_SizeDelta: {x: 4.47, y: 3.65}
   m_Pivot: {x: 0.5000001, y: 0.5}
 --- !u!114 &648558624
 MonoBehaviour:
@@ -22035,9 +22035,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Tutorial: \n1. Pegue o lapis para desenhar a imagem que deseja entalhar
-    na matriz; \n2. Pegue a faca de entalhe para entalhar a imagem na matriz; \n3.
-    Pegue o pote de tinta a base de petroleo e coloque na mesa;"
+  m_text: "Tutorial:\n1. Pegue o l\xE1pis para desenhar a imagem a ser entalhada
+    na matriz;\n2. Pegue a ferramenta de entalhe para entalhar a imagem na matriz;\n3.
+    Pegue a lixa e esfregue sobre a matriz;"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -29604,9 +29604,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Tutorial: \n4. Pegue o rolo de tinta e passe na tinta para pintar a matriz;
-    \n5. Pegue a folha de papel e coloque por cima da matriz pintada;\n6. Pegue a
-    colher de madeira e passe por cima da folha para fixar bem a imagem."
+  m_text: "Tutorial:\n4. Pegue o pote de tinta a base de petr\xF3leo e derrame sobre
+    a placa de acr\xEDlico;\n5. Pegue o rolo de tinta e passe na tinta para pintar
+    a matriz;\n6. Pegue a colher de madeira e passe por cima da folha para fixar
+    bem a imagem."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -32039,7 +32040,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.028, y: -0.0013000071}
-  m_SizeDelta: {x: 4.471, y: 3.65}
+  m_SizeDelta: {x: 4.47, y: 3.65}
   m_Pivot: {x: 0.5000001, y: 0.5}
 --- !u!114 &2037448091
 MonoBehaviour:
