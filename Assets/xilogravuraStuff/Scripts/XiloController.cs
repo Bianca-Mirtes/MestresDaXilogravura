@@ -27,6 +27,7 @@ public class XiloController : MonoBehaviour
     private bool isSketched = false;
     private bool isSculped = false;
     private bool isSanded = false;
+    private bool isPaint = false;
 
     void Start()
     {
@@ -51,7 +52,7 @@ public class XiloController : MonoBehaviour
         
         RenderTexture mask = textureDictionary["SketchMask"];
 
-        if (painter.isGrabbed(lapisDeRascunho))
+        if (painter.isGrabbed(lapisDeRascunho) && !isSculped)
         {
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(lapisDeRascunho));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
@@ -60,9 +61,9 @@ public class XiloController : MonoBehaviour
                 //Comeca SFX de lapis
                 mask = textureDictionary["SketchMask"];
                 painter.SetBrush(5f, 1f, 10f);
-                marcarEtapa(ref isSculped);
+                marcarEtapa(ref isSketched);
             }
-        } else if (painter.isGrabbed(goiva) && isSculped)
+        } else if (painter.isGrabbed(goiva) && isSketched && !isSanded)
         {
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(goiva));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
@@ -72,9 +73,9 @@ public class XiloController : MonoBehaviour
                 mask = textureDictionary["SculptMask"];
                 painter.SetBrush(10f, 0.8f, 20f, 26f);
                 painter.instanciarParticulas(lascasDeMadeira, hit.point);
-                marcarEtapa(ref isSketched);
+                marcarEtapa(ref isSculped);
             }
-        }else if (painter.isGrabbed(lixa) && isSketched)
+        }else if (painter.isGrabbed(lixa) && isSculped && !isPaint)
         {
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(lixa));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
@@ -97,7 +98,9 @@ public class XiloController : MonoBehaviour
                     //Comeca SFX de rolin de tinta
                     mask = textureDictionary["PaintMask"];
                     painter.SetBrush(10f, 0.8f, 28f, 12f);
-                }else
+                    marcarEtapa(ref isPaint);
+                }
+                else
                 {
                     painter.SetBrush(10f, 0.8f, 0f);
                 }

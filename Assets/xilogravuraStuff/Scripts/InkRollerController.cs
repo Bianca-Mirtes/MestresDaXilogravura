@@ -5,6 +5,7 @@ using UnityEngine;
 public class InkRollerController : MonoBehaviour
 {
     private bool isInk = false;
+    private bool tintaNoRolinho = false;
     public Material borracha;
     // Start is called before the first frame update
     void Start()
@@ -22,8 +23,11 @@ public class InkRollerController : MonoBehaviour
     {
         isInk = true;
         borracha.SetFloat("isTinta", 1);
-        borracha.SetFloat("inkLevel", 1);
-        StartCoroutine(DecreaseInkLevelOverTime());
+        if (!tintaNoRolinho)
+        {
+            borracha.SetFloat("inkLevel", 1);
+            StartCoroutine(DecreaseInkLevelOverTime());
+        }
     }
 
     public bool isInkEnable()
@@ -47,5 +51,6 @@ public class InkRollerController : MonoBehaviour
         }
 
         borracha.SetFloat("inkLevel", endInkLevel);
+        tintaNoRolinho = true;
     }
 }
