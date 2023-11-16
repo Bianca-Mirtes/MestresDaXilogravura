@@ -15,6 +15,8 @@ public class PaperController : MonoBehaviour
     private int[] dimensions = {2048, 2048};
 
     public Painter painter;
+    public GrabController grabController;
+
     public XRGrabInteractable ferramenta;
     public XiloController xilogravura;
 
@@ -41,7 +43,7 @@ public class PaperController : MonoBehaviour
     public void Draw()
     {
         int layerMask = 1 << 12; //Fix layer
-        if (painter.isGrabbed(ferramenta))
+        if (grabController.isGrab(ferramenta))
         {
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(ferramenta));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))

@@ -15,6 +15,7 @@ public class GlassController : MonoBehaviour
     private int[] dimensions = {2048, 2048};
 
     public Painter painter;
+    public GrabController grabController;
 
     public XRGrabInteractable tinta;
     public GameObject roloDeTinta;
@@ -42,7 +43,7 @@ public class GlassController : MonoBehaviour
     public void Draw()
     {
         int layerMask = 1 << 11; //Fix layer
-        if (painter.isGrabbed(tinta))
+        if (grabController.isGrab(tinta))
         {
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(tinta));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
@@ -56,7 +57,7 @@ public class GlassController : MonoBehaviour
             }
         }
 
-        if (painter.isGrabbed(roloDeTinta.GetComponent<XRGrabInteractable>()))
+        if (grabController.isGrab(roloDeTinta.GetComponent<XRGrabInteractable>()))
         {
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(roloDeTinta.GetComponent<XRGrabInteractable>()));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && isInkEnable)

@@ -15,6 +15,7 @@ public class XiloController : MonoBehaviour
     private int[] dimensions = {2048, 2048};
 
     public Painter painter;
+    public GrabController grabController;
 
     public XRGrabInteractable lapisDeRascunho;
     public XRGrabInteractable goiva;
@@ -52,49 +53,49 @@ public class XiloController : MonoBehaviour
         
         RenderTexture mask = textureDictionary["SketchMask"];
 
-        if (painter.isGrabbed(lapisDeRascunho) && !isSculped)
+        if (grabController.isGrab(lapisDeRascunho) && !isSculped)
         {
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(lapisDeRascunho));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
-                print("to rascunhando");
+                Debug.LogError("to rascunhando");
                 //Comeca SFX de lapis
                 mask = textureDictionary["SketchMask"];
                 painter.SetBrush(5f, 1f, 10f);
                 marcarEtapa(ref isSketched);
             }
-        } else if (painter.isGrabbed(goiva) && isSketched && !isSanded)
+        } else if (grabController.isGrab(goiva) && isSketched && !isSanded)
         {
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(goiva));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
-                print("to entalhando");
+                Debug.LogError("to entalhando");
                 //Comeca SFX de entalhe
                 mask = textureDictionary["SculptMask"];
                 painter.SetBrush(10f, 0.8f, 20f, 26f);
                 painter.instanciarParticulas(lascasDeMadeira, hit.point);
                 marcarEtapa(ref isSculped);
             }
-        }else if (painter.isGrabbed(lixa) && isSculped && !isPaint)
+        }else if (grabController.isGrab(lixa) && isSculped && !isPaint)
         {
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(lixa));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
-                print("to lixando");
+                Debug.LogError("to lixando");
                 //Comeca SFX de lixa
                 mask = textureDictionary["SandpaperMask"];
                 painter.SetBrush(10f, 0.8f, 25f, 25f);
                 painter.instanciarParticulas(poDeMadeira, hit.point);
                 marcarEtapa(ref isSanded);
             }
-        }else if (painter.isGrabbed(roloDeTinta.GetComponent<XRGrabInteractable>()) && isSanded)
+        }else if (grabController.isGrab(roloDeTinta.GetComponent<XRGrabInteractable>()) && isSanded)
         {
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(roloDeTinta.GetComponent<XRGrabInteractable>()));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
                 if (roloDeTinta.GetComponent<InkRollerController>().isInkEnable())
                 {
-                    print("to pintando");
+                    Debug.LogError("to pintando");
                     //Comeca SFX de rolin de tinta
                     mask = textureDictionary["PaintMask"];
                     painter.SetBrush(10f, 0.8f, 28f, 12f);
