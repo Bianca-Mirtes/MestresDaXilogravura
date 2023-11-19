@@ -22,7 +22,7 @@ public class PaperController : MonoBehaviour
     private bool setarTexturas = false;
     private Dictionary<string, RenderTexture> textureDictionary = new Dictionary<string, RenderTexture>();
     private string[] textureNames = { "PrintMask" };
-
+    private bool isPrint = false;
 
     void Start()
     {
@@ -63,8 +63,22 @@ public class PaperController : MonoBehaviour
                 RenderTexture mask = textureDictionary["PrintMask"];
                 painter.SetBrush(5f, 1f, 20f);
                 painter.PaintMask(mask, hit);
+                marcarEtapa(ref isPrint);
             }
         }
+    }
+
+    void marcarEtapa(ref bool etapa)
+    {
+        if (!etapa)
+        {
+            etapa = true;
+        }
+    }
+
+    public bool isPrinted()
+    {
+        return isPrint;
     }
 
     void Update()
@@ -72,15 +86,22 @@ public class PaperController : MonoBehaviour
         Draw();
 
         if (Mouse.current.middleButton.isPressed)
-        {
-            Animator animator = GetComponent<Animator>();
-            animator.SetBool("isPrint", true);
-        }
+            posicionarFolha();
+
         if (Mouse.current.rightButton.isPressed)
-        {
-            Animator animator = GetComponent<Animator>();
-            animator.SetBool("isResult", true);
-        }
+            mostrarResultado();
     }
-    
+
+    public void posicionarFolha()
+    {
+        Animator animator = GetComponent<Animator>();
+        animator.SetBool("isPrint", true);
+    }
+
+    public void mostrarResultado()
+    {
+        Animator animator = GetComponent<Animator>();
+        animator.SetBool("isResult", true);
+    }
+
 }

@@ -62,7 +62,6 @@ public class XiloController : MonoBehaviour
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(lapisDeRascunho));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
-                Debug.LogError("to rascunhando");
                 //Comeca SFX de lapis
                 mask = textureDictionary["SketchMask"];
                 painter.SetBrush(5f, 1f, 10f);
@@ -73,7 +72,6 @@ public class XiloController : MonoBehaviour
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(goiva));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
-                Debug.LogError("to entalhando");
                 //Comeca SFX de entalhe
                 mask = textureDictionary["SculptMask"];
                 painter.SetBrush(10f, 0.8f, 20f, 26f);
@@ -85,7 +83,6 @@ public class XiloController : MonoBehaviour
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(lixa));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
-                Debug.LogError("to lixando");
                 //Comeca SFX de lixa
                 mask = textureDictionary["SandpaperMask"];
                 painter.SetBrush(10f, 0.8f, 25f, 25f);
@@ -99,7 +96,6 @@ public class XiloController : MonoBehaviour
             {
                 if (roloDeTinta.GetComponent<InkRollerController>().isInkEnable())
                 {
-                    Debug.LogError("to pintando");
                     //Comeca SFX de rolin de tinta
                     mask = textureDictionary["PaintMask"];
                     painter.SetBrush(10f, 0.8f, 28f, 12f);
@@ -134,6 +130,11 @@ public class XiloController : MonoBehaviour
         {
             etapa = true;
         }
+    }
+
+    public bool isPainted()
+    {
+        return isPaint;
     }
 
     public Texture getTexture(string chave)

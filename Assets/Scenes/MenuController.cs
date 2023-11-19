@@ -9,6 +9,18 @@ public class MenuController : MonoBehaviour
     public Button start;
     public Button left;
     public Button right;
+
+    public GameObject posicionarFolhaMenu;
+    public GameObject resultadoMenu;
+    public GameObject restartMenu;
+
+    private Button posicionarFolhaButton;
+    private Button resultadoButton;
+    private Button restartButton;
+
+    private bool folhaPosicionada = false;
+    private bool folhaResultado = false;
+
     private GameObject drawingCurrent;
 
     private int indice=0;
@@ -22,6 +34,14 @@ public class MenuController : MonoBehaviour
     void Start()
     {
         drawingCurrent = GameObject.Find("Desenho");
+
+        posicionarFolhaButton = posicionarFolhaMenu.GetComponentInChildren<Button>();
+        resultadoButton = resultadoMenu.GetComponentInChildren<Button>();
+        restartButton = restartMenu.GetComponentInChildren<Button>();
+
+        posicionarFolhaMenu.SetActive(false);
+        resultadoMenu.SetActive(false);
+        restartMenu.SetActive(false);
         /*GameObject.Find("tool1").GetComponent<XRGrabInteractable>().enabled = false;
         GameObject.Find("tool2").GetComponent<XRGrabInteractable>().enabled = false;
         GameObject.Find("tool3").GetComponent<XRGrabInteractable>().enabled = false;
@@ -33,15 +53,42 @@ public class MenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        left.onClick.AddListener(() => PreviousMenu());
+        left.onClick.AddListener(() => PreviousMenu()); 
         right.onClick.AddListener(() => NextMenu());
         start.onClick.AddListener(() => StartExp());
+
+        if(matriz.GetComponent<XiloController>().isPainted() && !folhaPosicionada)
+            posicionarFolhaMenu.SetActive(true);
+
+        if (papel.GetComponent<PaperController>().isPrinted() && !folhaResultado)
+            resultadoMenu.SetActive(true);
+
+        posicionarFolhaButton.onClick.AddListener(() => posicionarFolha());
+        resultadoButton.onClick.AddListener(() => mostarResultado());
+
+        //restart.onClick.AddListener(() => StartExp());
         if (!verifStart)
         {
             Sprite spriteTexture = Sprite.Create(desenhos[indice].texture, cropRect, new Vector2(0.5f, 0.5f));
             drawingCurrent.GetComponent<Image>().sprite = spriteTexture;
         }
 
+    }
+
+    void posicionarFolha()
+    {
+        PaperController paperController = papel.GetComponent<PaperController>();
+        paperController.posicionarFolha();
+        folhaPosicionada = true;
+        posicionarFolhaMenu.SetActive(false);
+    }
+
+    void mostarResultado()
+    {
+        PaperController paperController = papel.GetComponent<PaperController>();
+        paperController.mostrarResultado();
+        folhaResultado = true;
+        resultadoMenu.SetActive(false);
     }
 
     void NextMenu()
@@ -70,7 +117,7 @@ public class MenuController : MonoBehaviour
 
     private void StartExp()
     {
-        verifStart = true;
+        //verifStart = true;
         GameObject canva = GameObject.Find("Menu");
         if (canva != null)
         {
