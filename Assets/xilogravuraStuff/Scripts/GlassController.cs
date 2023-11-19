@@ -8,7 +8,6 @@ public class GlassController : MonoBehaviour
 {
     [SerializeField] private Camera cam;
 
-    private Dictionary<string, RenderTexture> textureDictionary;
     private Material currentMaterial;
     private RaycastHit hit;
 
@@ -23,13 +22,18 @@ public class GlassController : MonoBehaviour
 
     private bool isInkEnable = false;
 
+    private Dictionary<string, RenderTexture> textureDictionary = new Dictionary<string, RenderTexture>();
+    private string[] textureNames = { "InkMask" };
+
     void Start()
     {
         currentMaterial = GetComponent<MeshRenderer>().materials[0];
+        resetTextures();
+    }
 
-        textureDictionary = new Dictionary<string, RenderTexture>();
-        string[] textureNames = { "InkMask" };
-
+    public void resetTextures()
+    {
+        textureDictionary.Clear();
         for (int i = 0; i < textureNames.Length; i++)
         {
             textureDictionary[textureNames[i]] = new RenderTexture(dimensions[0], dimensions[1], 0, RenderTextureFormat.ARGBFloat);
@@ -38,7 +42,7 @@ public class GlassController : MonoBehaviour
             Graphics.SetRenderTarget(null);
             currentMaterial.SetTexture(textureNames[i], textureDictionary[textureNames[i]]);
         }
-    }
+    } 
 
     public void Draw()
     {

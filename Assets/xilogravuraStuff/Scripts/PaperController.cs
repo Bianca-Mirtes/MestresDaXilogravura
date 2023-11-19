@@ -8,7 +8,6 @@ public class PaperController : MonoBehaviour
 {
     [SerializeField] private Camera cam;
 
-    private Dictionary<string, RenderTexture> textureDictionary;
     private Material currentMaterial;
     private RaycastHit hit;
 
@@ -21,15 +20,19 @@ public class PaperController : MonoBehaviour
     public XiloController xilogravura;
 
     private bool setarTexturas = false;
+    private Dictionary<string, RenderTexture> textureDictionary = new Dictionary<string, RenderTexture>();
+    private string[] textureNames = { "PrintMask" };
 
 
     void Start()
     {
         currentMaterial = GetComponent<MeshRenderer>().materials[0];
+        resetTextures();
+    }
 
-        textureDictionary = new Dictionary<string, RenderTexture>();
-        string[] textureNames = { "PrintMask" };
-
+    public void resetTextures()
+    {
+        textureDictionary.Clear();
         for (int i = 0; i < textureNames.Length; i++)
         {
             textureDictionary[textureNames[i]] = new RenderTexture(dimensions[0], dimensions[1], 0, RenderTextureFormat.ARGBFloat);

@@ -8,7 +8,6 @@ public class XiloController : MonoBehaviour
 {
     [SerializeField] private Camera cam;
 
-    private Dictionary<string, RenderTexture> textureDictionary;
     private Material currentMaterial;
     private RaycastHit hit;
 
@@ -30,13 +29,18 @@ public class XiloController : MonoBehaviour
     private bool isSanded = false;
     private bool isPaint = false;
 
+    private Dictionary<string, RenderTexture> textureDictionary = new Dictionary<string, RenderTexture>();
+    private string[] textureNames = { "SketchMask", "SculptMask", "SandpaperMask", "PaintMask", "PrintMaskOld" };
+
     void Start()
     {
         currentMaterial = GetComponent<MeshRenderer>().materials[0];
+        resetTextures();
+    }
 
-        textureDictionary = new Dictionary<string, RenderTexture>();
-        string[] textureNames = { "SketchMask", "SculptMask", "SandpaperMask", "PaintMask", "PrintMaskOld" };
-
+    public void resetTextures()
+    {
+        textureDictionary.Clear();
         for (int i = 0; i < textureNames.Length; i++)
         {
             textureDictionary[textureNames[i]] = new RenderTexture(dimensions[0], dimensions[1], 0, RenderTextureFormat.ARGBFloat);
@@ -51,7 +55,7 @@ public class XiloController : MonoBehaviour
     {
         int layerMask = 1 << 10;
         
-        RenderTexture mask = textureDictionary["SketchMask"];
+        RenderTexture mask = null;
 
         if (grabController.isGrab(lapisDeRascunho) && !isSculped)
         {
@@ -114,7 +118,8 @@ public class XiloController : MonoBehaviour
             painter.desligarParticulas(poDeMadeira);
         }
 
-        painter.PaintMask(mask, hit);
+        if(hit.collider != null)
+            painter.PaintMask(mask, hit);
         
     }
 

@@ -97,6 +97,7 @@ public class MenuController : MonoBehaviour
 
             desenho.Apply();
 
+            matriz.GetComponent<XiloController>().resetTextures();
             Material xiloMaterial = matriz.GetComponent<MeshRenderer>().materials[0];
             xiloMaterial.SetTexture("SketchTexture", desenho);
 
