@@ -32,6 +32,15 @@ public class GlassController : MonoBehaviour
         setTextures();
     }
 
+    public void resetTextures()
+    {
+        for (int i = 0; i < textureNames.Length; i++)
+        {
+            Graphics.SetRenderTarget(textureDictionary[textureNames[i]]);
+            GL.Clear(true, true, Color.black);
+        }
+    }
+
     public void setTextures()
     {
         textureDictionary.Clear();

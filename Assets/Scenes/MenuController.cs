@@ -105,15 +105,15 @@ public class MenuController : MonoBehaviour
         //com uma bela identacao pra dizer o que eu nao consigo documentar
         restartMenu.SetActive(false);
         XiloController xiloController = matriz.GetComponent<XiloController>();
-        //xiloController.resetTextures();
+        xiloController.resetTextures();
         xiloController.resetValues();
 
         GlassController glassController = vidro.GetComponent<GlassController>();
-        //glassController.resetTextures();
+        glassController.resetTextures();
         glassController.resetValues();
 
         PaperController paperController = papel.GetComponent<PaperController>();
-        //paperController.resetTextures();
+        paperController.resetTextures();
         paperController.resetValues();
 
         folhaPosicionada = false;

@@ -46,12 +46,11 @@ public class XiloController : MonoBehaviour
 
     public void resetTextures()
     {
-        foreach (var texture in textureDictionary.Values)
+        for (int i = 0; i < textureNames.Length; i++)
         {
-            texture.Release();
+            Graphics.SetRenderTarget(textureDictionary[textureNames[i]]);
+            GL.Clear(true, true, Color.black);
         }
-
-        setTextures();
     }
 
     public void setTextures()
