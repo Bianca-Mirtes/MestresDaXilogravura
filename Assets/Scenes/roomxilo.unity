@@ -5073,8 +5073,24 @@ PrefabInstance:
       value: Rotation
       objectReference: {fileID: 0}
     - target: {fileID: 19064736505062540, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_ScaleMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 19064736505062540, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_RotateSpeed
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 19064736505062540, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_UseForceGrab
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19064736505062540, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_HitDetectionType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19064736505062540, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_AnchorRotationMode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19064736505062540, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_InteractionManager
@@ -5090,6 +5106,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 285389467476424711, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LineType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 285389467476424711, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_HitDetectionType
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 285389467476424711, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
@@ -5168,6 +5188,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1801942220539511183, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_AngleStabilization
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2032798983271290625, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -5199,6 +5223,10 @@ PrefabInstance:
     - target: {fileID: 3533369827395663398, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752199730057449385, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_AngleStabilization
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4343660526480754339, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_InteractionManager
@@ -11867,7 +11895,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -17760,7 +17788,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -18580,8 +18608,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.055
-  m_Height: 0.34
+  m_Radius: 0.075
+  m_Height: 0.38
   m_Direction: 1
   m_Center: {x: 9.313228e-10, y: -0.13, z: 0.00000001303852}
 --- !u!114 &912334404
@@ -20229,7 +20257,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -20742,7 +20770,6 @@ MonoBehaviour:
   start: {fileID: 1274651521}
   left: {fileID: 2135046041}
   right: {fileID: 720717249}
-  canva: {fileID: 350431586}
   posicionarFolhaMenu: {fileID: 1925314441}
   resultadoMenu: {fileID: 1298214384}
   restartMenu: {fileID: 1121896416}
@@ -21237,7 +21264,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.042
+  m_Radius: 0.072
   m_Height: 0.4
   m_Direction: 1
   m_Center: {x: 0.00000011920929, y: 0.05, z: 0.0000000037252916}
@@ -21936,7 +21963,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.11040001, y: 0.12596366, z: 0.11040002}
+  m_Size: {x: 0.13, y: 0.16, z: 0.13}
   m_Center: {x: 0.000000059604645, y: 0.0029818267, z: 0.0000000018626456}
 --- !u!82 &1417462878
 AudioSource:
@@ -22909,6 +22936,7 @@ MonoBehaviour:
   cam: {fileID: 638536774}
   painter: {fileID: 2010382326}
   grabController: {fileID: 1803742030}
+  paperController: {fileID: 450551919}
   lapisDeRascunho: {fileID: 2079705415}
   goiva: {fileID: 1398363406}
   lixa: {fileID: 1593152236}
@@ -22967,7 +22995,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.0016000001, y: 0.002, z: 0.0003}
+  m_Size: {x: 0.0021, y: 0.0022, z: 0.0004}
   m_Center: {x: 0.0000000018626451, y: 0, z: -0.000010649413}
 --- !u!114 &1593152236
 MonoBehaviour:
@@ -23354,7 +23382,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -29395,7 +29423,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.049617823
+  m_Radius: 0.06
   m_Height: 0.44805664
   m_Direction: 1
   m_Center: {x: 0.000007757919, y: -0.055695005, z: 0.003591008}
@@ -29537,7 +29565,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.8
+  m_Radius: 0.52
   m_Center: {x: 0.11574458, y: 0.020159565, z: -8.953147e-16}
 --- !u!1 &1803742029
 GameObject:
@@ -30134,7 +30162,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -31586,7 +31614,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -31616,7 +31644,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.03
+  m_Radius: 0.055
   m_Height: 0.38
   m_Direction: 1
   m_Center: {x: 0, y: -0.00061786175, z: -4.656613e-10}

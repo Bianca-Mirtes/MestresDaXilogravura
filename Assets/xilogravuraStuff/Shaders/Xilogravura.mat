@@ -49,6 +49,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - SketchTexture:
+        m_Texture: {fileID: 2800000, guid: 9f9481c13e0c4df41ac861fcae6b9793, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _DisplayTexture:
         m_Texture: {fileID: 2800000, guid: 948ca33265434384d8d301646a508597, type: 3}
         m_Scale: {x: 1, y: 1}
