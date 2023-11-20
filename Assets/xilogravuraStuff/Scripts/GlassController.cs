@@ -19,6 +19,7 @@ public class GlassController : MonoBehaviour
     public XRGrabInteractable tinta;
     public GameObject roloDeTinta;
     public ParticleSystem tintaDerramada;
+    private bool verifSound = true;
 
     private bool isInkEnable = false;
 
@@ -53,11 +54,24 @@ public class GlassController : MonoBehaviour
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
                 print("to colocanto tinta");
+                if (verifSound)
+                {
+                    tinta.gameObject.GetComponent<AudioSource>().Play();
+                    verifSound = false;
+                }
                 RenderTexture mask = textureDictionary["InkMask"];
                 painter.SetBrush(15f, 1f, 40f);
                 painter.PaintMask(mask, hit);
                 painter.instanciarParticulas(tintaDerramada, painter.isToolInteraction(tinta));
                 isInkEnable = true;
+            }
+            else
+            {
+                if (tinta.gameObject.GetComponent<AudioSource>().isPlaying)
+                {
+                    tinta.gameObject.GetComponent<AudioSource>().Stop();
+                    verifSound = true;
+                }
             }
         }
 

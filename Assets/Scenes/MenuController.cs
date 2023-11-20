@@ -10,6 +10,11 @@ public class MenuController : MonoBehaviour
     public Button left;
     public Button right;
 
+    public XRRayInteractor leftController;
+    public XRRayInteractor rightController;
+
+    private InteractionLayerMask nothing = LayerMask.GetMask("Nothing");
+
     public GameObject posicionarFolhaMenu;
     public GameObject resultadoMenu;
     public GameObject restartMenu;
@@ -42,12 +47,8 @@ public class MenuController : MonoBehaviour
         posicionarFolhaMenu.SetActive(false);
         resultadoMenu.SetActive(false);
         restartMenu.SetActive(false);
-        /*GameObject.Find("tool1").GetComponent<XRGrabInteractable>().enabled = false;
-        GameObject.Find("tool2").GetComponent<XRGrabInteractable>().enabled = false;
-        GameObject.Find("tool3").GetComponent<XRGrabInteractable>().enabled = false;
-        GameObject.Find("rolinho").GetComponent<XRGrabInteractable>().enabled = false;
-        GameObject.Find("tinta").GetComponent<XRGrabInteractable>().enabled = false;
-        GameObject.Find("colher").GetComponent<XRGrabInteractable>().enabled = false;*/
+        leftController.interactionLayers = nothing;
+        rightController.interactionLayers = nothing;
     }
 
     // Update is called once per frame
@@ -119,17 +120,14 @@ public class MenuController : MonoBehaviour
     {
         //verifStart = true;
         GameObject canva = GameObject.Find("Menu");
+        leftController.interactionLayers = Physics.AllLayers;
+        rightController.interactionLayers = Physics.AllLayers;
+        Debug.Log(leftController.interactionLayers.value);
         if (canva != null)
         {
             setDesenhoEscolhido();
             canva.SetActive(false);
         }
-        /*GameObject.Find("tool1").GetComponent<XRGrabInteractable>().enabled = true;
-        GameObject.Find("tool2").GetComponent<XRGrabInteractable>().enabled = true;
-        GameObject.Find("tool3").GetComponent<XRGrabInteractable>().enabled = true;
-        GameObject.Find("rolinho").GetComponent<XRGrabInteractable>().enabled = true;
-        GameObject.Find("tinta").GetComponent<XRGrabInteractable>().enabled = true;
-        GameObject.Find("colher").GetComponent<XRGrabInteractable>().enabled = true;*/
     }
 
     void setDesenhoEscolhido()

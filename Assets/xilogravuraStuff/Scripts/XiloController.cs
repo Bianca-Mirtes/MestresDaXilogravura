@@ -21,6 +21,12 @@ public class XiloController : MonoBehaviour
     public XRGrabInteractable lixa;
     public GameObject roloDeTinta;
 
+    public AudioClip[] lapisSounds;
+    public AudioClip lixaSound;
+    public AudioClip[] goivaSounds;
+
+    private bool verifSound = true;
+
     public ParticleSystem lascasDeMadeira;
     public ParticleSystem poDeMadeira;
 
@@ -63,9 +69,22 @@ public class XiloController : MonoBehaviour
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
                 //Comeca SFX de lapis
+                if (verifSound)
+                {
+                    lapisDeRascunho.gameObject.GetComponent<AudioSource>().Play();
+                    verifSound = false;
+                }
                 mask = textureDictionary["SketchMask"];
                 painter.SetBrush(5f, 1f, 10f);
                 marcarEtapa(ref isSketched);
+            }
+            else
+            {
+                if (lapisDeRascunho.gameObject.GetComponent<AudioSource>().isPlaying)
+                {
+                    lapisDeRascunho.gameObject.GetComponent<AudioSource>().Stop();
+                    verifSound = true;
+                }
             }
         } else if (grabController.isGrab(goiva) && isSketched && !isSanded)
         {
@@ -73,10 +92,23 @@ public class XiloController : MonoBehaviour
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
                 //Comeca SFX de entalhe
+                if (verifSound)
+                {
+                    goiva.gameObject.GetComponent<AudioSource>().Play();
+                    verifSound = false;
+                }
                 mask = textureDictionary["SculptMask"];
                 painter.SetBrush(10f, 0.8f, 20f, 26f);
                 painter.instanciarParticulas(lascasDeMadeira, hit.point);
                 marcarEtapa(ref isSculped);
+            }
+            else
+            {
+                if (goiva.gameObject.GetComponent<AudioSource>().isPlaying)
+                {
+                    goiva.gameObject.GetComponent<AudioSource>().Stop();
+                    verifSound = true;
+                }
             }
         }else if (grabController.isGrab(lixa) && isSculped && !isPaint)
         {
@@ -84,10 +116,24 @@ public class XiloController : MonoBehaviour
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
                 //Comeca SFX de lixa
+                if (verifSound)
+                {
+                    lixa.gameObject.GetComponent<AudioSource>().Play();
+                    verifSound = false;
+                }
+                
                 mask = textureDictionary["SandpaperMask"];
                 painter.SetBrush(10f, 0.8f, 25f, 25f);
                 painter.instanciarParticulas(poDeMadeira, hit.point);
                 marcarEtapa(ref isSanded);
+            }
+            else
+            {
+                if (lixa.gameObject.GetComponent<AudioSource>().isPlaying)
+                {
+                    lixa.gameObject.GetComponent<AudioSource>().Stop();
+                    verifSound = true;
+                }
             }
         }else if (grabController.isGrab(roloDeTinta.GetComponent<XRGrabInteractable>()) && isSanded)
         {
@@ -97,6 +143,12 @@ public class XiloController : MonoBehaviour
                 if (roloDeTinta.GetComponent<InkRollerController>().isInkEnable())
                 {
                     //Comeca SFX de rolin de tinta
+                    if (verifSound)
+                    {
+                        roloDeTinta.gameObject.GetComponent<AudioSource>().Play();
+                        verifSound = false;
+                    }
+                    
                     mask = textureDictionary["PaintMask"];
                     painter.SetBrush(10f, 0.8f, 28f, 12f);
                     marcarEtapa(ref isPaint);
@@ -104,6 +156,14 @@ public class XiloController : MonoBehaviour
                 else
                 {
                     painter.SetBrush(10f, 0.8f, 0f);
+                }
+            }
+            else
+            {
+                if (roloDeTinta.gameObject.GetComponent<AudioSource>().isPlaying)
+                {
+                    roloDeTinta.gameObject.GetComponent<AudioSource>().Stop();
+                    verifSound = true;
                 }
             }
         }

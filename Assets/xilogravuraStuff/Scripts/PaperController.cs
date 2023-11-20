@@ -86,10 +86,16 @@ public class PaperController : MonoBehaviour
         Draw();
 
         if (Mouse.current.middleButton.isPressed)
+        {
+            transform.GetChild(1).GetComponent<AudioSource>().Play();
             posicionarFolha();
+        }
 
         if (Mouse.current.rightButton.isPressed)
+        {
+            transform.GetChild(2).GetComponent<AudioSource>().Play();
             mostrarResultado();
+        }    
     }
 
     public void posicionarFolha()
