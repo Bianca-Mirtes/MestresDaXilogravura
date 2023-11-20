@@ -10,8 +10,7 @@ public class MenuController : MonoBehaviour
     public Button left;
     public Button right;
 
-    //private 
-    //public GameObject canva;
+    private GameObject canva;
     public GameObject posicionarFolhaMenu;
     public GameObject resultadoMenu;
     public GameObject restartMenu;
@@ -99,27 +98,6 @@ public class MenuController : MonoBehaviour
         restartMenu.SetActive(true);
     }
 
-    void restart()
-    {
-        //E eu quis escrever um codigo que pudesse te fazer sentir [...]
-        //com uma bela identacao pra dizer o que eu nao consigo documentar
-        restartMenu.SetActive(false);
-        XiloController xiloController = matriz.GetComponent<XiloController>();
-        xiloController.resetTextures();
-        xiloController.resetValues();
-
-        GlassController glassController = vidro.GetComponent<GlassController>();
-        glassController.resetTextures();
-        glassController.resetValues();
-
-        PaperController paperController = papel.GetComponent<PaperController>();
-        paperController.resetTextures();
-        paperController.resetValues();
-
-        folhaPosicionada = false;
-        folhaResultado = false;
-    }
-
     void NextMenu()
     {
         if(indice == desenhos.Length-1)
@@ -147,7 +125,7 @@ public class MenuController : MonoBehaviour
     private void StartExp()
     {
         //verifStart = true;
-        GameObject canva = GameObject.Find("Menu"); ;
+        canva = GameObject.Find("Menu");
         if (canva != null)
         {
             setDesenhoEscolhido();
@@ -181,5 +159,26 @@ public class MenuController : MonoBehaviour
             paperMaterial.SetTexture("SketchTexture", desenho);
         }
     }
-    
+
+    void restart()
+    {
+        //E eu quis escrever um codigo que pudesse te fazer sentir [...]
+        //com uma bela identacao pra dizer o que eu nao consigo documentar
+        restartMenu.SetActive(false);
+        XiloController xiloController = matriz.GetComponent<XiloController>();
+        xiloController.resetTextures();
+        xiloController.resetValues();
+
+        GlassController glassController = vidro.GetComponent<GlassController>();
+        glassController.resetTextures();
+        glassController.resetValues();
+
+        PaperController paperController = papel.GetComponent<PaperController>();
+        paperController.resetTextures();
+        paperController.resetValues();
+
+        folhaPosicionada = false;
+        folhaResultado = false;
+    }
+
 }

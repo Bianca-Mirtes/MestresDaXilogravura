@@ -7,6 +7,7 @@ public class GrabController : MonoBehaviour
 {
     public static GrabController instance = null;
     private XRGrabInteractable ferramenta;
+    public XRSocketInteractor socket;
 
     // Start is called before the first frame update
     void Start()
@@ -25,20 +26,34 @@ public class GrabController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Rigidbody rb;
+        if (ferramenta != null) {
+            rb = ferramenta.GetComponent<Rigidbody>();
+            //if (rb != null && rb.useGravity)
+                //ferramenta.transform.parent = socket.transform;
+                //ferramenta.transform.localPosition = Vector3.zero;
+                //ferramenta.transform.localRotation = Quaternion.identity;
+        }
     }
 
-    public void setTool(XRGrabInteractable ferramenta){
+    public void setTool(XRGrabInteractable ferramenta)
+    {
         this.ferramenta = ferramenta;
         ferramenta.transform.Rotate(Vector3.right, -30f);
         //Debug.LogError("saiu");
     }
 
+    public void setSocket(XRSocketInteractor socket)
+    {
+        this.socket = socket;
+    }
+
     public void resetTool()
     {
-        if(this.ferramenta != null)
-            this.ferramenta.transform.Rotate(Vector3.right, 30f);
-        this.ferramenta = null;
+        if(ferramenta != null)
+            ferramenta.transform.Rotate(Vector3.right, 30f);
+        ferramenta = null;
+        socket = null;
         //Debug.LogError("voltou");
     }
 

@@ -5370,7 +5370,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 93179670}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 350431586}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &93179670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6760,6 +6772,19 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 2079705415}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.XR.Interaction.Toolkit.XRGrabInteractable,
+            Unity.XR.Interaction.Toolkit
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1803742030}
+        m_TargetAssemblyTypeName: GrabController, Assembly-CSharp
+        m_MethodName: setSocket
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 442602459}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.XR.Interaction.Toolkit.XRSocketInteractor,
             Unity.XR.Interaction.Toolkit
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -30340,6 +30365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e5c46289e8ad2f46a640c5c18d0b078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  socket: {fileID: 0}
 --- !u!4 &1803742031
 Transform:
   m_ObjectHideFlags: 0
