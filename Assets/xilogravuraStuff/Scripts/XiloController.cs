@@ -15,6 +15,7 @@ public class XiloController : MonoBehaviour
 
     public Painter painter;
     public GrabController grabController;
+    public PaperController paperController;
 
     public XRGrabInteractable lapisDeRascunho;
     public XRGrabInteractable goiva;
@@ -144,7 +145,7 @@ public class XiloController : MonoBehaviour
                     verifSound = true;
                 }
             }
-        }else if (grabController.isGrab(roloDeTinta.GetComponent<XRGrabInteractable>()) && isSanded)
+        }else if (grabController.isGrab(roloDeTinta.GetComponent<XRGrabInteractable>()) && isSanded && !paperController.isPrinted())
         {
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(roloDeTinta.GetComponent<XRGrabInteractable>()));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
