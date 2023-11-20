@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5815,15 +5815,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74cb380b9834abd4f854473c3a17acfb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.78
+      value: 2.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74cb380b9834abd4f854473c3a17acfb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.288
+      value: 3.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74cb380b9834abd4f854473c3a17acfb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.179
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74cb380b9834abd4f854473c3a17acfb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -16947,17 +16947,6 @@ RectTransform:
   m_AnchoredPosition: {x: 2.743, y: 1.4167}
   m_SizeDelta: {x: 6.5582, y: 3.8785}
   m_Pivot: {x: 0.4725112, y: 0.5896414}
---- !u!114 &610440241 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 19064736505062540, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
-  m_PrefabInstance: {fileID: 85815639}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6803edce0201f574f923fd9d10e5b30a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &625376837
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18376,17 +18365,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 844949471}
   m_CullTransparentMesh: 1
---- !u!114 &895083948 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 285389467476424711, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
-  m_PrefabInstance: {fileID: 85815639}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6803edce0201f574f923fd9d10e5b30a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &912334398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20764,8 +20742,7 @@ MonoBehaviour:
   start: {fileID: 1274651521}
   left: {fileID: 2135046041}
   right: {fileID: 720717249}
-  leftController: {fileID: 895083948}
-  rightController: {fileID: 610440241}
+  canva: {fileID: 350431586}
   posicionarFolhaMenu: {fileID: 1925314441}
   resultadoMenu: {fileID: 1298214384}
   restartMenu: {fileID: 1121896416}
@@ -20774,6 +20751,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3de6a7bcc5830ad49a9af70c0ebd66a0, type: 3}
   - {fileID: 21300000, guid: 22ef21bd8e886c744a6b926d9d862250, type: 3}
   matriz: {fileID: 1590503462}
+  vidro: {fileID: 426879756}
   papel: {fileID: 450551913}
   cropRect:
     serializedVersion: 2

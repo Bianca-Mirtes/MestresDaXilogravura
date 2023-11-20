@@ -41,10 +41,20 @@ public class XiloController : MonoBehaviour
     void Start()
     {
         currentMaterial = GetComponent<MeshRenderer>().materials[0];
-        resetTextures();
+        setTextures();
     }
 
     public void resetTextures()
+    {
+        foreach (var texture in textureDictionary.Values)
+        {
+            texture.Release();
+        }
+
+        setTextures();
+    }
+
+    public void setTextures()
     {
         textureDictionary.Clear();
         for (int i = 0; i < textureNames.Length; i++)
@@ -200,5 +210,13 @@ public class XiloController : MonoBehaviour
     public Texture getTexture(string chave)
     {
         return textureDictionary[chave];
+    }
+
+    public void resetValues()
+    {
+        isSketched = false;
+        isSculped = false;
+        isSanded = false;
+        isPaint = false;
     }
 }

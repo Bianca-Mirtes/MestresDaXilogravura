@@ -11,7 +11,7 @@ public class PaperController : MonoBehaviour
     private Material currentMaterial;
     private RaycastHit hit;
 
-    private int[] dimensions = {2048, 2048};
+    private int[] dimensions = { 2048, 2048 };
 
     public Painter painter;
     public GrabController grabController;
@@ -20,17 +20,17 @@ public class PaperController : MonoBehaviour
     public XiloController xilogravura;
 
     private bool setarTexturas = false;
+    private bool isPrint = false;
     private Dictionary<string, RenderTexture> textureDictionary = new Dictionary<string, RenderTexture>();
     private string[] textureNames = { "PrintMask" };
-    private bool isPrint = false;
-
+    
     void Start()
     {
         currentMaterial = GetComponent<MeshRenderer>().materials[0];
-        resetTextures();
+        setTextures();
     }
 
-    public void resetTextures()
+    public void setTextures()
     {
         textureDictionary.Clear();
         for (int i = 0; i < textureNames.Length; i++)
@@ -87,27 +87,38 @@ public class PaperController : MonoBehaviour
 
         if (Mouse.current.middleButton.isPressed)
         {
-            transform.GetChild(1).GetComponent<AudioSource>().Play();
             posicionarFolha();
         }
 
         if (Mouse.current.rightButton.isPressed)
         {
-            transform.GetChild(2).GetComponent<AudioSource>().Play();
             mostrarResultado();
-        }    
+        }
     }
 
     public void posicionarFolha()
     {
+        transform.GetChild(1).GetComponent<AudioSource>().Play();
         Animator animator = GetComponent<Animator>();
         animator.SetBool("isPrint", true);
     }
 
     public void mostrarResultado()
     {
+        transform.GetChild(2).GetComponent<AudioSource>().Play();
         Animator animator = GetComponent<Animator>();
         animator.SetBool("isResult", true);
+    }
+
+    public void resetValues()
+    {
+        setarTexturas = false;
+        isPrint = false;
+        Animator animator = GetComponent<Animator>();
+        animator.SetBool("isPrint", false);
+        animator.SetBool("isResult", false);
+        animator.Play("EstadoInicial");
+        transform.position = new Vector3(2.8f, 3.3f, 1.2f);
     }
 
 }

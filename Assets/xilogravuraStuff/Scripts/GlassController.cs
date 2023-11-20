@@ -29,10 +29,10 @@ public class GlassController : MonoBehaviour
     void Start()
     {
         currentMaterial = GetComponent<MeshRenderer>().materials[0];
-        resetTextures();
+        setTextures();
     }
 
-    public void resetTextures()
+    public void setTextures()
     {
         textureDictionary.Clear();
         for (int i = 0; i < textureNames.Length; i++)
@@ -97,4 +97,9 @@ public class GlassController : MonoBehaviour
         Draw();
     }
 
+    public void resetValues()
+    {
+        isInkEnable = false;
+        roloDeTinta.GetComponent<InkRollerController>().resetValues();
+    }
 }
