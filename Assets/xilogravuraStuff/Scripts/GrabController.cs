@@ -30,18 +30,22 @@ public class GrabController : MonoBehaviour
 
     public void setTool(XRGrabInteractable ferramenta){
         this.ferramenta = ferramenta;
+        ferramenta.transform.Rotate(Vector3.right, -30f);
         //Debug.LogError("saiu");
     }
 
     public void resetTool()
     {
+        if(this.ferramenta != null)
+            this.ferramenta.transform.Rotate(Vector3.right, 30f);
         this.ferramenta = null;
         //Debug.LogError("voltou");
     }
 
     public bool isGrab(XRGrabInteractable ferramenta)
     {
-        if (this.ferramenta == null) { return false; }
+        if (this.ferramenta == null)
+            return false; 
         return this.ferramenta.Equals(ferramenta);
     }
 }
