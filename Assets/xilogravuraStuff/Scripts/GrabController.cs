@@ -14,7 +14,7 @@ public class GrabController : MonoBehaviour
 
     public GameObject[] ganchos;
     public GameObject marcador;
-
+    public GameObject tutorial;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,15 +55,39 @@ public class GrabController : MonoBehaviour
         if (ferramenta == null)
         {
             if (!xiloController.getSketched())
+            {
+                tutorial.transform.GetChild(0).gameObject.SetActive(true);
                 marcador.transform.position = ganchos[0].transform.position;
+            }
+                
             if (xiloController.getSketched())
+            {
+                tutorial.transform.GetChild(1).gameObject.SetActive(true);
                 marcador.transform.position = ganchos[1].transform.position;
+            }
+                
             if (xiloController.getSculped())
+            {
+                tutorial.transform.GetChild(2).gameObject.SetActive(true);
                 marcador.transform.position = ganchos[2].transform.position;
+            }
+                
             if (xiloController.getSanded())
+            {
+                tutorial.transform.GetChild(3).gameObject.SetActive(true);
                 marcador.transform.position = ganchos[3].transform.position;
-            if(glassController.getInkEnable())
+            }
+
+            if (glassController.getInkEnable())
+            {
+                tutorial.transform.GetChild(0).gameObject.SetActive(false);
+                tutorial.transform.GetChild(1).gameObject.SetActive(false);
+                tutorial.transform.GetChild(2).gameObject.SetActive(false);
+                tutorial.transform.GetChild(3).gameObject.SetActive(false);
+                tutorial.transform.GetChild(4).gameObject.SetActive(true);
                 marcador.transform.position = ganchos[4].transform.position;
+            }
+                
             if (xiloController.getPaint())
                 marcador.transform.position = ganchos[5].transform.position;
         }
