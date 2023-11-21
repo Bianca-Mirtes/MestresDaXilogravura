@@ -32,19 +32,25 @@ public class GrabController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Rigidbody rb;
-        if (ferramenta != null) {
-            rb = ferramenta.GetComponent<Rigidbody>();
-            //if (rb != null && rb.useGravity)
-                //ferramenta.transform.parent = socket.transform;
-                //ferramenta.transform.localPosition = Vector3.zero;
-                //ferramenta.transform.localRotation = Quaternion.identity;
-        }
-
+        reposicionarFerramenta();
         atualizarMarcador();
     }
 
-    public void atualizarMarcador()
+    private void reposicionarFerramenta()
+    {
+        Rigidbody rb;
+        if (ferramenta != null)
+        {
+            rb = ferramenta.GetComponent<Rigidbody>();
+            if (rb != null && rb.useGravity)
+            {
+                socket.allowHover = true;
+                ferramenta.transform.position = socket.transform.position;
+            }
+        }
+    }
+
+    private void atualizarMarcador()
     {
         if (ferramenta == null)
         {
@@ -80,6 +86,7 @@ public class GrabController : MonoBehaviour
         if(ferramenta != null)
             ferramenta.transform.Rotate(Vector3.right, 30f);
         ferramenta = null;
+        socket.allowHover = false;
         socket = null;
         //Debug.LogError("voltou");
     }
