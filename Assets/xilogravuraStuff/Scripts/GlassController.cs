@@ -19,6 +19,7 @@ public class GlassController : MonoBehaviour
     public XRGrabInteractable tinta;
     public GameObject roloDeTinta;
     public ParticleSystem tintaDerramada;
+
     private bool verifSound = true;
 
     private bool isInkEnable = false;

@@ -44,6 +44,11 @@ public class GrabController : MonoBehaviour
             rb = ferramenta.GetComponent<Rigidbody>();
             if (rb != null && rb.useGravity)
             {
+                if (ferramenta.gameObject.GetComponent<AudioSource>().isPlaying)
+                {
+                    ferramenta.gameObject.GetComponent<AudioSource>().Stop();
+                    xiloController.setVerifSound(true);
+                }
                 socket.allowHover = true;
                 ferramenta.transform.position = socket.transform.position;
             }
@@ -87,9 +92,12 @@ public class GrabController : MonoBehaviour
                 tutorial.transform.GetChild(4).gameObject.SetActive(true);
                 marcador.transform.position = ganchos[4].transform.position;
             }
-                
-            if (xiloController.getPaint())
+
+            if (xiloController.getPaint()) 
+            {
+                tutorial.transform.GetChild(4).gameObject.SetActive(false);
                 marcador.transform.position = ganchos[5].transform.position;
+            }
         }
     }
 

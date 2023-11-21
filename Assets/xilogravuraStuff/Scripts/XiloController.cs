@@ -21,10 +21,7 @@ public class XiloController : MonoBehaviour
     public XRGrabInteractable goiva;
     public XRGrabInteractable lixa;
     public GameObject roloDeTinta;
-
-    public AudioClip[] lapisSounds;
-    public AudioClip lixaSound;
-    public AudioClip[] goivaSounds;
+    public GameObject tutorial;
 
     private bool verifSound = true;
 
@@ -54,6 +51,29 @@ public class XiloController : MonoBehaviour
         }
     }
 
+    public void initSound(GameObject ferramenta)
+    {
+        if (verifSound)
+        {
+            ferramenta.gameObject.GetComponent<AudioSource>().Play();
+            verifSound = false;
+        }
+    }
+
+    public void stopSound(GameObject ferramenta)
+    {
+        if (ferramenta.gameObject.GetComponent<AudioSource>().isPlaying)
+        {
+            ferramenta.gameObject.GetComponent<AudioSource>().Stop();
+            verifSound = true;
+        }
+    }
+
+    public void setVerifSound(bool value)
+    {
+        verifSound = value;
+    }
+
     public void setTextures()
     {
         textureDictionary.Clear();
@@ -79,22 +99,14 @@ public class XiloController : MonoBehaviour
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
                 //Comeca SFX de lapis
-                if (verifSound)
-                {
-                    lapisDeRascunho.gameObject.GetComponent<AudioSource>().Play();
-                    verifSound = false;
-                }
+                initSound(lapisDeRascunho.gameObject);
                 mask = textureDictionary["SketchMask"];
                 painter.SetBrush(5f, 1f, 10f);
                 marcarEtapa(ref isSketched);
             }
             else
             {
-                if (lapisDeRascunho.gameObject.GetComponent<AudioSource>().isPlaying)
-                {
-                    lapisDeRascunho.gameObject.GetComponent<AudioSource>().Stop();
-                    verifSound = true;
-                }
+                stopSound(lapisDeRascunho.gameObject);
             }
         } else if (grabController.isGrab(goiva) && isSketched && !isSanded)
         {
@@ -102,11 +114,7 @@ public class XiloController : MonoBehaviour
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
                 //Comeca SFX de entalhe
-                if (verifSound)
-                {
-                    goiva.gameObject.GetComponent<AudioSource>().Play();
-                    verifSound = false;
-                }
+                initSound(goiva.gameObject);
                 mask = textureDictionary["SculptMask"];
                 painter.SetBrush(10f, 0.8f, 20f, 26f);
                 painter.instanciarParticulas(lascasDeMadeira, hit.point);
@@ -114,11 +122,7 @@ public class XiloController : MonoBehaviour
             }
             else
             {
-                if (goiva.gameObject.GetComponent<AudioSource>().isPlaying)
-                {
-                    goiva.gameObject.GetComponent<AudioSource>().Stop();
-                    verifSound = true;
-                }
+                stopSound(goiva.gameObject);
             }
         }else if (grabController.isGrab(lixa) && isSculped && !isPaint)
         {
@@ -126,12 +130,7 @@ public class XiloController : MonoBehaviour
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
                 //Comeca SFX de lixa
-                if (verifSound)
-                {
-                    lixa.gameObject.GetComponent<AudioSource>().Play();
-                    verifSound = false;
-                }
-                
+                initSound(lixa.gameObject);
                 mask = textureDictionary["SandpaperMask"];
                 painter.SetBrush(10f, 0.8f, 25f, 25f);
                 painter.instanciarParticulas(poDeMadeira, hit.point);
@@ -139,11 +138,7 @@ public class XiloController : MonoBehaviour
             }
             else
             {
-                if (lixa.gameObject.GetComponent<AudioSource>().isPlaying)
-                {
-                    lixa.gameObject.GetComponent<AudioSource>().Stop();
-                    verifSound = true;
-                }
+                stopSound(lixa.gameObject);
             }
         }else if (grabController.isGrab(roloDeTinta.GetComponent<XRGrabInteractable>()) && isSanded && !paperController.isPrinted())
         {
@@ -153,12 +148,7 @@ public class XiloController : MonoBehaviour
                 if (roloDeTinta.GetComponent<InkRollerController>().isInkEnable())
                 {
                     //Comeca SFX de rolin de tinta
-                    if (verifSound)
-                    {
-                        roloDeTinta.gameObject.GetComponent<AudioSource>().Play();
-                        verifSound = false;
-                    }
-                    
+                    initSound(roloDeTinta.gameObject);
                     mask = textureDictionary["PaintMask"];
                     painter.SetBrush(10f, 0.8f, 28f, 12f);
                     marcarEtapa(ref isPaint);
@@ -166,11 +156,7 @@ public class XiloController : MonoBehaviour
             }
             else
             {
-                if (roloDeTinta.gameObject.GetComponent<AudioSource>().isPlaying)
-                {
-                    roloDeTinta.gameObject.GetComponent<AudioSource>().Stop();
-                    verifSound = true;
-                }
+                stopSound(lapisDeRascunho.gameObject);
             }
         }
         if(hit.collider == null)

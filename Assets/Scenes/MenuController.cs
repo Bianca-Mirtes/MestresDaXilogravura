@@ -14,6 +14,7 @@ public class MenuController : MonoBehaviour
     public GameObject posicionarFolhaMenu;
     public GameObject resultadoMenu;
     public GameObject restartMenu;
+    public GameObject tutorial;
 
     private Button posicionarFolhaButton;
     private Button resultadoButton;
@@ -44,12 +45,6 @@ public class MenuController : MonoBehaviour
         posicionarFolhaMenu.SetActive(false);
         resultadoMenu.SetActive(false);
         restartMenu.SetActive(false);
-        /*GameObject.Find("tool1").GetComponent<XRGrabInteractable>().enabled = false;
-        GameObject.Find("tool2").GetComponent<XRGrabInteractable>().enabled = false;
-        GameObject.Find("tool3").GetComponent<XRGrabInteractable>().enabled = false;
-        GameObject.Find("rolinho").GetComponent<XRGrabInteractable>().enabled = false;
-        GameObject.Find("tinta").GetComponent<XRGrabInteractable>().enabled = false;
-        GameObject.Find("colher").GetComponent<XRGrabInteractable>().enabled = false;*/
     }
 
     // Update is called once per frame
@@ -60,11 +55,15 @@ public class MenuController : MonoBehaviour
         start.onClick.AddListener(() => StartExp());
 
         if(matriz.GetComponent<XiloController>().isPainted() && !folhaPosicionada)
+        {
+            tutorial.transform.GetChild(4).gameObject.SetActive(false);
             posicionarFolhaMenu.SetActive(true);
-
+        }
         if (papel.GetComponent<PaperController>().isPrinted() && !folhaResultado)
+        {
+            tutorial.transform.GetChild(5).gameObject.SetActive(false);
             resultadoMenu.SetActive(true);
-
+        }
         posicionarFolhaButton.onClick.AddListener(() => posicionarFolha());
         resultadoButton.onClick.AddListener(() => StartCoroutine(mostarResultado()));
 
@@ -84,11 +83,13 @@ public class MenuController : MonoBehaviour
         paperController.posicionarFolha();
         folhaPosicionada = true;
         posicionarFolhaMenu.SetActive(false);
+        tutorial.transform.GetChild(5).gameObject.SetActive(true);
     }
 
     IEnumerator mostarResultado()
     {
         PaperController paperController = papel.GetComponent<PaperController>();
+        tutorial.transform.GetChild(5).gameObject.SetActive(false);
         paperController.mostrarResultado();
         folhaResultado = true;
         resultadoMenu.SetActive(false);
@@ -131,12 +132,6 @@ public class MenuController : MonoBehaviour
             setDesenhoEscolhido();
             canva.SetActive(false);
         }
-        /*GameObject.Find("tool1").GetComponent<XRGrabInteractable>().enabled = true;
-        GameObject.Find("tool2").GetComponent<XRGrabInteractable>().enabled = true;
-        GameObject.Find("tool3").GetComponent<XRGrabInteractable>().enabled = true;
-        GameObject.Find("rolinho").GetComponent<XRGrabInteractable>().enabled = true;
-        GameObject.Find("tinta").GetComponent<XRGrabInteractable>().enabled = true;
-        GameObject.Find("colher").GetComponent<XRGrabInteractable>().enabled = true;*/
     }
 
     void setDesenhoEscolhido()

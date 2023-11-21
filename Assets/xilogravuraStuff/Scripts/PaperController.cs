@@ -10,7 +10,6 @@ public class PaperController : MonoBehaviour
 
     private Material currentMaterial;
     private RaycastHit hit;
-    private bool verifSound = true;
 
     private int[] dimensions = { 2048, 2048 };
 
@@ -19,7 +18,6 @@ public class PaperController : MonoBehaviour
 
     public XRGrabInteractable ferramenta;
     public XiloController xilogravura;
-    public GameObject tutorial;
 
     private bool setarTexturas = false;
     private bool isPrint = false;
@@ -62,11 +60,7 @@ public class PaperController : MonoBehaviour
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(ferramenta));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
-                if (verifSound)
-                {
-                    ferramenta.gameObject.GetComponent<AudioSource>().Play();
-                    verifSound = false;
-                }
+                xilogravura.initSound(ferramenta.gameObject);
                 if (!setarTexturas)
                 {
                     currentMaterial.SetTexture("SketchMask", xilogravura.getTexture("SketchMask"));
@@ -83,11 +77,7 @@ public class PaperController : MonoBehaviour
             }
             else
             {
-                if (ferramenta.gameObject.GetComponent<AudioSource>().isPlaying)
-                {
-                    ferramenta.gameObject.GetComponent<AudioSource>().Stop();
-                    verifSound = true;
-                }
+                xilogravura.stopSound(ferramenta.gameObject);
             }
         }
     }
@@ -122,8 +112,6 @@ public class PaperController : MonoBehaviour
 
     public void posicionarFolha()
     {
-        tutorial.transform.GetChild(4).gameObject.SetActive(false);
-        tutorial.transform.GetChild(5).gameObject.SetActive(true);
         transform.GetChild(1).GetComponent<AudioSource>().Play();
         Animator animator = GetComponent<Animator>();
         animator.SetBool("isPrint", true);
