@@ -68,7 +68,7 @@ public class PaperController : MonoBehaviour
                     print("texturas setadas");
                     setarTexturas = true;
                 }
-                print("imprimindo");
+                //print("imprimindo");
                 RenderTexture mask = textureDictionary["PrintMask"];
                 painter.SetBrush(5f, 1f, 20f);
                 painter.PaintMask(mask, hit);

@@ -163,10 +163,6 @@ public class XiloController : MonoBehaviour
                     painter.SetBrush(10f, 0.8f, 28f, 12f);
                     marcarEtapa(ref isPaint);
                 }
-                else
-                {
-                    painter.SetBrush(10f, 0.8f, 0f);
-                }
             }
             else
             {
@@ -184,7 +180,7 @@ public class XiloController : MonoBehaviour
             painter.desligarParticulas(poDeMadeira);
         }
 
-        if(hit.collider != null)
+        if(mask != null && hit.collider != null)
             painter.PaintMask(mask, hit);
         
     }

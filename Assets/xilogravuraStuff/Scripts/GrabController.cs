@@ -86,8 +86,9 @@ public class GrabController : MonoBehaviour
         if(ferramenta != null)
             ferramenta.transform.Rotate(Vector3.right, 30f);
         ferramenta = null;
-        socket.allowHover = false;
-        socket = null;
+        //if (socket != null)
+        //    socket.allowHover = false;
+        //socket = null;
         //Debug.LogError("voltou");
     }
 

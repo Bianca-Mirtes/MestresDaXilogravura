@@ -62,7 +62,7 @@ public class GlassController : MonoBehaviour
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(tinta));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
-                print("to colocanto tinta");
+                //print("to colocanto tinta");
                 if (verifSound)
                 {
                     tinta.gameObject.GetComponent<AudioSource>().Play();
@@ -89,7 +89,7 @@ public class GlassController : MonoBehaviour
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(roloDeTinta.GetComponent<XRGrabInteractable>()));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && isInkEnable)
             {
-                print("to pegando tinta");
+                //print("to pegando tinta");
                 roloDeTinta.GetComponent<InkRollerController>().enableInk();
             }
         }
