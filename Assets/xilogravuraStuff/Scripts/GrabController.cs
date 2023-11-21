@@ -7,7 +7,13 @@ public class GrabController : MonoBehaviour
 {
     public static GrabController instance = null;
     private XRGrabInteractable ferramenta;
-    public XRSocketInteractor socket;
+    private XRSocketInteractor socket;
+
+    public XiloController xiloController;
+    public GlassController glassController;
+
+    public GameObject[] ganchos;
+    public GameObject marcador;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +39,27 @@ public class GrabController : MonoBehaviour
                 //ferramenta.transform.parent = socket.transform;
                 //ferramenta.transform.localPosition = Vector3.zero;
                 //ferramenta.transform.localRotation = Quaternion.identity;
+        }
+
+        atualizarMarcador();
+    }
+
+    public void atualizarMarcador()
+    {
+        if (ferramenta == null)
+        {
+            if (!xiloController.getSketched())
+                marcador.transform.position = ganchos[0].transform.position;
+            if (xiloController.getSketched())
+                marcador.transform.position = ganchos[1].transform.position;
+            if (xiloController.getSculped())
+                marcador.transform.position = ganchos[2].transform.position;
+            if (xiloController.getSanded())
+                marcador.transform.position = ganchos[3].transform.position;
+            if(glassController.getInkEnable())
+                marcador.transform.position = ganchos[4].transform.position;
+            if (xiloController.getPaint())
+                marcador.transform.position = ganchos[5].transform.position;
         }
     }
 

@@ -111,4 +111,9 @@ public class GlassController : MonoBehaviour
         isInkEnable = false;
         roloDeTinta.GetComponent<InkRollerController>().resetValues();
     }
+
+    public bool getInkEnable()
+    {
+        return isInkEnable;
+    }
 }

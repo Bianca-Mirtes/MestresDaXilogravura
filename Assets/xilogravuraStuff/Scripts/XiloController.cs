@@ -219,4 +219,24 @@ public class XiloController : MonoBehaviour
         isSanded = false;
         isPaint = false;
     }
+
+    public bool getSketched()
+    {
+        return isSketched;
+    }
+
+    public bool getSculped()
+    {
+        return isSculped;
+    }
+
+    public bool getSanded()
+    {
+        return isSanded;
+    }
+
+    public bool getPaint()
+    {
+        return isPaint;
+    }
 }
