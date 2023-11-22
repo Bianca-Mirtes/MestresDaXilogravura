@@ -5075,6 +5075,10 @@ PrefabInstance:
       propertyPath: m_RotationAction.m_Action.m_Name
       value: Rotation
       objectReference: {fileID: 0}
+    - target: {fileID: 1767192434, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 19064736505062540, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_ScaleMode
       value: 2
@@ -6253,7 +6257,7 @@ GameObject:
   - component: {fileID: 266221835}
   - component: {fileID: 266221834}
   m_Layer: 5
-  m_Name: TutorialP1
+  m_Name: Frame1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7918,7 +7922,7 @@ GameObject:
   - component: {fileID: 452641153}
   - component: {fileID: 452641152}
   m_Layer: 5
-  m_Name: TutorialP2
+  m_Name: Frame2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19233,7 +19237,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a753b66ecb9b1924ebfc85b08aa01596, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 53b516c63e2b0ef499316b5da86e8dd4, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -20267,7 +20271,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280173932
+    rgba: 4284900966
   m_fontColor: {r: 0.4, g: 0.4, b: 0.4, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -22620,9 +22624,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Tutorial:\n\n1. Pegue o l\xE1pis para desenhar a imagem a ser entalhada
-    na madeira;\n \n2. Pegue a ferramenta de entalhe para entalhar a imagem na madeira;\n\n3.
-    Pegue a lixa e esfregue sobre a madeira;"
+  m_text: "A xilogravura \xE9 uma t\xE9cnica antiga de gravura que consiste em desenhar
+    e esculpir imagens ou letras em uma chapa de madeira. Depois, a madeira \xE9
+    pressionada contra uma folha de papel para criar a imagem desejada.\n\nNo Brasil,
+    a xilogravura \xE9 muito popular, principalmente na regi\xE3o Nordeste. L\xE1,
+    ela \xE9 usada para ilustrar literatura de cordel, que s\xE3o poemas populares
+    narrados em versos."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 50a0a875911ca9d42916e693afad0799, type: 2}
   m_sharedMaterial: {fileID: -575998762881257569, guid: 50a0a875911ca9d42916e693afad0799, type: 2}
@@ -22649,8 +22656,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 19
+  m_fontSizeBase: 19
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -23785,7 +23792,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -1}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -8.07, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1398395337
 MonoBehaviour:
@@ -23834,8 +23841,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -31115,10 +31122,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Tutorial:\n\n4. Pegue o pote de tinta a base de petr\xF3leo e derrame
-    sobre a placa de acr\xEDlico;\n\n5. Pegue o rolo de tinta e passe na tinta para
-    pintar a madeira;\n\n6. Ap\xF3s colocar a folha, pegue a colher de madeira e
-    passe por cima da folha para fixar bem a imagem."
+  m_text: "Viva a experi\xEAncia da xilogravura de uma forma totalmente nova!\n\n\nEscolha
+    um desenho e vamos come\xE7ar!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 50a0a875911ca9d42916e693afad0799, type: 2}
   m_sharedMaterial: {fileID: -575998762881257569, guid: 50a0a875911ca9d42916e693afad0799, type: 2}
@@ -31145,14 +31150,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 8
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -33058,7 +33063,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -1}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -8.4, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1901786526
 MonoBehaviour:
@@ -33089,7 +33094,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280173932
+    rgba: 4284900966
   m_fontColor: {r: 0.4, g: 0.4, b: 0.4, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -33107,8 +33112,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -33314,8 +33319,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4292010225
-  m_fontColor: {r: 0.9433962, g: 0.8786145, b: 0.8223567, a: 1}
+    rgba: 4289377989
+  m_fontColor: {r: 0.7735849, g: 0.71555424, b: 0.6677643, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
