@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class collisionController : MonoBehaviour
 {
+    public GameObject origin;
     Rigidbody rb;
     // Start is called before the first frame update
     void Start()
@@ -22,8 +23,9 @@ public class collisionController : MonoBehaviour
     {
         if(collision.transform.CompareTag("parede"))
         {
-            //Debug.Log("paredeee");
-            //transform.position = new Vector3(transform.position.x-10f, transform.position.y, transform.position.z);
+            Debug.Log("paredeee");
+            Vector3 newPosition = new Vector3(origin.transform.position.x - 0.08f, origin.transform.position.y, origin.transform.position.z);
+            origin.transform.position = newPosition;
         }
     }
 }
