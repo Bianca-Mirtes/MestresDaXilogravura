@@ -159,7 +159,7 @@ public class XiloController : MonoBehaviour
                 stopSound(lapisDeRascunho.gameObject);
             }
         }
-        if(hit.collider == null)
+        if(hit.collider == null || grabController.isToolNull())
         {
             //Parar todos os SFX
             painter.desligarParticulas(lascasDeMadeira);

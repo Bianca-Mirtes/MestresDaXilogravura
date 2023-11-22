@@ -95,7 +95,7 @@ public class GlassController : MonoBehaviour
             }
         }
 
-        if (hit.collider == null)
+        if (hit.collider == null || grabController.isToolNull())
         {
             //Parar todos os SFX
             painter.desligarParticulas(tintaDerramada);

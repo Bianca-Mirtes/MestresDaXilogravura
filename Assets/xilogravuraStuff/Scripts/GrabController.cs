@@ -130,4 +130,9 @@ public class GrabController : MonoBehaviour
             return false; 
         return this.ferramenta.Equals(ferramenta);
     }
+
+    public bool isToolNull()
+    {
+        return this.ferramenta == null;
+    }
 }
