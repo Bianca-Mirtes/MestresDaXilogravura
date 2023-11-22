@@ -21386,7 +21386,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 32
+    m_Bits: 128
   m_AttachTransform: {fileID: 1433953923}
   m_KeepSelectedTargetValid: 1
   m_DisableVisualsWhenBlockedInGroup: 1
@@ -22979,7 +22979,7 @@ MonoBehaviour:
   restartMenu: {fileID: 1121896416}
   tutorial: {fileID: 368824282}
   desenhos:
-  - {fileID: 21300000, guid: ad31860040f74a546bdf46dc0f6ef3dc, type: 3}
+  - {fileID: 21300000, guid: 53b516c63e2b0ef499316b5da86e8dd4, type: 3}
   - {fileID: 21300000, guid: 5f60e7d5d3f6aeb40b3027ad5e8d0c2b, type: 3}
   - {fileID: 21300000, guid: a753b66ecb9b1924ebfc85b08aa01596, type: 3}
   - {fileID: 21300000, guid: c6279444d499abb48839bd9ccf166f3e, type: 3}
@@ -31793,7 +31793,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 32
+    m_Bits: 128
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1

@@ -95,25 +95,21 @@ public class XiloController : MonoBehaviour
 
         if (grabController.isGrab(lapisDeRascunho) && !isSculped)
         {
-            Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(lapisDeRascunho));
+            Vector3 pointerPosition = getPointerPosition(lapisDeRascunho);
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
-                //Comeca SFX de lapis
                 initSound(lapisDeRascunho.gameObject);
                 mask = textureDictionary["SketchMask"];
                 painter.SetBrush(5f, 1f, 10f);
                 marcarEtapa(ref isSketched);
             }
             else
-            {
                 stopSound(lapisDeRascunho.gameObject);
-            }
         } else if (grabController.isGrab(goiva) && isSketched && !isSanded)
         {
-            Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(goiva));
+            Vector3 pointerPosition = getPointerPosition(goiva);
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
-                //Comeca SFX de entalhe
                 initSound(goiva.gameObject);
                 mask = textureDictionary["SculptMask"];
                 painter.SetBrush(10f, 0.8f, 20f, 26f);
@@ -121,15 +117,12 @@ public class XiloController : MonoBehaviour
                 marcarEtapa(ref isSculped);
             }
             else
-            {
                 stopSound(goiva.gameObject);
-            }
         }else if (grabController.isGrab(lixa) && isSculped && !isPaint)
         {
-            Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(lixa));
+            Vector3 pointerPosition = getPointerPosition(lixa);
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
-                //Comeca SFX de lixa
                 initSound(lixa.gameObject);
                 mask = textureDictionary["SandpaperMask"];
                 painter.SetBrush(10f, 0.8f, 25f, 25f);
@@ -137,17 +130,14 @@ public class XiloController : MonoBehaviour
                 marcarEtapa(ref isSanded);
             }
             else
-            {
                 stopSound(lixa.gameObject);
-            }
         }else if (grabController.isGrab(roloDeTinta.GetComponent<XRGrabInteractable>()) && isSanded && !paperController.isPrinted())
         {
-            Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(roloDeTinta.GetComponent<XRGrabInteractable>()));
+            Vector3 pointerPosition = getPointerPosition(roloDeTinta.GetComponent<XRGrabInteractable>());
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
                 if (roloDeTinta.GetComponent<InkRollerController>().isInkEnable())
                 {
-                    //Comeca SFX de rolin de tinta
                     initSound(roloDeTinta.gameObject);
                     mask = textureDictionary["PaintMask"];
                     painter.SetBrush(10f, 0.8f, 28f, 12f);
@@ -155,13 +145,10 @@ public class XiloController : MonoBehaviour
                 }
             }
             else
-            {
                 stopSound(lapisDeRascunho.gameObject);
-            }
         }
         if(hit.collider == null || grabController.isToolNull())
         {
-            //Parar todos os SFX
             painter.desligarParticulas(lascasDeMadeira);
             painter.desligarParticulas(poDeMadeira);
         }
@@ -169,6 +156,11 @@ public class XiloController : MonoBehaviour
         if(mask != null && hit.collider != null)
             painter.PaintMask(mask, hit);
         
+    }
+
+    private Vector3 getPointerPosition(XRGrabInteractable ferramenta)
+    {
+        return cam.WorldToScreenPoint(painter.isToolInteraction(ferramenta));
     }
 
     void Update()
