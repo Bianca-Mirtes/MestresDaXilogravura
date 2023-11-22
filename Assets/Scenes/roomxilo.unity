@@ -22983,6 +22983,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5f60e7d5d3f6aeb40b3027ad5e8d0c2b, type: 3}
   - {fileID: 21300000, guid: a753b66ecb9b1924ebfc85b08aa01596, type: 3}
   - {fileID: 21300000, guid: c6279444d499abb48839bd9ccf166f3e, type: 3}
+  - {fileID: 21300000, guid: a27f2a6974244f24986fb9f2700e3041, type: 3}
   matriz: {fileID: 1590503462}
   vidro: {fileID: 426879756}
   papel: {fileID: 450551913}

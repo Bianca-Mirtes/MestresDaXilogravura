@@ -26,6 +26,7 @@ public class MenuController : MonoBehaviour
     private GameObject drawingCurrent;
 
     private int indice=0;
+    private int indiceAnterior = 0;
     private bool verifStart = false;
     public Sprite[] desenhos;
     public GameObject matriz;
@@ -45,16 +46,22 @@ public class MenuController : MonoBehaviour
         posicionarFolhaMenu.SetActive(false);
         resultadoMenu.SetActive(false);
         restartMenu.SetActive(false);
+
+        left.onClick.AddListener(() => PreviousMenu());
+        right.onClick.AddListener(() => NextMenu());
+        start.onClick.AddListener(() => StartExp());
+
+        posicionarFolhaButton.onClick.AddListener(() => posicionarFolha());
+        resultadoButton.onClick.AddListener(() => StartCoroutine(mostarResultado()));
+        restartButton.onClick.AddListener(() => restart());
     }
 
     // Update is called once per frame
     void Update()
     {
-        left.onClick.AddListener(() => PreviousMenu()); 
-        right.onClick.AddListener(() => NextMenu());
-        start.onClick.AddListener(() => StartExp());
+        Cursor.visible = false;
 
-        if(matriz.GetComponent<XiloController>().isPainted() && !folhaPosicionada)
+        if (matriz.GetComponent<XiloController>().isPainted() && !folhaPosicionada)
         {
             tutorial.transform.GetChild(4).gameObject.SetActive(false);
             posicionarFolhaMenu.SetActive(true);
@@ -64,15 +71,15 @@ public class MenuController : MonoBehaviour
             tutorial.transform.GetChild(5).gameObject.SetActive(false);
             resultadoMenu.SetActive(true);
         }
-        posicionarFolhaButton.onClick.AddListener(() => posicionarFolha());
-        resultadoButton.onClick.AddListener(() => StartCoroutine(mostarResultado()));
 
-        restartButton.onClick.AddListener(() => restart());
-
-        if (!verifStart)
+        if (!verifStart && (indice != indiceAnterior))
         {
             Sprite spriteTexture = Sprite.Create(desenhos[indice].texture, cropRect, new Vector2(0.5f, 0.5f));
             drawingCurrent.GetComponent<Image>().sprite = spriteTexture;
+
+            indiceAnterior = indice;
+            left.enabled = true;
+            right.enabled = true;
         }
 
     }
@@ -101,7 +108,8 @@ public class MenuController : MonoBehaviour
 
     void NextMenu()
     {
-        if(indice == desenhos.Length-1)
+        right.enabled = false;
+        if (indice == desenhos.Length-1)
         {
             indice = 0;
         }
@@ -113,6 +121,7 @@ public class MenuController : MonoBehaviour
 
     void PreviousMenu()
     {
+        left.enabled = false;
         if(indice <= 0)
         {
             indice = desenhos.Length-1;
