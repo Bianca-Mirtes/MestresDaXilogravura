@@ -23,7 +23,7 @@ public class collisionController : MonoBehaviour
     {
         if(collision.transform.CompareTag("parede"))
         {
-            Debug.Log("paredeee");
+            //Debug.Log("paredeee");
             Vector3 newPosition = new Vector3(origin.transform.position.x - 0.08f, origin.transform.position.y, origin.transform.position.z);
             origin.transform.position = newPosition;
         }

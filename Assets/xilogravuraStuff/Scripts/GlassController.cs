@@ -15,6 +15,7 @@ public class GlassController : MonoBehaviour
 
     public Painter painter;
     public GrabController grabController;
+    public XiloController xiloController;
 
     public XRGrabInteractable tinta;
     public GameObject roloDeTinta;
@@ -58,7 +59,7 @@ public class GlassController : MonoBehaviour
     public void Draw()
     {
         int layerMask = 1 << 11; //Fix layer
-        if (grabController.isGrab(tinta))
+        if (grabController.isGrab(tinta) && xiloController.getSanded())
         {
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(tinta));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
@@ -110,6 +111,7 @@ public class GlassController : MonoBehaviour
     public void resetValues()
     {
         isInkEnable = false;
+        verifSound = true;
         roloDeTinta.GetComponent<InkRollerController>().resetValues();
     }
 
