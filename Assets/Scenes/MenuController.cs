@@ -27,6 +27,7 @@ public class MenuController : MonoBehaviour
 
     private int indice=0;
     private int indiceAnterior = 0;
+    private bool switchImage = false;
     private bool verifStart = false;
     public Sprite[] desenhos;
     public GameObject matriz;
@@ -72,7 +73,7 @@ public class MenuController : MonoBehaviour
             resultadoMenu.SetActive(true);
         }
 
-        if (!verifStart && (indice != indiceAnterior))
+        if (!verifStart && (indice != indiceAnterior || !switchImage))
         {
             Sprite spriteTexture = Sprite.Create(desenhos[indice].texture, cropRect, new Vector2(0.5f, 0.5f));
             drawingCurrent.GetComponent<Image>().sprite = spriteTexture;
@@ -109,6 +110,7 @@ public class MenuController : MonoBehaviour
     void NextMenu()
     {
         right.enabled = false;
+        switchImage = true;
         if (indice == desenhos.Length-1)
         {
             indice = 0;
@@ -122,6 +124,7 @@ public class MenuController : MonoBehaviour
     void PreviousMenu()
     {
         left.enabled = false;
+        switchImage = true;
         if(indice <= 0)
         {
             indice = desenhos.Length-1;
@@ -183,6 +186,8 @@ public class MenuController : MonoBehaviour
 
         folhaPosicionada = false;
         folhaResultado = false;
+
+        switchImage = false;
     }
 
 }
