@@ -21,6 +21,7 @@ public class PaperController : MonoBehaviour
 
     private bool setarTexturas = false;
     private bool isPrint = false;
+    private bool resultado = false;
     private Dictionary<string, RenderTexture> textureDictionary = new Dictionary<string, RenderTexture>();
     private string[] textureNames = { "PrintMask" };
     
@@ -55,7 +56,7 @@ public class PaperController : MonoBehaviour
     public void Draw()
     {
         int layerMask = 1 << 12; //Fix layer
-        if (grabController.isGrab(ferramenta))
+        if (grabController.isGrab(ferramenta) && !resultado)
         {
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(ferramenta));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
@@ -99,15 +100,15 @@ public class PaperController : MonoBehaviour
     {
         Draw();
 
-        if (Mouse.current.middleButton.isPressed)
-        {
-            posicionarFolha();
-        }
+        //if (Mouse.current.middleButton.isPressed)
+        //{
+        //    posicionarFolha();
+        //}
 
-        if (Mouse.current.rightButton.isPressed)
-        {
-            mostrarResultado();
-        }
+        //if (Mouse.current.rightButton.isPressed)
+        //{
+        //    mostrarResultado();
+        //}
     }
 
     public void posicionarFolha()
@@ -119,6 +120,7 @@ public class PaperController : MonoBehaviour
 
     public void mostrarResultado()
     {
+        resultado = true;
         transform.GetChild(2).GetComponent<AudioSource>().Play();
         Animator animator = GetComponent<Animator>();
         animator.SetBool("isResult", true);
@@ -128,6 +130,7 @@ public class PaperController : MonoBehaviour
     {
         setarTexturas = false;
         isPrint = false;
+        resultado = false;
         Animator animator = GetComponent<Animator>();
         animator.SetBool("isPrint", false);
         animator.SetBool("isResult", false);
