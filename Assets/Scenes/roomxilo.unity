@@ -22748,9 +22748,8 @@ MonoBehaviour:
   m_text: "A xilogravura \xE9 uma t\xE9cnica antiga de gravura que consiste em desenhar
     e esculpir imagens ou letras em uma chapa de madeira. Depois, a madeira \xE9
     pressionada contra uma folha de papel para criar a imagem desejada.\n\nNo Brasil,
-    a xilogravura \xE9 muito popular, principalmente na regi\xE3o Nordeste. L\xE1,
-    ela \xE9 usada para ilustrar literatura de cordel, que s\xE3o poemas populares
-    narrados em versos."
+    a xilogravura \xE9 muito popular, principalmente na regi\xE3o Nordeste, usada
+    para ilustrar literatura de cordel, que s\xE3o poemas populares narrados em versos."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 50a0a875911ca9d42916e693afad0799, type: 2}
   m_sharedMaterial: {fileID: -575998762881257569, guid: 50a0a875911ca9d42916e693afad0799, type: 2}
