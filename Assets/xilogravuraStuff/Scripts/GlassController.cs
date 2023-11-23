@@ -78,11 +78,11 @@ public class GlassController : MonoBehaviour
             }
             else
             {
-                if (tinta.gameObject.GetComponent<AudioSource>().isPlaying)
-                {
+                //if (tinta.gameObject.GetComponent<AudioSource>().isPlaying)
+                //{
                     tinta.gameObject.GetComponent<AudioSource>().Stop();
                     verifSound = true;
-                }
+                //}
             }
         }
 

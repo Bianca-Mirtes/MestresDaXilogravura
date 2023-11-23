@@ -145,7 +145,7 @@ public class XiloController : MonoBehaviour
                 }
             }
             else
-                stopSound(lapisDeRascunho.gameObject);
+                stopSound(roloDeTinta.gameObject);
         }
         if(hit.collider == null || grabController.isToolNull())
         {
