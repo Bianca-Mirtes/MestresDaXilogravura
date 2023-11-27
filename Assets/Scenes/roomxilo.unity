@@ -34045,15 +34045,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 581d000152ebf5242bb519221fe76347, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.2599947
+      value: 1.560629
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 581d000152ebf5242bb519221fe76347, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.2600001
+      value: 1.5606354
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 581d000152ebf5242bb519221fe76347, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.6300001
+      value: 0.7803178
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 581d000152ebf5242bb519221fe76347, type: 3}
       propertyPath: m_LocalPosition.x
@@ -34094,6 +34094,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 581d000152ebf5242bb519221fe76347, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 581d000152ebf5242bb519221fe76347, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 581d000152ebf5242bb519221fe76347, type: 3}
       propertyPath: m_Enabled
