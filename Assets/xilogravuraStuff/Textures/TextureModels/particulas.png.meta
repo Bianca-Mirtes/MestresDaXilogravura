@@ -115,8 +115,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 214.8
-        height: 300
+        width: 125
+        height: 270
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,10 +134,10 @@ TextureImporter:
       name: particulas_1
       rect:
         serializedVersion: 2
-        x: 214
+        x: 178
         y: 0
-        width: 214.8
-        height: 300
+        width: 178.5
+        height: 270
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,10 +155,10 @@ TextureImporter:
       name: particulas_2
       rect:
         serializedVersion: 2
-        x: 428
+        x: 390
         y: 0
-        width: 214.8
-        height: 300
+        width: 178
+        height: 270
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,10 +176,10 @@ TextureImporter:
       name: particulas_3
       rect:
         serializedVersion: 2
-        x: 642
+        x: 579
         y: 0
-        width: 214.8
-        height: 300
+        width: 178
+        height: 270
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,10 +197,10 @@ TextureImporter:
       name: particulas_4
       rect:
         serializedVersion: 2
-        x: 856
+        x: 787
         y: 0
-        width: 214.8
-        height: 300
+        width: 178
+        height: 270
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -210,6 +210,27 @@ TextureImporter:
       bones: []
       spriteID: 8d94801dafde6544c900742d79473ed1
       internalID: 622354521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: particulas_5
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 0
+        width: 61
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47421823a43be4e4086adcd96e79e266
+      internalID: 172206008
       vertices: []
       indices: 
       edges: []
@@ -230,6 +251,7 @@ TextureImporter:
       particulas_2: 1990210277
       particulas_3: 1743550925
       particulas_4: 622354521
+      particulas_5: 172206008
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
