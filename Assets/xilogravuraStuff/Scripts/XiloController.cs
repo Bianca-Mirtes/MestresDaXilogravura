@@ -23,6 +23,8 @@ public class XiloController : MonoBehaviour
     public GameObject roloDeTinta;
     public GameObject tutorial;
 
+    private bool isStart = false;
+
     private bool verifSound = true;
 
     public ParticleSystem lascasDeMadeira;
@@ -163,9 +165,20 @@ public class XiloController : MonoBehaviour
         return cam.WorldToScreenPoint(painter.isToolInteraction(ferramenta));
     }
 
+    public void enableProcess()
+    {
+        isStart = true;
+    }
+
     void Update()
     {
-        Draw();
+        if(isStart)
+            Draw();
+        else
+        {
+            painter.desligarParticulas(lascasDeMadeira);
+            painter.desligarParticulas(poDeMadeira);
+        }
     }
 
     void marcarEtapa(ref bool etapa)
@@ -188,6 +201,8 @@ public class XiloController : MonoBehaviour
 
     public void resetValues()
     {
+        isStart = false;
+
         isSketched = false;
         isSculped = false;
         isSanded = false;

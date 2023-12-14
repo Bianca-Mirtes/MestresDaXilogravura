@@ -7,6 +7,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class MenuController : MonoBehaviour
 {
     public Button start;
+    public Button createYourArt;
+    public GameObject desenho;
     public Button left;
     public Button right;
 
@@ -51,6 +53,7 @@ public class MenuController : MonoBehaviour
         left.onClick.AddListener(() => PreviousMenu());
         right.onClick.AddListener(() => NextMenu());
         start.onClick.AddListener(() => StartExp());
+        createYourArt.onClick.AddListener(() => Create());
 
         posicionarFolhaButton.onClick.AddListener(() => posicionarFolha());
         resultadoButton.onClick.AddListener(() => StartCoroutine(mostarResultado()));
@@ -146,6 +149,15 @@ public class MenuController : MonoBehaviour
         }
     }
 
+    private void Create()
+    {
+        left.gameObject.SetActive(false);
+        right.gameObject.SetActive(false);
+        createYourArt.gameObject.SetActive(false);
+        start.gameObject.SetActive(false);
+        desenho.SetActive(false);
+    }
+
     void setDesenhoEscolhido()
     {
         Sprite spriteAtual = desenhos[indice];
@@ -158,6 +170,7 @@ public class MenuController : MonoBehaviour
 
             desenho.Apply();
 
+            matriz.GetComponent<XiloController>().enableProcess();
             matriz.GetComponent<XiloController>().setTextures();
             Material xiloMaterial = matriz.GetComponent<MeshRenderer>().materials[0];
             xiloMaterial.SetTexture("SketchTexture", desenho);
