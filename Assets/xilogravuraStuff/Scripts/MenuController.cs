@@ -9,6 +9,7 @@ public class MenuController : MonoBehaviour
     public Button start;
     public Button createYourArt;
     public GameObject desenho;
+    public GameObject tituloMenu;
     public Button left;
     public Button right;
 
@@ -162,6 +163,7 @@ public class MenuController : MonoBehaviour
         createYourArt.gameObject.SetActive(false);
         start.gameObject.SetActive(false);
         desenho.SetActive(false);
+        tituloMenu.SetActive(false);
         artAutoral = true;
     }
 

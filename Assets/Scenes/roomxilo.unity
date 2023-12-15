@@ -5556,6 +5556,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1919400064}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &93179670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19508,7 +19520,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0.283, y: -0.01700014}
+  m_AnchoredPosition: {x: 0.283, y: -0.16600013}
   m_SizeDelta: {x: 0.67199993, y: 0.882}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &720717249
@@ -19632,7 +19644,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.027999997, y: -0.017}
+  m_AnchoredPosition: {x: 0.027999997, y: -0.166}
   m_SizeDelta: {x: 1.8, y: 1.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &739371463
@@ -23748,6 +23760,7 @@ MonoBehaviour:
   start: {fileID: 1274651521}
   createYourArt: {fileID: 60314422}
   desenho: {fileID: 739371461}
+  tituloMenu: {fileID: 1919400064}
   left: {fileID: 2135046041}
   right: {fileID: 720717249}
   posicionarFolhaMenu: {fileID: 1925314441}
@@ -23766,10 +23779,10 @@ MonoBehaviour:
   art: {fileID: 1771966480}
   cropRect:
     serializedVersion: 2
-    x: 200
-    y: 100
-    width: 1600
-    height: 1600
+    x: 320
+    y: 280
+    width: 1400
+    height: 1400
 --- !u!4 &1305382183
 Transform:
   m_ObjectHideFlags: 0
@@ -32649,8 +32662,8 @@ Transform:
   m_GameObject: {fileID: 1771966480}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.088, y: -0.21203281, z: 0.01}
-  m_LocalScale: {x: 1.8, y: 1.8, z: 1.8}
+  m_LocalPosition: {x: 0.075, y: -0.236, z: 0.01}
+  m_LocalScale: {x: 2.5999994, y: 2.6, z: 2.5999994}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 350431592}
@@ -34371,8 +34384,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1919400064}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.136}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.13599993}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -34380,7 +34393,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.009, y: 1.171}
+  m_AnchoredPosition: {x: 0.027999884, y: 0.855}
   m_SizeDelta: {x: 2.1841, y: 0.433}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1919400066
@@ -34405,15 +34418,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Escolha o desenho
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 50a0a875911ca9d42916e693afad0799, type: 2}
-  m_sharedMaterial: {fileID: -575998762881257569, guid: 50a0a875911ca9d42916e693afad0799, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9724a1632142507409695b21f9762e13, type: 2}
+  m_sharedMaterial: {fileID: 3933284027334688407, guid: 9724a1632142507409695b21f9762e13, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4289377989
-  m_fontColor: {r: 0.7735849, g: 0.71555424, b: 0.6677643, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -34430,8 +34443,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.18
-  m_fontSizeBase: 0.18
+  m_fontSize: 0.155
+  m_fontSizeBase: 0.155
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -36039,7 +36052,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -0.228, y: -0.01700014}
+  m_AnchoredPosition: {x: -0.22800004, y: -0.16600013}
   m_SizeDelta: {x: 0.67199993, y: 0.882}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2135046041
