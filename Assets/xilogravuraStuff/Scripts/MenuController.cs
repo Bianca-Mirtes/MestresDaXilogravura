@@ -56,7 +56,7 @@ public class MenuController : MonoBehaviour
         left.onClick.AddListener(() => PreviousMenu());
         right.onClick.AddListener(() => NextMenu());
         start.onClick.AddListener(() => StartExp());
-        createYourArt.onClick.AddListener(() => Create());
+        createYourArt.onClick.AddListener(() => Invoke("Create", 1f));
 
         posicionarFolhaButton.onClick.AddListener(() => posicionarFolha());
         resultadoButton.onClick.AddListener(() => StartCoroutine(mostarResultado()));
@@ -160,10 +160,10 @@ public class MenuController : MonoBehaviour
     {
         left.gameObject.SetActive(false);
         right.gameObject.SetActive(false);
-        createYourArt.gameObject.SetActive(false);
         start.gameObject.SetActive(false);
         desenho.SetActive(false);
         tituloMenu.SetActive(false);
+        createYourArt.gameObject.SetActive(false);
         artAutoral = true;
     }
 
