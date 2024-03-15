@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class XiloController : MonoBehaviour
@@ -16,6 +17,9 @@ public class XiloController : MonoBehaviour
     public Painter painter;
     public GrabController grabController;
     public PaperController paperController;
+
+    public GameObject handLeftController;
+    public GameObject handRightController;
 
     public XRGrabInteractable lapisDeRascunho;
     public XRGrabInteractable goiva;
@@ -95,18 +99,29 @@ public class XiloController : MonoBehaviour
         
         RenderTexture mask = null;
 
-        if (grabController.isGrab(lapisDeRascunho) && !isSculped)
+        if (grabController.isGrab(lapisDeRascunho) && !isSculped )
         {
-            Vector3 pointerPosition = getPointerPosition(lapisDeRascunho);
-            if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
+
+            UnityEngine.XR.InputDevice targetDevice;
+            var devices = new List<UnityEngine.XR.InputDevice>();
+            InputDevices.GetDevicesAtXRNode(XRNode.RightHand, devices);
+            targetDevice = devices[0];
+
+            if (targetDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out bool isTriggerClicked) && isTriggerClicked) 
             {
-                initSound(lapisDeRascunho.gameObject);
-                mask = textureDictionary["SketchMask"];
-                painter.SetBrush(5f, 1f, 10f);
-                marcarEtapa(ref isSketched);
+                Debug.Log("Apertou");
+                Vector3 pointerPosition = getPointerPosition(lapisDeRascunho);
+                if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
+                {
+                    initSound(lapisDeRascunho.gameObject);
+                    mask = textureDictionary["SketchMask"];
+                    painter.SetBrush(5f, 1f, 10f);
+                    marcarEtapa(ref isSketched);
+                }
+                else
+                    stopSound(lapisDeRascunho.gameObject);
             }
-            else
-                stopSound(lapisDeRascunho.gameObject);
+            
         } else if (grabController.isGrab(goiva) && isSketched && !isSanded)
         {
             Vector3 pointerPosition = getPointerPosition(goiva);
@@ -172,8 +187,10 @@ public class XiloController : MonoBehaviour
 
     void Update()
     {
-        if(isStart)
+        if (isStart)
+        {
             Draw();
+        }
         else
         {
             painter.desligarParticulas(lascasDeMadeira);
