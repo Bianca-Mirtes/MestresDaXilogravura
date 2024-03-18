@@ -18,14 +18,12 @@ public class XiloController : MonoBehaviour
     public GrabController grabController;
     public PaperController paperController;
 
-    public GameObject handLeftController;
-    public GameObject handRightController;
-
     public XRGrabInteractable lapisDeRascunho;
     public XRGrabInteractable goiva;
     public XRGrabInteractable lixa;
     public GameObject roloDeTinta;
     public GameObject tutorial;
+    TouchController touch = new TouchController();
 
     private bool isStart = false;
 
@@ -100,18 +98,9 @@ public class XiloController : MonoBehaviour
         RenderTexture mask = null;
 
         if (grabController.isGrab(lapisDeRascunho) && !isSculped )
-        {
-
-            UnityEngine.XR.InputDevice targetDevice;
-            var devices = new List<UnityEngine.XR.InputDevice>();
-            InputDevices.GetDevicesAtXRNode(XRNode.RightHand, devices);
-            targetDevice = devices[0];
-
-            if (targetDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out bool isTriggerClicked) && isTriggerClicked) 
-            {
-                Debug.Log("Apertou");
+        {     
                 Vector3 pointerPosition = getPointerPosition(lapisDeRascunho);
-                if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
+                if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand()))
                 {
                     initSound(lapisDeRascunho.gameObject);
                     mask = textureDictionary["SketchMask"];
@@ -120,49 +109,49 @@ public class XiloController : MonoBehaviour
                 }
                 else
                     stopSound(lapisDeRascunho.gameObject);
-            }
             
         } else if (grabController.isGrab(goiva) && isSketched && !isSanded)
         {
-            Vector3 pointerPosition = getPointerPosition(goiva);
-            if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
-            {
-                initSound(goiva.gameObject);
-                mask = textureDictionary["SculptMask"];
-                painter.SetBrush(10f, 0.8f, 20f, 26f);
-                painter.instanciarParticulas(lascasDeMadeira, hit.point);
-                marcarEtapa(ref isSculped);
-            }
-            else
-                stopSound(goiva.gameObject);
+                Vector3 pointerPosition = getPointerPosition(goiva);
+                if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand()))
+                {
+                    initSound(goiva.gameObject);
+                    mask = textureDictionary["SculptMask"];
+                    painter.SetBrush(10f, 0.8f, 20f, 26f);
+                    painter.instanciarParticulas(lascasDeMadeira, hit.point);
+                    marcarEtapa(ref isSculped);
+                }
+                else
+                    stopSound(goiva.gameObject);
+            
         }else if (grabController.isGrab(lixa) && isSculped && !isPaint)
         {
-            Vector3 pointerPosition = getPointerPosition(lixa);
-            if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
-            {
-                initSound(lixa.gameObject);
-                mask = textureDictionary["SandpaperMask"];
-                painter.SetBrush(10f, 0.8f, 25f, 25f);
-                painter.instanciarParticulas(poDeMadeira, hit.point);
-                marcarEtapa(ref isSanded);
-            }
-            else
-                stopSound(lixa.gameObject);
+                Vector3 pointerPosition = getPointerPosition(lixa);
+                if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand()))
+                {
+                    initSound(lixa.gameObject);
+                    mask = textureDictionary["SandpaperMask"];
+                    painter.SetBrush(10f, 0.8f, 25f, 25f);
+                    painter.instanciarParticulas(poDeMadeira, hit.point);
+                    marcarEtapa(ref isSanded);
+                }
+                else
+                    stopSound(lixa.gameObject);
         }else if (grabController.isGrab(roloDeTinta.GetComponent<XRGrabInteractable>()) && isSanded && !paperController.isPrinted())
         {
-            Vector3 pointerPosition = getPointerPosition(roloDeTinta.GetComponent<XRGrabInteractable>());
-            if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
-            {
-                if (roloDeTinta.GetComponent<InkRollerController>().isInkEnable())
+                Vector3 pointerPosition = getPointerPosition(roloDeTinta.GetComponent<XRGrabInteractable>());
+                if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand()))
                 {
-                    initSound(roloDeTinta.gameObject);
-                    mask = textureDictionary["PaintMask"];
-                    painter.SetBrush(10f, 0.8f, 28f, 12f);
-                    marcarEtapa(ref isPaint);
+                    if (roloDeTinta.GetComponent<InkRollerController>().isInkEnable())
+                    {
+                        initSound(roloDeTinta.gameObject);
+                        mask = textureDictionary["PaintMask"];
+                        painter.SetBrush(10f, 0.8f, 28f, 12f);
+                        marcarEtapa(ref isPaint);
+                    }
                 }
-            }
-            else
-                stopSound(roloDeTinta.gameObject);
+                else
+                    stopSound(roloDeTinta.gameObject);
         }
         if(hit.collider == null || grabController.isToolNull())
         {

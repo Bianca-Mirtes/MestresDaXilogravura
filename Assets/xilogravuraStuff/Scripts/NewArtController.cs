@@ -21,6 +21,8 @@ public class NewArtController : MonoBehaviour
     private bool verifSound = true;
     private bool isSketched = false;
 
+    TouchController touch = new TouchController();
+
     private Dictionary<string, RenderTexture> textureDictionary = new Dictionary<string, RenderTexture>();
     private string[] textureNames = { "SketchMask" };
 
@@ -63,24 +65,24 @@ public class NewArtController : MonoBehaviour
         int layerMask = 1 << 14; //Fix layer
         if (grabController.isGrab(lapisDeRascunho))
         {
-            Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(lapisDeRascunho));
-            if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
-            {
-                if (verifSound)
+                    Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(lapisDeRascunho));
+                    if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (touch.IsClickedWithLeftHand() || touch.IsClickedWithRightHand()))
+                    {
+                        if (verifSound)
+                        {
+                            lapisDeRascunho.gameObject.GetComponent<AudioSource>().Play();
+                            verifSound = false;
+                        }
+                        RenderTexture mask = textureDictionary["SketchMask"];
+                        painter.SetBrush(15f, 1f, 40f);
+                        painter.PaintMask(mask, hit);
+                        isSketched = true;
+                    }
+                else
                 {
-                    lapisDeRascunho.gameObject.GetComponent<AudioSource>().Play();
-                    verifSound = false;
+                    lapisDeRascunho.gameObject.GetComponent<AudioSource>().Stop();
+                    verifSound = true;
                 }
-                RenderTexture mask = textureDictionary["SketchMask"];
-                painter.SetBrush(15f, 1f, 40f);
-                painter.PaintMask(mask, hit);
-                isSketched = true;
-            }
-            else
-            {
-                lapisDeRascunho.gameObject.GetComponent<AudioSource>().Stop();
-                verifSound = true;
-            }
         }
 
         //if (hit.collider == null || grabController.isToolNull())

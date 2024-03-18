@@ -158,6 +158,7 @@ public class MenuController : MonoBehaviour
 
     private void Create()
     {
+        Debug.Log("Criando art");
         left.gameObject.SetActive(false);
         right.gameObject.SetActive(false);
         start.gameObject.SetActive(false);
@@ -169,6 +170,7 @@ public class MenuController : MonoBehaviour
 
     void configurarSimulacao()
     {
+
 
         if (artAutoral)
         {

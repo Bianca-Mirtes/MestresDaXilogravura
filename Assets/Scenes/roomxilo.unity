@@ -5449,11 +5449,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.824
+      value: 0.733
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.261
+      value: 0.279
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5545,7 +5545,7 @@ PrefabInstance:
       objectReference: {fileID: 1487704658}
     - target: {fileID: 6232745470614056083, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6232745470614056083, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_PositionInput.m_UseReference
@@ -26997,8 +26997,6 @@ MonoBehaviour:
   painter: {fileID: 2010382326}
   grabController: {fileID: 1803742030}
   paperController: {fileID: 450551919}
-  handLeftController: {fileID: 0}
-  handRightController: {fileID: 0}
   lapisDeRascunho: {fileID: 2079705415}
   goiva: {fileID: 1398363406}
   lixa: {fileID: 1593152236}
