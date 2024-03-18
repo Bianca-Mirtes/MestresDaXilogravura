@@ -55,6 +55,13 @@ public class XiloController : MonoBehaviour
         }
     }
 
+    public void TestResetATexture()
+    {
+        Graphics.SetRenderTarget(textureDictionary[textureNames[0]]);
+        GL.Clear(true, true, Color.black);
+
+    }
+
     public void initSound(GameObject ferramenta)
     {
         if (verifSound)
