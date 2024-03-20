@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
+using static TreeEditor.TextureAtlas;
 
 public class NewArtController : MonoBehaviour
 {
@@ -15,6 +18,9 @@ public class NewArtController : MonoBehaviour
 
     public Painter painter;
     public GrabController grabController;
+    public GameObject matriz;
+
+    public Button voltar;
 
     public XRGrabInteractable lapisDeRascunho;
 
@@ -29,7 +35,17 @@ public class NewArtController : MonoBehaviour
     void Start()
     {
         currentMaterial = GetComponent<MeshRenderer>().materials[0];
+        voltar.onClick.AddListener(() => ReturnProcess());
         setTextures();
+    }
+
+    private void ReturnProcess()
+    {
+        if(!matriz.GetComponent<XiloController>().getSketched())
+        {
+            Graphics.SetRenderTarget(textureDictionary["SketchMask"]);
+            GL.Clear(true, true, Color.black);
+        }
     }
 
     public void resetTextures()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class MenuController : MonoBehaviour
     public GameObject tituloMenu;
     public Button left;
     public Button right;
+    public Button voltar;
 
     private GameObject canva;
     public GameObject posicionarFolhaMenu;
@@ -56,11 +58,36 @@ public class MenuController : MonoBehaviour
         left.onClick.AddListener(() => PreviousMenu());
         right.onClick.AddListener(() => NextMenu());
         start.onClick.AddListener(() => StartExp());
+        voltar.onClick.AddListener(() => ReturnProcess());
         createYourArt.onClick.AddListener(() => Invoke("Create", 1f));
 
         posicionarFolhaButton.onClick.AddListener(() => posicionarFolha());
         resultadoButton.onClick.AddListener(() => StartCoroutine(mostarResultado()));
         restartButton.onClick.AddListener(() => restart());
+    }
+
+    private void ReturnProcess()
+    {
+        if (matriz.GetComponent<XiloController>().getPaint())
+        {
+            matriz.GetComponent<XiloController>().ResetOneTexture("PaintMask");
+            matriz.GetComponent<XiloController>().setPaint(false);
+        }
+        else if (matriz.GetComponent<XiloController>().getSanded())
+        {
+            matriz.GetComponent<XiloController>().ResetOneTexture("SandpaperMask");
+            matriz.GetComponent<XiloController>().setSanded(false);
+        }
+        else if (matriz.GetComponent<XiloController>().getSculped())
+        {
+            matriz.GetComponent<XiloController>().ResetOneTexture("SculptMask");
+            matriz.GetComponent<XiloController>().SetSculped(false);
+        }
+        else if (matriz.GetComponent<XiloController>().getSketched())
+        {
+            matriz.GetComponent<XiloController>().ResetOneTexture("SketchMask");
+            matriz.GetComponent<XiloController>().SetSketched(false);
+        }  
     }
 
     // Update is called once per frame
@@ -75,6 +102,7 @@ public class MenuController : MonoBehaviour
         }
         if (papel.GetComponent<PaperController>().isPrinted() && !folhaResultado)
         {
+            voltar.gameObject.SetActive(false);
             tutorial.transform.GetChild(5).gameObject.SetActive(false);
             resultadoMenu.SetActive(true);
         }
@@ -153,24 +181,24 @@ public class MenuController : MonoBehaviour
         {
             configurarSimulacao();
             canva.SetActive(false);
+            voltar.gameObject.SetActive(true);
         }
     }
 
     private void Create()
     {
-        Debug.Log("Criando art");
         left.gameObject.SetActive(false);
         right.gameObject.SetActive(false);
         start.gameObject.SetActive(false);
         desenho.SetActive(false);
         tituloMenu.SetActive(false);
         createYourArt.gameObject.SetActive(false);
+        voltar.gameObject.SetActive(true);
         artAutoral = true;
     }
 
     void configurarSimulacao()
     {
-
 
         if (artAutoral)
         {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR;
@@ -55,9 +56,9 @@ public class XiloController : MonoBehaviour
         }
     }
 
-    public void TestResetATexture()
+    public void ResetOneTexture(string textureName)
     {
-        Graphics.SetRenderTarget(textureDictionary[textureNames[0]]);
+        Graphics.SetRenderTarget(textureDictionary[textureName]);
         GL.Clear(true, true, Color.black);
 
     }
@@ -227,9 +228,19 @@ public class XiloController : MonoBehaviour
         return isSketched;
     }
 
+    public void SetSketched(bool state)
+    {
+        isSketched = state;
+    }
+
     public bool getSculped()
     {
         return isSculped;
+    }
+
+    public void SetSculped(bool state)
+    {
+        isSculped = state;
     }
 
     public bool getSanded()
@@ -237,8 +248,18 @@ public class XiloController : MonoBehaviour
         return isSanded;
     }
 
+    public void setSanded(bool state)
+    {
+        isSanded = state;
+    }
+
     public bool getPaint()
     {
         return isPaint;
+    }
+
+    public void setPaint(bool state)
+    {
+        isPaint = state;
     }
 }
