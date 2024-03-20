@@ -98,6 +98,12 @@ public class XiloController : MonoBehaviour
         }
     }
 
+    // Metodo para debug no simulador
+    private bool click()
+    {
+        return Mouse.current.leftButton.isPressed;
+    }
+
     public void Draw()
     {
         int layerMask = 1 << 10;
@@ -107,7 +113,7 @@ public class XiloController : MonoBehaviour
         if (grabController.isGrab(lapisDeRascunho) && !isSculped )
         {     
                 Vector3 pointerPosition = getPointerPosition(lapisDeRascunho);
-                if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand()))
+                if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (click() || touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand()))
                 {
                     initSound(lapisDeRascunho.gameObject);
                     mask = textureDictionary["SketchMask"];
@@ -120,7 +126,7 @@ public class XiloController : MonoBehaviour
         } else if (grabController.isGrab(goiva) && isSketched && !isSanded)
         {
                 Vector3 pointerPosition = getPointerPosition(goiva);
-                if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand()))
+                if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (click() || touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand()))
                 {
                     initSound(goiva.gameObject);
                     mask = textureDictionary["SculptMask"];
@@ -134,7 +140,7 @@ public class XiloController : MonoBehaviour
         }else if (grabController.isGrab(lixa) && isSculped && !isPaint)
         {
                 Vector3 pointerPosition = getPointerPosition(lixa);
-                if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand()))
+                if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (click() || touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand()))
                 {
                     initSound(lixa.gameObject);
                     mask = textureDictionary["SandpaperMask"];
@@ -147,7 +153,7 @@ public class XiloController : MonoBehaviour
         }else if (grabController.isGrab(roloDeTinta.GetComponent<XRGrabInteractable>()) && isSanded && !paperController.isPrinted())
         {
                 Vector3 pointerPosition = getPointerPosition(roloDeTinta.GetComponent<XRGrabInteractable>());
-                if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand()))
+                if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (click() || touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand()))
                 {
                     if (roloDeTinta.GetComponent<InkRollerController>().isInkEnable())
                     {

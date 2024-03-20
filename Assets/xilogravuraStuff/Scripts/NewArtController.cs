@@ -60,13 +60,19 @@ public class NewArtController : MonoBehaviour
         Draw();
     }
 
+    // Metodo para debug no simulador
+    private bool click()
+    {
+        return Mouse.current.leftButton.isPressed;
+    }
+
     public void Draw()
     {
         int layerMask = 1 << 14; //Fix layer
         if (grabController.isGrab(lapisDeRascunho))
         {
                     Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(lapisDeRascunho));
-                    if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (touch.IsClickedWithLeftHand() || touch.IsClickedWithRightHand()))
+                    if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (click() || touch.IsClickedWithLeftHand() || touch.IsClickedWithRightHand()))
                     {
                         if (verifSound)
                         {
