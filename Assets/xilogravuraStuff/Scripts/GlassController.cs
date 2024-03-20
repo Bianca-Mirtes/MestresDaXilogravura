@@ -71,8 +71,8 @@ public class GlassController : MonoBehaviour
                     verifSound = false;
                 }
                 RenderTexture mask = textureDictionary["InkMask"];
-                painter.SetBrush(15f, 1f, 40f);
-                painter.PaintMask(mask, hit);
+                painter.SetBrush(40f);
+                painter.PaintMask(mask, hit, false);
                 painter.instanciarParticulas(tintaDerramada, painter.isToolInteraction(tinta));
                 isInkEnable = true;
             }

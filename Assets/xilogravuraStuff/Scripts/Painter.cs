@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,8 @@ public class Painter : MonoBehaviour
     private Material drawMaterial;
 
     public static Painter instance = null;
+
+    private Vector2 lastHitCoord = Vector2.zero;
 
     void Start()
     {
@@ -34,14 +37,14 @@ public class Painter : MonoBehaviour
 
     void Update()
     {
+        //changeBrushStroke();
     }
 
-    public void SetBrush(float hardness, float strength, float size)
+    public void SetBrush(float size)
     {
         drawMaterial.SetFloat("_IsRoundBrush", 1);
         drawMaterial.SetFloat("_Size", size);
-        drawMaterial.SetFloat("_Hardness", hardness);
-        drawMaterial.SetFloat("_Strength", strength);
+        this.size = size;
     }
 
     public void SetBrush(float hardness, float strength, float width, float height)
@@ -53,14 +56,55 @@ public class Painter : MonoBehaviour
         drawMaterial.SetFloat("_Strength", strength);
     }
 
-    public void PaintMask(RenderTexture mask, RaycastHit hit)
+    public void PaintMask(RenderTexture mask, RaycastHit hit, bool interpolate)
     {
+        //drawMaterial.SetVector("_Color", Color.white);
         drawMaterial.SetVector("_Coordinates", new Vector4(hit.textureCoord.x, hit.textureCoord.y, 0, 0));
 
         RenderTexture temp = RenderTexture.GetTemporary(mask.width, mask.height, 0, RenderTextureFormat.ARGBFloat);
         Graphics.Blit(mask, temp);
         Graphics.Blit(temp, mask, drawMaterial);
-        RenderTexture.ReleaseTemporary(temp); 
+        RenderTexture.ReleaseTemporary(temp);
+
+        if(interpolate)
+            lastHitCoord = Interpolation(mask, temp, hit, lastHitCoord);
+    }
+
+    public void resetInterpolation()
+    {
+        lastHitCoord = Vector2.zero;
+        //print("Reset interpolation");
+    }
+
+    public Vector2 Interpolation(RenderTexture mask, RenderTexture temp, RaycastHit hit, Vector2 lastHitCoord)
+    {
+
+        float strokeSmoothingInterval = 0.01f;
+        float distance = Vector2.Distance(lastHitCoord, hit.textureCoord);
+        //print(lastHitCoord);
+
+        int numPoints = Mathf.Min((int) ((distance/strokeSmoothingInterval)*2.2f), 40);
+
+        for (int i = 0; i < numPoints; i++)
+        {
+            if (lastHitCoord == Vector2.zero)
+                break;
+
+            Vector2 direction = hit.textureCoord - lastHitCoord;
+
+            float totalDistance = direction.magnitude;
+            direction.Normalize();
+
+            Vector2 pointC = lastHitCoord + direction * i/2.2f * Mathf.Clamp(strokeSmoothingInterval, 0f, totalDistance);
+
+            //drawMaterial.SetVector("_Color", Color.yellow);
+            drawMaterial.SetVector("_Coordinates", new Vector4(pointC.x, pointC.y, 0, 0));
+            temp = RenderTexture.GetTemporary(mask.width, mask.height, 0, RenderTextureFormat.ARGBFloat);
+            Graphics.Blit(mask, temp);
+            Graphics.Blit(temp, mask, drawMaterial);
+            RenderTexture.ReleaseTemporary(temp);
+        }
+        return hit.textureCoord;
     }
 
     public Vector3 isToolInteraction(XRGrabInteractable ferramenta)
@@ -82,5 +126,17 @@ public class Painter : MonoBehaviour
     {
         particulas.Pause();
         particulas.gameObject.SetActive(false);
+    }
+
+    public void changeBrushStroke()
+    {
+        float newSize = 0f;
+        if (Input.GetKey(KeyCode.RightArrow))
+            newSize = Math.Min(size + 5f, 40f);
+        if(Input.GetKey(KeyCode.LeftArrow))
+            newSize = Math.Max(size - 5f, 5f);
+
+        drawMaterial.SetFloat("_Size", newSize);
+        size = newSize;
     }
 }

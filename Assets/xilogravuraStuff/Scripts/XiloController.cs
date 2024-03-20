@@ -111,6 +111,8 @@ public class XiloController : MonoBehaviour
         
         RenderTexture mask = null;
 
+        bool interpolate = false;
+
         if (grabController.isGrab(lapisDeRascunho) && !isSculped )
         {     
                 Vector3 pointerPosition = getPointerPosition(lapisDeRascunho);
@@ -118,11 +120,15 @@ public class XiloController : MonoBehaviour
                 {
                     initSound(lapisDeRascunho.gameObject);
                     mask = textureDictionary["SketchMask"];
-                    painter.SetBrush(5f, 1f, 10f);
+                    painter.SetBrush(5f);
                     marcarEtapa(ref isSketched);
+                    interpolate = true;
                 }
-                else
+                else {
                     stopSound(lapisDeRascunho.gameObject);
+                    painter.resetInterpolation();
+                }
+                    
             
         } else if (grabController.isGrab(goiva) && isSketched && !isSanded)
         {
@@ -134,11 +140,15 @@ public class XiloController : MonoBehaviour
                     painter.SetBrush(10f, 0.8f, 20f, 26f);
                     painter.instanciarParticulas(lascasDeMadeira, hit.point);
                     marcarEtapa(ref isSculped);
+                    interpolate = false;
                 }
-                else
+                else {
                     stopSound(goiva.gameObject);
-            
-        }else if (grabController.isGrab(lixa) && isSculped && !isPaint)
+                    painter.resetInterpolation();
+                }
+
+        }
+        else if (grabController.isGrab(lixa) && isSculped && !isPaint)
         {
                 Vector3 pointerPosition = getPointerPosition(lixa);
                 if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (click() || touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand()))
@@ -148,10 +158,14 @@ public class XiloController : MonoBehaviour
                     painter.SetBrush(10f, 0.8f, 25f, 25f);
                     painter.instanciarParticulas(poDeMadeira, hit.point);
                     marcarEtapa(ref isSanded);
+                    interpolate = false;
                 }
-                else
+                else { 
                     stopSound(lixa.gameObject);
-        }else if (grabController.isGrab(roloDeTinta.GetComponent<XRGrabInteractable>()) && isSanded && !paperController.isPrinted())
+                    painter.resetInterpolation();
+                }
+        }
+        else if (grabController.isGrab(roloDeTinta.GetComponent<XRGrabInteractable>()) && isSanded && !paperController.isPrinted())
         {
                 Vector3 pointerPosition = getPointerPosition(roloDeTinta.GetComponent<XRGrabInteractable>());
                 if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (click() || touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand()))
@@ -162,10 +176,13 @@ public class XiloController : MonoBehaviour
                         mask = textureDictionary["PaintMask"];
                         painter.SetBrush(10f, 0.8f, 28f, 12f);
                         marcarEtapa(ref isPaint);
+                        interpolate = false;
                     }
                 }
-                else
-                    stopSound(roloDeTinta.gameObject);
+                else {
+                    stopSound(lapisDeRascunho.gameObject);
+                    painter.resetInterpolation();
+                }
         }
         if(hit.collider == null || grabController.isToolNull())
         {
@@ -174,7 +191,7 @@ public class XiloController : MonoBehaviour
         }
 
         if(mask != null && hit.collider != null)
-            painter.PaintMask(mask, hit);
+            painter.PaintMask(mask, hit, interpolate);
         
     }
 

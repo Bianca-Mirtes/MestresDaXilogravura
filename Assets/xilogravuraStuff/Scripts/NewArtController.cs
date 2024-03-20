@@ -87,23 +87,24 @@ public class NewArtController : MonoBehaviour
         int layerMask = 1 << 14; //Fix layer
         if (grabController.isGrab(lapisDeRascunho))
         {
-                    Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(lapisDeRascunho));
-                    if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (click() || touch.IsClickedWithLeftHand() || touch.IsClickedWithRightHand()))
+                Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(lapisDeRascunho));
+                if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (click() || touch.IsClickedWithLeftHand() || touch.IsClickedWithRightHand()))
+                {
+                    if (verifSound)
                     {
-                        if (verifSound)
-                        {
-                            lapisDeRascunho.gameObject.GetComponent<AudioSource>().Play();
-                            verifSound = false;
-                        }
-                        RenderTexture mask = textureDictionary["SketchMask"];
-                        painter.SetBrush(15f, 1f, 40f);
-                        painter.PaintMask(mask, hit);
-                        isSketched = true;
+                        lapisDeRascunho.gameObject.GetComponent<AudioSource>().Play();
+                        verifSound = false;
                     }
+                    RenderTexture mask = textureDictionary["SketchMask"];
+                    painter.SetBrush(5f);
+                    painter.PaintMask(mask, hit, true);
+                    isSketched = true;
+                }
                 else
                 {
                     lapisDeRascunho.gameObject.GetComponent<AudioSource>().Stop();
                     verifSound = true;
+                    painter.resetInterpolation();
                 }
         }
 

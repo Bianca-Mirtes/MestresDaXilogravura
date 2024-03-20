@@ -34447,6 +34447,7 @@ MonoBehaviour:
   - {fileID: 1595790939}
   marcador: {fileID: 663708168}
   tutorial: {fileID: 368824282}
+  painter: {fileID: 2010382326}
 --- !u!4 &1803742031
 Transform:
   m_ObjectHideFlags: 0

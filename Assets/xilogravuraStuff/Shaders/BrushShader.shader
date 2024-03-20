@@ -59,11 +59,19 @@ Shader "Unlit/BrushShader"
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
+                float brushstroke;
                 float draw;
 
                 if (_IsRoundBrush == 1)
                 {
-                    draw = pow(saturate(1 - distance(i.uv, _Coordinates.xy)), 500 / _Size * _Hardness * 0.35);
+                    // Calcular a distancia do fragmento a coordenada de desenho
+                    float dist = distance(i.uv, _Coordinates.xy) * _Size / .3;
+
+                    // Definir uma distancia de corte para a borda
+                    float hardness = 0.1;
+
+                    // Calcular a intensidade da pincelada com base na distancia
+                    draw = (dist > hardness) ? 0 : 1;
                 }
                 else
                 {
@@ -71,6 +79,8 @@ Shader "Unlit/BrushShader"
                     float2 brushSize = float2(_BrushWidth, _BrushHeight);
                     float2 falloff = 1.0 - saturate(diff / (brushSize * 0.5));
                     draw = pow(min(falloff.x, falloff.y), 500 / _BrushWidth * 10 * _Hardness * 0.35);
+
+                    //draw = pow(saturate(1 - distance(i.uv, _Coordinates.xy)), 500 / _Size * _Hardness * 0.35);
                 }
 
                 fixed4 drawcol = _Color * (draw * _Strength);
