@@ -1913,8 +1913,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -4635.0,
-            "y": 154.9999542236328,
+            "x": -5058.00048828125,
+            "y": 155.0,
             "width": 188.0,
             "height": 34.00001525878906
         }
@@ -3662,7 +3662,7 @@
     "m_ObjectId": "3d155ba35b8f409ebb1f054793e8fb61",
     "m_Title": "Sketch",
     "m_Position": {
-        "x": -4792.0,
+        "x": -5083.0,
         "y": -471.0
     }
 }
@@ -9628,10 +9628,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -4635.0,
-            "y": 188.99996948242188,
+            "x": -4843.0,
+            "y": 189.0,
             "width": 208.0,
-            "height": 435.0000305175781
+            "height": 435.0
         }
     },
     "m_Slots": [
