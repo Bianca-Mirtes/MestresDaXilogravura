@@ -64,6 +64,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 16869ac92c1caae45bb4947c60270ee8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _PrintMaskLogo:
+        m_Texture: {fileID: 2800000, guid: 0acdcd90e100e064c89b18217e3de18c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SketchTexture:
         m_Texture: {fileID: 2800000, guid: 1f4da51238d69394198213f8e92dac57, type: 3}
         m_Scale: {x: 1, y: 1}
