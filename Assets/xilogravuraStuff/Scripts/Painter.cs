@@ -19,6 +19,8 @@ public class Painter : MonoBehaviour
 
     private Vector2 lastHitCoord = Vector2.zero;
 
+    private Input input;
+
     void Start()
     {
         if (instance == null)
@@ -35,9 +37,24 @@ public class Painter : MonoBehaviour
         drawMaterial.SetVector("_Color", Color.white);
     }
 
+    private void Awake()
+    {
+        input = new Input();
+    }
+
+    private void OnEnable()
+    {
+        input.Enable();
+    }
+
+    private void OnDisable()
+    {
+        input.Disable();
+    }
+
     void Update()
     {
-        //changeBrushStroke();
+        changeBrushStroke();
     }
 
     public void SetBrush(float size)
@@ -45,6 +62,7 @@ public class Painter : MonoBehaviour
         drawMaterial.SetFloat("_IsRoundBrush", 1);
         drawMaterial.SetFloat("_Size", size);
         this.size = size;
+        //print(size);
     }
 
     public void SetBrush(float hardness, float strength, float width, float height)
@@ -131,12 +149,17 @@ public class Painter : MonoBehaviour
     public void changeBrushStroke()
     {
         float newSize = 0f;
-        if (Input.GetKey(KeyCode.RightArrow))
-            newSize = Math.Min(size + 5f, 40f);
-        if(Input.GetKey(KeyCode.LeftArrow))
-            newSize = Math.Max(size - 5f, 5f);
+        if (input.ControlesDebug.IncreaseBrush.triggered)
+            newSize = Math.Min(size + 2f, 16f);
+        if (input.ControlesDebug.DecreaseBrush.triggered)
+            newSize = Math.Max(size - 2f, 2f);
 
-        drawMaterial.SetFloat("_Size", newSize);
-        size = newSize;
+        if (newSize != 0f)
+        {
+            drawMaterial.SetFloat("_Size", newSize);
+            size = newSize;
+            print("brushStrokChanged - new size: " + newSize);
+        }
+        
     }
 }

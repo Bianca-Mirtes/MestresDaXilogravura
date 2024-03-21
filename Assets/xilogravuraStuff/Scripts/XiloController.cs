@@ -120,7 +120,7 @@ public class XiloController : MonoBehaviour
                 {
                     initSound(lapisDeRascunho.gameObject);
                     mask = textureDictionary["SketchMask"];
-                    painter.SetBrush(5f);
+                    painter.SetBrush(2f);
                     marcarEtapa(ref isSketched);
                     interpolate = true;
                 }

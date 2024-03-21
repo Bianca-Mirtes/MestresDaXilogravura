@@ -65,7 +65,7 @@ Shader "Unlit/BrushShader"
                 if (_IsRoundBrush == 1)
                 {
                     // Calcular a distancia do fragmento a coordenada de desenho
-                    float dist = distance(i.uv, _Coordinates.xy) * _Size / .3;
+                    float dist = distance(i.uv, _Coordinates.xy) * 18/_Size;
 
                     // Definir uma distancia de corte para a borda
                     float hardness = 0.1;

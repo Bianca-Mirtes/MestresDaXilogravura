@@ -89,14 +89,14 @@ public class NewArtController : MonoBehaviour
         {
                 Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(lapisDeRascunho));
                 if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (click() || touch.IsClickedWithLeftHand() || touch.IsClickedWithRightHand()))
-                {
+            {
                     if (verifSound)
                     {
                         lapisDeRascunho.gameObject.GetComponent<AudioSource>().Play();
                         verifSound = false;
                     }
                     RenderTexture mask = textureDictionary["SketchMask"];
-                    painter.SetBrush(5f);
+                    //painter.SetBrush(2f);
                     painter.PaintMask(mask, hit, true);
                     isSketched = true;
                 }

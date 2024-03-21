@@ -1,0 +1,54 @@
+{
+    "name": "Input",
+    "maps": [
+        {
+            "name": "ControlesDebug",
+            "id": "6f0ff355-5bf5-4def-a7b4-3802fd0bd52d",
+            "actions": [
+                {
+                    "name": "DecreaseBrush",
+                    "type": "Button",
+                    "id": "f348829e-af4c-4b81-882c-675d5362cc33",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "IncreaseBrush",
+                    "type": "Button",
+                    "id": "2dbc6787-9231-47be-a45f-d4a43bd23d9c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "66a8508e-b6e9-4f10-ade2-91e2e7f6367d",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DecreaseBrush",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b94df013-8658-4b67-ab86-21ec5619d5af",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "IncreaseBrush",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
