@@ -44,6 +44,15 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Eventos"",
+                    ""type"": ""Value"",
+                    ""id"": ""d71305fb-d3b6-49f7-b83e-bc83572dd907"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -78,6 +87,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
         m_ControlesDebug = asset.FindActionMap("ControlesDebug", throwIfNotFound: true);
         m_ControlesDebug_DecreaseBrush = m_ControlesDebug.FindAction("DecreaseBrush", throwIfNotFound: true);
         m_ControlesDebug_IncreaseBrush = m_ControlesDebug.FindAction("IncreaseBrush", throwIfNotFound: true);
+        m_ControlesDebug_Eventos = m_ControlesDebug.FindAction("Eventos", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -141,12 +151,14 @@ public partial class @Input: IInputActionCollection2, IDisposable
     private List<IControlesDebugActions> m_ControlesDebugActionsCallbackInterfaces = new List<IControlesDebugActions>();
     private readonly InputAction m_ControlesDebug_DecreaseBrush;
     private readonly InputAction m_ControlesDebug_IncreaseBrush;
+    private readonly InputAction m_ControlesDebug_Eventos;
     public struct ControlesDebugActions
     {
         private @Input m_Wrapper;
         public ControlesDebugActions(@Input wrapper) { m_Wrapper = wrapper; }
         public InputAction @DecreaseBrush => m_Wrapper.m_ControlesDebug_DecreaseBrush;
         public InputAction @IncreaseBrush => m_Wrapper.m_ControlesDebug_IncreaseBrush;
+        public InputAction @Eventos => m_Wrapper.m_ControlesDebug_Eventos;
         public InputActionMap Get() { return m_Wrapper.m_ControlesDebug; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -162,6 +174,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @IncreaseBrush.started += instance.OnIncreaseBrush;
             @IncreaseBrush.performed += instance.OnIncreaseBrush;
             @IncreaseBrush.canceled += instance.OnIncreaseBrush;
+            @Eventos.started += instance.OnEventos;
+            @Eventos.performed += instance.OnEventos;
+            @Eventos.canceled += instance.OnEventos;
         }
 
         private void UnregisterCallbacks(IControlesDebugActions instance)
@@ -172,6 +187,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @IncreaseBrush.started -= instance.OnIncreaseBrush;
             @IncreaseBrush.performed -= instance.OnIncreaseBrush;
             @IncreaseBrush.canceled -= instance.OnIncreaseBrush;
+            @Eventos.started -= instance.OnEventos;
+            @Eventos.performed -= instance.OnEventos;
+            @Eventos.canceled -= instance.OnEventos;
         }
 
         public void RemoveCallbacks(IControlesDebugActions instance)
@@ -193,5 +211,6 @@ public partial class @Input: IInputActionCollection2, IDisposable
     {
         void OnDecreaseBrush(InputAction.CallbackContext context);
         void OnIncreaseBrush(InputAction.CallbackContext context);
+        void OnEventos(InputAction.CallbackContext context);
     }
 }
