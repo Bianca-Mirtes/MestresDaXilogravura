@@ -30,6 +30,8 @@ public class XiloController : MonoBehaviour
 
     private bool verifSound = true;
 
+    private Vector2 lastHitGoiva = Vector2.zero;
+
     public ParticleSystem lascasDeMadeira;
     public ParticleSystem poDeMadeira;
 
@@ -132,8 +134,19 @@ public class XiloController : MonoBehaviour
             
         } else if (grabController.isGrab(goiva) && isSketched && !isSanded)
         {
+                float anguloDaGoiva = 0.5f;
+                Vector2 direction = new Vector2(1, 0);
+                if (lastHitGoiva != Vector2.zero)
+                {
+                    direction = hit.textureCoord - lastHitGoiva;
+                    float totalDistance = direction.magnitude;
+                    direction.Normalize();
+                    //print("direcao XY: " + direction);
+                }
+                lastHitGoiva = hit.textureCoord;
+
                 Vector3 pointerPosition = getPointerPosition(goiva);
-                if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (click() || touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand()))
+                if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (click() || touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand()) && (direction.y >= anguloDaGoiva))
                 {
                     initSound(goiva.gameObject);
                     mask = textureDictionary["SculptMask"];
