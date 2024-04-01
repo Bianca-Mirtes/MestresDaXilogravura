@@ -69,6 +69,17 @@ public partial class @Input: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""a7682fc9-ad23-4a1e-b421-dc6869fc232e"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DecreaseBrush"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""b94df013-8658-4b67-ab86-21ec5619d5af"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",

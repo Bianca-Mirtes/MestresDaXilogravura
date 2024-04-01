@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class Painter : MonoBehaviour
@@ -54,7 +56,7 @@ public class Painter : MonoBehaviour
 
     void Update()
     {
-        changeBrushStroke();
+       changeBrushStroke();
     }
 
     public void SetBrush(float size)
@@ -156,10 +158,29 @@ public class Painter : MonoBehaviour
 
         if (newSize != 0f)
         {
+            Debug.Log(newSize);
             drawMaterial.SetFloat("_Size", newSize);
             size = newSize;
             print("brushStrokChanged - new size: " + newSize);
         }
         
     }
+
+    public TextMeshProUGUI textBrushStatus;
+    public void ChangeBrushStrokeWithButton(Slider slider)
+    {
+        float _newSize = slider.value;
+        if (textBrushStatus != null && slider != null)
+        {
+            drawMaterial.SetFloat("_Size", _newSize);
+            textBrushStatus.text = slider.value.ToString();
+            size = _newSize;
+            print("new size: " + size);
+        } else
+        {
+            Debug.LogError("Objeto Contador do tamanho do pincel ou slider não encontrado!!");
+        }
+    }
+
+
 }
