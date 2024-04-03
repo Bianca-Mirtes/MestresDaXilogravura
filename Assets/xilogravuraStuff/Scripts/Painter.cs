@@ -54,10 +54,6 @@ public class Painter : MonoBehaviour
         input.Disable();
     }
 
-    void Update()
-    {
-       changeBrushStroke();
-    }
 
     public void SetBrush(float size)
     {

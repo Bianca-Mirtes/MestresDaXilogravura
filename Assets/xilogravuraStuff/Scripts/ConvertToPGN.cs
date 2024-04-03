@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class ConvertToPGN : MonoBehaviour
 {
-    public GameObject objectWithMaterial;
-    public void Convert()
+   // public GameObject objectWithMaterial;
+
+    public GameObject objectOnCamera;
+
+    public Camera captureCamera;
+
+    public Vector3 positionScreen;
+
+  
+    /* public void Convert()
     {
         Debug.Log("cov");
         Renderer renderer = objectWithMaterial.GetComponent<Renderer>();
@@ -41,5 +49,32 @@ public class ConvertToPGN : MonoBehaviour
         {
             Debug.LogWarning("Material não atribuído.");
         }
+    }*/
+
+
+    public void CaptureCamera()
+    {
+
+        //objectOnCamera.transform.position = positionScreen;
+
+        objectOnCamera.transform.position = positionScreen;
+
+        RenderTexture renderTexture = new RenderTexture(captureCamera.pixelWidth, captureCamera.pixelHeight, 24);
+        captureCamera.targetTexture = renderTexture;
+        captureCamera.Render();
+
+        Debug.Log("W - " + captureCamera.pixelWidth + " H - " + captureCamera.pixelHeight);
+
+        Texture2D texture = new Texture2D(captureCamera.pixelWidth, captureCamera.pixelHeight, TextureFormat.RGB24, false);
+        texture.ReadPixels(new Rect(0, 0, captureCamera.pixelWidth, captureCamera.pixelHeight), 0, 0);
+        texture.Apply();
+
+        byte[] bytes = texture.EncodeToPNG();
+
+        System.IO.File.WriteAllBytes(Application.dataPath + "/ConvertedTextureOnCamera.png", bytes);
+        System.IO.File.WriteAllBytes(Application.dataPath + "/ConvertedTextureTWOOnCamera.png", bytes);
+
+        Debug.Log("Textura convertida e salva como 'ConvertedTextureOnCamera.png' em " + Application.dataPath);
+
     }
 }
