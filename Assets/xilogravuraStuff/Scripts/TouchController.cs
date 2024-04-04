@@ -12,14 +12,22 @@ public class TouchController : MonoBehaviour
     public bool IsClickedWithRightHand()
     {
         InputDevices.GetDevicesAtXRNode(XRNode.RightHand, devicesRight);
-        InputDevice targetDevice = devicesRight[0];
-        return targetDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out bool isTriggerClicked) && isTriggerClicked;
+        if (devicesLeft.Count > 0)
+        {
+            InputDevice targetDevice = devicesRight[0];
+            return targetDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out bool isTriggerClicked) && isTriggerClicked;
+        }
+        return false;
     }
 
     public bool IsClickedWithLeftHand()
     {
         InputDevices.GetDevicesAtXRNode(XRNode.LeftHand, devicesLeft);
-        InputDevice targetDevice = devicesLeft[0];
-        return targetDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out bool isTriggerClicked) && isTriggerClicked;
+        if(devicesLeft.Count > 0)
+        {
+            InputDevice targetDevice = devicesLeft[0];
+            return targetDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out bool isTriggerClicked) && isTriggerClicked;
+        }
+        return false;
     }
 }
