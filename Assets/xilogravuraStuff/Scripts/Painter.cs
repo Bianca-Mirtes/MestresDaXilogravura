@@ -59,12 +59,16 @@ public class Painter : MonoBehaviour
         //changeBrushStroke();
     }
 
-    public void SetBrush(float size)
+    public void SetInkBrush(float size)
     {
-        drawMaterial.SetFloat("_IsRoundBrush", 1);
+        drawMaterial.SetFloat("_BrushPreset", 1);
         drawMaterial.SetFloat("_Size", size);
         this.size = size;
-        //print(size);
+    }
+
+    public void SetBrushPreset(int preset)
+    {
+        drawMaterial.SetFloat("_BrushPreset", preset);
     }
 
     public void SetBrush(float hardness, float strength, float width, float height)

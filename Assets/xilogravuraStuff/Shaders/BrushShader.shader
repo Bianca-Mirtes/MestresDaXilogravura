@@ -10,6 +10,7 @@ Shader "Unlit/BrushShader"
         _Hardness("Hardness", Range(1, 15)) = 3
 
         _IsRoundBrush("RoundBrush", Range(0,1)) = 1
+        _BrushPreset("BrushPreset", Range(1, 3)) = 1
         _BrushWidth("BrushWidth", Range(1, 50)) = 45
         _BrushHeight("BrushHeight", Range(1, 50)) = 15
     }
@@ -46,6 +47,7 @@ Shader "Unlit/BrushShader"
             half _Size, _Strength, _Hardness;
             half _BrushWidth, _BrushHeight;
             half _IsRoundBrush;
+            half _BrushPreset;
 
             v2f vert (appdata v)
             {
@@ -62,27 +64,35 @@ Shader "Unlit/BrushShader"
                 float brushstroke;
                 float draw;
 
-                if (_IsRoundBrush == 1)
-                {
-                    // Calcular a distancia do fragmento a coordenada de desenho
-                    float dist = distance(i.uv, _Coordinates.xy) * 18/_Size;
 
-                    // Definir uma distancia de corte para a borda
-                    float hardness = 0.1;
+                float hardness = 0.1;
 
-                    // Calcular a intensidade da pincelada com base na distancia
-                    draw = (dist > hardness) ? 0 : 1;
+                //logica de brush quadrado
+                float2 diff = abs(i.uv - _Coordinates.xy);
+                float2 brushSize;
+                float2 falloff;
+                float drawSoft;
+
+                switch (_BrushPreset) {
+                    case 1:
+                        // Calcular a distancia do fragmento a coordenada de desenho
+                        float dist = distance(i.uv, _Coordinates.xy) * 18 / _Size;
+
+                        draw = (dist > hardness) ? 0 : 1;
+                        break;
+                    case 2: //hard
+                        brushSize = float2(_BrushHeight, _BrushWidth);
+                        falloff = 1.0 - saturate(diff / brushSize);
+                        drawSoft = pow(min(falloff.x, falloff.y), 2800) * _Size;
+                        draw = (drawSoft < hardness) ? 0 : 0.8;
+                        break;
+                    case 3: //soft
+                        brushSize = float2(_BrushWidth, _BrushHeight);
+                        falloff = 1.0 - saturate(diff / brushSize);
+                        drawSoft = pow(min(falloff.x, falloff.y), 1800) * _Size;
+                        draw = drawSoft;
+                        break;
                 }
-                else
-                {
-                    float2 diff = abs(i.uv - _Coordinates.xy);
-                    float2 brushSize = float2(_BrushWidth, _BrushHeight);
-                    float2 falloff = 1.0 - saturate(diff / (brushSize * 0.5));
-                    draw = pow(min(falloff.x, falloff.y), 500 / _BrushWidth * 10 * _Hardness * 0.35);
-
-                    //draw = pow(saturate(1 - distance(i.uv, _Coordinates.xy)), 500 / _Size * _Hardness * 0.35);
-                }
-
                 fixed4 drawcol = _Color * (draw * _Strength);
                 //UNITY_APPLY_FOG(i.fogCoord, col);
                 return saturate(col + drawcol);

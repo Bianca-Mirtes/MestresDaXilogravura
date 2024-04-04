@@ -131,7 +131,7 @@ public class XiloController : MonoBehaviour
                 {
                     initSound(lapisDeRascunho.gameObject);
                     mask = textureDictionary["SketchMask"];
-                    //painter.SetBrush(2f);
+                    painter.SetBrushPreset(1);
                     marcarEtapa(ref isSketched);
                     interpolate = true;
                 }
@@ -143,7 +143,7 @@ public class XiloController : MonoBehaviour
             
         } else if (grabController.isGrab(goiva) && isSketched && !isSanded)
         {
-                float anguloDaGoiva = 0.5f;
+                float anguloDaGoiva = 0.85f;
                 Vector2 direction = new Vector2(1, 0);
                 if (lastHitGoiva != Vector2.zero)
                 {
@@ -160,7 +160,7 @@ public class XiloController : MonoBehaviour
                 {
                     initSound(goiva.gameObject);
                     mask = textureDictionary["SculptMask"];
-                    painter.SetBrush(10f, 0.8f, 20f, 26f);
+                    painter.SetBrushPreset(2);
                     painter.instanciarParticulas(lascasDeMadeira, hit.point);
                     marcarEtapa(ref isSculped);
                     interpolate = false;
@@ -179,7 +179,7 @@ public class XiloController : MonoBehaviour
                 {
                     initSound(lixa.gameObject);
                     mask = textureDictionary["SandpaperMask"];
-                    painter.SetBrush(10f, 0.8f, 25f, 25f);
+                    painter.SetBrushPreset(3);
                     painter.instanciarParticulas(poDeMadeira, hit.point);
                     marcarEtapa(ref isSanded);
                     interpolate = false;
@@ -199,7 +199,7 @@ public class XiloController : MonoBehaviour
                     {
                         initSound(roloDeTinta.gameObject);
                         mask = textureDictionary["PaintMask"];
-                        painter.SetBrush(10f, 0.8f, 28f, 12f);
+                        painter.SetBrushPreset(3);
                         marcarEtapa(ref isPaint);
                         interpolate = false;
                     }
