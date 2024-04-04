@@ -11,7 +11,7 @@ public class Painter : MonoBehaviour
 {
     [SerializeField] private Shader drawShader;
 
-    [SerializeField][Range(0, 40)] private float size;
+    [SerializeField][Range(2, 16)] private float size;
     [SerializeField][Range(1, 15)] private float hardness;
     [SerializeField][Range(0, 1)] private float strength;
 
@@ -54,6 +54,10 @@ public class Painter : MonoBehaviour
         input.Disable();
     }
 
+    void Update()
+    {
+        //changeBrushStroke();
+    }
 
     public void SetBrush(float size)
     {
@@ -174,7 +178,7 @@ public class Painter : MonoBehaviour
             print("new size: " + size);
         } else
         {
-            Debug.LogError("Objeto Contador do tamanho do pincel ou slider não encontrado!!");
+            Debug.LogError("Objeto Contador do tamanho do pincel ou slider nï¿½o encontrado!!");
         }
     }
 

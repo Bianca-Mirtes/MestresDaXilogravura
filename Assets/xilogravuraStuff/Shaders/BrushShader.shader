@@ -6,7 +6,7 @@ Shader "Unlit/BrushShader"
         _Coordinates("Coordinate", Vector) = (0,0,0,0)
         _Color("Draw Color", Color) = (0,0,0,0)
         _Strength("Strength", Range(0,1)) = 1
-        _Size("Size", Range(0, 40)) = 0
+        _Size("Size", Range(2, 16)) = 2
         _Hardness("Hardness", Range(1, 15)) = 3
 
         _IsRoundBrush("RoundBrush", Range(0,1)) = 1
