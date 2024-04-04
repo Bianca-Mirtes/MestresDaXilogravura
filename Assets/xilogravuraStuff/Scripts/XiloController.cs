@@ -83,6 +83,15 @@ public class XiloController : MonoBehaviour
         }
     }
 
+    public void pauseSound(GameObject ferramenta)
+    {
+        if (ferramenta.gameObject.GetComponent<AudioSource>().isPlaying)
+        {
+            ferramenta.gameObject.GetComponent<AudioSource>().Pause();
+            verifSound = true;
+        }
+    }
+
     public void setVerifSound(bool value)
     {
         verifSound = value;
@@ -122,7 +131,7 @@ public class XiloController : MonoBehaviour
                 {
                     initSound(lapisDeRascunho.gameObject);
                     mask = textureDictionary["SketchMask"];
-                    painter.SetBrush(2f);
+                    //painter.SetBrush(2f);
                     marcarEtapa(ref isSketched);
                     interpolate = true;
                 }
@@ -146,7 +155,8 @@ public class XiloController : MonoBehaviour
                 lastHitGoiva = hit.textureCoord;
 
                 Vector3 pointerPosition = getPointerPosition(goiva);
-                if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (click() || touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand()) && (direction.y >= anguloDaGoiva))
+                if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) 
+                && (click() || touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand()) && (direction.y >= anguloDaGoiva))
                 {
                     initSound(goiva.gameObject);
                     mask = textureDictionary["SculptMask"];
@@ -156,8 +166,9 @@ public class XiloController : MonoBehaviour
                     interpolate = false;
                 }
                 else {
-                    stopSound(goiva.gameObject);
+                    pauseSound(goiva.gameObject);
                     painter.resetInterpolation();
+                    painter.desligarParticulas(lascasDeMadeira);
                 }
 
         }
@@ -176,6 +187,7 @@ public class XiloController : MonoBehaviour
                 else { 
                     stopSound(lixa.gameObject);
                     painter.resetInterpolation();
+                    painter.desligarParticulas(poDeMadeira);
                 }
         }
         else if (grabController.isGrab(roloDeTinta.GetComponent<XRGrabInteractable>()) && isSanded && !paperController.isPrinted())
