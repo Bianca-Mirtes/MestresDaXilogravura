@@ -5481,7 +5481,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.535
+      value: 2.0841
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5489,7 +5489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.177
+      value: 1.21
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -26131,7 +26131,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1844487760}
         m_TargetAssemblyTypeName: ConvertToPGN, Assembly-CSharp
-        m_MethodName: CaptureCamera
+        m_MethodName: Capture
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -36019,9 +36019,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd0ba13a08cec374c8cf292979c749e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectOnCamera: {fileID: 0}
-  captureCamera: {fileID: 0}
-  positionScreen: {x: 2.135, y: 1.393, z: 1.155}
+  objectOnCamera: {fileID: 441399942}
+  captureCamera: {fileID: 638536774}
+  positionScreen: {x: 2.0841, y: 0.128, z: 1.21}
   RightHand: {fileID: 648261673}
   LeftHand: {fileID: 764879912}
 --- !u!1 &1859401241

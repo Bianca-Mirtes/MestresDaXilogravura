@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ConvertToPGN : MonoBehaviour
 {
-   // public GameObject objectWithMaterial;
 
     public GameObject objectOnCamera;
 
@@ -16,61 +15,24 @@ public class ConvertToPGN : MonoBehaviour
 
     public GameObject LeftHand;
 
-  
-    /* public void Convert()
+    private WaitForEndOfFrame frameEnd = new WaitForEndOfFrame();
+
+    private WaitForSeconds waitTime = new WaitForSeconds(0.2F);
+
+    public void Capture()
     {
-        Debug.Log("cov");
-        Renderer renderer = objectWithMaterial.GetComponent<Renderer>();
-        Material material = renderer.material;
+        StartCoroutine(CaptureCamera());
+    }
 
-        if (material != null)
-        {
-            Texture mainTexture = material.GetTexture("....");
-
-            if (mainTexture != null)
-            {
-                Debug.Log("Tem textura");
-                Texture2D tex2D = mainTexture as Texture2D;
-                if (tex2D == null)
-                {
-                    Debug.Log("Não é null");
-                    tex2D = new Texture2D(mainTexture.width, mainTexture.height);
-                    RenderTexture currentRT = RenderTexture.active;
-                    RenderTexture.active = (RenderTexture)mainTexture;
-                    tex2D.ReadPixels(new Rect(0, 0, mainTexture.width, mainTexture.height), 0, 0);
-                    tex2D.Apply();
-                    RenderTexture.active = currentRT;
-                }
-                byte[] bytes = tex2D.EncodeToPNG();
-                Debug.Log("vai passar...");
-                System.IO.File.WriteAllBytes(Application.dataPath + "/ConvertedTexture.png", bytes);
-                Debug.Log("Textura convertida e salva como 'ConvertedTexture.png'. em "+ Application.dataPath);
-            } else
-            {
-                Debug.LogWarning("O material não possui uma textura principal.");
-            }
-        } else
-        {
-            Debug.LogWarning("Material não atribuído.");
-        }
-    }*/
-
-
-    public void CaptureCamera()
+    IEnumerator CaptureCamera()
     {
-
-        //objectOnCamera.transform.position = positionScreen;
 
         LeftHand.SetActive(false);
         RightHand.SetActive(false);
 
         objectOnCamera.transform.position = positionScreen;
 
-        RenderTexture renderTexture = new RenderTexture(captureCamera.pixelWidth, captureCamera.pixelHeight, 24);
-        captureCamera.targetTexture = renderTexture;
-        captureCamera.Render();
-
-        Debug.Log("W - " + captureCamera.pixelWidth + " H - " + captureCamera.pixelHeight);
+        yield return waitTime;
 
         Texture2D texture = new Texture2D(captureCamera.pixelWidth, captureCamera.pixelHeight, TextureFormat.RGB24, false);
         texture.ReadPixels(new Rect(0, 0, captureCamera.pixelWidth, captureCamera.pixelHeight), 0, 0);
@@ -83,8 +45,8 @@ public class ConvertToPGN : MonoBehaviour
 
         Debug.Log("Textura convertida e salva como 'ConvertedTextureOnCamera.png' em " + Application.dataPath);
 
-        LeftHand.SetActive(true);
-        RightHand.SetActive(true);
+       LeftHand.SetActive(true);
+       RightHand.SetActive(true);
 
     }
 }
