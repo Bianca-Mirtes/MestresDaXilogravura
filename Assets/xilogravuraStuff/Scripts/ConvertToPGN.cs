@@ -12,6 +12,10 @@ public class ConvertToPGN : MonoBehaviour
 
     public Vector3 positionScreen;
 
+    public GameObject RightHand;
+
+    public GameObject LeftHand;
+
   
     /* public void Convert()
     {
@@ -57,6 +61,9 @@ public class ConvertToPGN : MonoBehaviour
 
         //objectOnCamera.transform.position = positionScreen;
 
+        LeftHand.SetActive(false);
+        RightHand.SetActive(false);
+
         objectOnCamera.transform.position = positionScreen;
 
         RenderTexture renderTexture = new RenderTexture(captureCamera.pixelWidth, captureCamera.pixelHeight, 24);
@@ -75,6 +82,9 @@ public class ConvertToPGN : MonoBehaviour
         System.IO.File.WriteAllBytes(Application.dataPath + "/ConvertedTextureTWOOnCamera.png", bytes);
 
         Debug.Log("Textura convertida e salva como 'ConvertedTextureOnCamera.png' em " + Application.dataPath);
+
+        LeftHand.SetActive(true);
+        RightHand.SetActive(true);
 
     }
 }
