@@ -9,15 +9,19 @@ public class ConvertToPGN : MonoBehaviour
 
     public Camera captureCamera;
 
-    public Vector3 positionScreen;
+    private Vector3 positionAfterPrint;
 
     public GameObject RightHand;
 
     public GameObject LeftHand;
 
-    private WaitForEndOfFrame frameEnd = new WaitForEndOfFrame();
-
     private WaitForSeconds waitTime = new WaitForSeconds(0.2F);
+
+    [SerializeField]
+    private GameObject RugToScreenshot;
+
+    [SerializeField]
+    private GameObject background;
 
     public void Capture()
     {
@@ -26,11 +30,24 @@ public class ConvertToPGN : MonoBehaviour
 
     IEnumerator CaptureCamera()
     {
-
         LeftHand.SetActive(false);
         RightHand.SetActive(false);
 
-        objectOnCamera.transform.position = positionScreen;
+        positionAfterPrint = objectOnCamera.transform.position;
+        background.SetActive(true); 
+        objectOnCamera.transform.position = RugToScreenshot.transform.position;
+
+        Transform camera = objectOnCamera.transform.Find("Camera Offset").Find("Main Camera");
+
+        if(camera != null )
+        {
+            Debug.Log("Tem camera");
+            camera.eulerAngles = new Vector3(
+                0,
+                90,
+                0
+            );
+        }
 
         yield return waitTime;
 
@@ -38,15 +55,33 @@ public class ConvertToPGN : MonoBehaviour
         texture.ReadPixels(new Rect(0, 0, captureCamera.pixelWidth, captureCamera.pixelHeight), 0, 0);
         texture.Apply();
 
-        byte[] bytes = texture.EncodeToPNG();
+        int leftMargin = 10;
+        int rightMargin = 10;
+        int topMargin = 10;
+        int bottomMargin = 10;
+
+        int width = texture.width - leftMargin - rightMargin;
+        int height = texture.height - topMargin - bottomMargin;
+
+        int x = leftMargin;
+        int y = bottomMargin;
+
+        Color[] pixels = texture.GetPixels(x, y, width, height);
+
+        Texture2D croppedTexture = new Texture2D(width, height);
+        croppedTexture.SetPixels(pixels);
+        croppedTexture.Apply();
+
+        byte[] bytes = croppedTexture.EncodeToPNG();
 
         System.IO.File.WriteAllBytes(Application.dataPath + "/ConvertedTextureOnCamera.png", bytes);
-        System.IO.File.WriteAllBytes(Application.dataPath + "/ConvertedTextureTWOOnCamera.png", bytes);
 
         Debug.Log("Textura convertida e salva como 'ConvertedTextureOnCamera.png' em " + Application.dataPath);
 
-       LeftHand.SetActive(true);
-       RightHand.SetActive(true);
-
+        LeftHand.SetActive(true);
+        RightHand.SetActive(true);
+        objectOnCamera.transform.position = positionAfterPrint;
+        background.SetActive(false);
     }
+
 }
