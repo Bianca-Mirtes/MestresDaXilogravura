@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -14,6 +15,9 @@ public class MenuController : MonoBehaviour
     public Button left;
     public Button right;
     public Button voltar;
+
+    [SerializeField]
+    private TextMeshProUGUI textTutorial;
 
     private GameObject canva;
     public GameObject posicionarFolhaMenu;
@@ -125,6 +129,8 @@ public class MenuController : MonoBehaviour
 
     void posicionarFolha()
     {
+        Debug.Log("posicionar folhaaaaaaaaa");
+        textTutorial.text = "Pegue a colher";
         PaperController paperController = papel.GetComponent<PaperController>();
         paperController.posicionarFolha();
         folhaPosicionada = true;

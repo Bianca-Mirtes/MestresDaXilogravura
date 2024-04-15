@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -11,6 +12,9 @@ public class GrabController : MonoBehaviour
 
     public XiloController xiloController;
     public GlassController glassController;
+
+    [SerializeField]
+    private TextMeshProUGUI textTutorial;
 
     public GameObject[] ganchos;
     public GameObject marcador;
@@ -62,24 +66,28 @@ public class GrabController : MonoBehaviour
             if (!xiloController.getSketched())
             {
                 tutorial.transform.GetChild(0).gameObject.SetActive(true);
+                textTutorial.text = "Pegue o Lápis";
                 marcador.transform.position = ganchos[0].transform.position;
             }
                 
             if (xiloController.getSketched())
             {
                 tutorial.transform.GetChild(1).gameObject.SetActive(true);
+                textTutorial.text = "Pegue a goiva";
                 marcador.transform.position = ganchos[1].transform.position;
             }
                 
             if (xiloController.getSculped())
             {
                 tutorial.transform.GetChild(2).gameObject.SetActive(true);
+                textTutorial.text = "Pegue a lixa";
                 marcador.transform.position = ganchos[2].transform.position;
             }
                 
             if (xiloController.getSanded())
             {
                 tutorial.transform.GetChild(3).gameObject.SetActive(true);
+                textTutorial.text = "Pegue o pote de tinta e derrame no vidro";
                 marcador.transform.position = ganchos[3].transform.position;
             }
 
@@ -90,12 +98,14 @@ public class GrabController : MonoBehaviour
                 tutorial.transform.GetChild(2).gameObject.SetActive(false);
                 tutorial.transform.GetChild(3).gameObject.SetActive(false);
                 tutorial.transform.GetChild(4).gameObject.SetActive(true);
+                textTutorial.text = "Pegue o rolo de tinta e passe no vidro";
                 marcador.transform.position = ganchos[4].transform.position;
             }
 
             if (xiloController.getPaint()) 
             {
                 tutorial.transform.GetChild(4).gameObject.SetActive(false);
+                textTutorial.text = "Posicione a folha por cima da madeira";
                 marcador.transform.position = ganchos[5].transform.position;
             }
         }
