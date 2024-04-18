@@ -19,8 +19,6 @@ public class PaperController : MonoBehaviour
     public Painter painter;
     public GrabController grabController;
 
-    public GameObject matriz;
-
     public XRGrabInteractable ferramenta;
     public XiloController xilogravura;
 
@@ -139,17 +137,19 @@ public class PaperController : MonoBehaviour
     {
         yield return frameEnd;
 
-        /*Texture2D texture = new Texture2D(width, height, TextureFormat.RGB24, true);    // create a texture2D for store the reading of the pixels
+        Texture2D texture = new Texture2D(width, height, TextureFormat.RGB24, true);    // create a texture2D for store the reading of the pixels
         texture.ReadPixels(new Rect(0, 0, width, height), 0, 0);  // take the data of the GPU (of the RenderTexture active) and for the data of the CPU in one Texture2D.
         texture.LoadRawTextureData(texture.GetRawTextureData());
-        texture.Apply();    // load the pixels for GPU*/
+        texture.Apply();    // load the pixels for GPU
 
-        Texture2D text = (Texture2D)matriz.GetComponent<MeshRenderer>().sharedMaterial.GetTexture("SketchTexture");
+        /*Texture2D text = (Texture2D)GetComponent<MeshRenderer>().sharedMaterial.GetTexture("SketchMask");
+        RenderTexture render = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
+        GetComponent<MeshRenderer>.material.targetTexture = renderTexture;
         text.LoadRawTextureData(text.GetRawTextureData());
-        text.Apply();    // load the pixels for GPU
+        text.Apply();*/   // load the pixels for GPU
 
         // Encode texture into PNG
-        byte[] bytes = text.EncodeToPNG();
+        byte[] bytes = texture.EncodeToPNG();
 
         // write to a file in the project folder
         System.IO.File.WriteAllBytes(Application.dataPath + "/../SavedScreen.png", bytes);
@@ -160,52 +160,6 @@ public class PaperController : MonoBehaviour
         StartCoroutine(TakeSnapshot(Screen.width, Screen.height));
     }
 
-    public Texture2D CombineTextures(Texture2D background, Texture2D watermark)
-    {
-
-        int startX = 0;
-        int startY = background.height - watermark.height;
-
-        for (int x = startX; x < background.width; x++)
-        {
-
-            for (int y = startY; y < background.height; y++)
-            {
-                Color bgColor = background.GetPixel(x, y);
-                Color wmColor = watermark.GetPixel(x - startX, y - startY);
-
-                Color final_color = Color.Lerp(bgColor, wmColor, wmColor.a / 1.0f);
-
-                background.SetPixel(x, y, final_color);
-            }
-        }
-
-        background.Apply();
-        return background;
-    }
-
-    public void SaveShaderTexture()
-    {
-        int width = Screen.width;
-        int height = Screen.height;
-        Texture2D tex = new Texture2D(width, height, TextureFormat.RGB24, false);
-
-        // Read screen contents into the texture
-        for(int  i = 0; i < width; i++)
-        {
-            for(int j = 0; j < height; j++)
-            {
-                tex.SetPixel(i, j, Color.green);
-            }
-        }
-        tex.Apply();
-
-        // Encode texture into PNG
-        byte[] bytes = tex.EncodeToPNG();
-
-        // For testing purposes, also write to a file in the project folder
-        System.IO.File.WriteAllBytes(Application.dataPath + "/../SavedScreen.png", bytes);
-    }
 
     public void resetValues()
     {

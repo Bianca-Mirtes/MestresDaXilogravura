@@ -26,10 +26,12 @@ public class ConvertToPGN : MonoBehaviour
     public void Capture()
     {
         StartCoroutine(CaptureCamera());
+        
     }
-
+    WaitForEndOfFrame frameEnd = new WaitForEndOfFrame(); // wait the time for finish frame
     IEnumerator CaptureCamera()
     {
+        yield return frameEnd;
         LeftHand.SetActive(false);
         RightHand.SetActive(false);
 
