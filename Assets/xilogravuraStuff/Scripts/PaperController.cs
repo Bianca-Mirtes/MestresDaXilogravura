@@ -12,6 +12,8 @@ public class PaperController : MonoBehaviour
 {
     [SerializeField] private Camera cam;
 
+    [SerializeField] private GameObject camera1;
+
     private Material currentMaterial;
     private RaycastHit hit;
 
@@ -136,6 +138,7 @@ public class PaperController : MonoBehaviour
 
     public IEnumerator TakeSnapshot(int width, int height)
     {
+        camera1.SetActive(false);
         yield return frameEnd;
 
         Texture2D texture = new Texture2D(852, 1048, TextureFormat.RGB24, true);    // create a texture2D for store the reading of the pixels
@@ -153,9 +156,32 @@ public class PaperController : MonoBehaviour
 
     public void ForSaveTexture()
     {
-        StartCoroutine(TakeSnapshot(Screen.width, Screen.height));
+        StartCoroutine(TakeSnapshot(Screen.width-580, Screen.height));
     }
 
+    Texture2D RotateTexture(Texture2D originalTexture, bool clockwise)
+    {
+        Color32[] originalPixels = originalTexture.GetPixels32();
+        int width = originalTexture.width;
+        int height = originalTexture.height;
+        Color32[] rotatedPixels = new Color32[width * height];
+
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                int newX = clockwise ? y : (height - 1 - y);
+                int newY = clockwise ? (width - 1 - x) : x;
+                rotatedPixels[(newY * height) + newX] = originalPixels[(y * width) + x];
+            }
+        }
+
+        Texture2D rotatedTexture = new Texture2D(height, width);
+        rotatedTexture.SetPixels32(rotatedPixels);
+        rotatedTexture.Apply();
+
+        return rotatedTexture;
+    }
 
     public void resetValues()
     {
