@@ -7,8 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: FrontPegboard
+    second: {fileID: 2100000, guid: 8a6b9a7a7cc4d3b41a09496fa9de3113, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Material.002
     second: {fileID: 2100000, guid: 8a6b9a7a7cc4d3b41a09496fa9de3113, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SidePegboard
+    second: {fileID: 2100000, guid: 53e9052c29f538244896caafaa9b85cc, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -40,7 +50,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 105
+    globalScale: 36
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -95,7 +105,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 105
+    globalScale: 0.35999998
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
