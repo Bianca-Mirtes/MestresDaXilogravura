@@ -23,7 +23,6 @@ public class MenuController : MonoBehaviour
     public GameObject posicionarFolhaMenu;
     public GameObject resultadoMenu;
     public GameObject restartMenu;
-    public GameObject tutorial;
 
     private Button posicionarFolhaButton;
     private Button resultadoButton;
@@ -101,13 +100,11 @@ public class MenuController : MonoBehaviour
 
         if (matriz.GetComponent<XiloController>().isPainted() && !folhaPosicionada)
         {
-            tutorial.transform.GetChild(4).gameObject.SetActive(false);
             posicionarFolhaMenu.SetActive(true);
         }
         if (papel.GetComponent<PaperController>().isPrinted() && !folhaResultado)
         {
             voltar.gameObject.SetActive(false);
-            tutorial.transform.GetChild(5).gameObject.SetActive(false);
             resultadoMenu.SetActive(true);
         }
 
@@ -129,19 +126,16 @@ public class MenuController : MonoBehaviour
 
     void posicionarFolha()
     {
-        Debug.Log("posicionar folhaaaaaaaaa");
         textTutorial.text = "Pegue a colher";
         PaperController paperController = papel.GetComponent<PaperController>();
         paperController.posicionarFolha();
         folhaPosicionada = true;
         posicionarFolhaMenu.SetActive(false);
-        tutorial.transform.GetChild(5).gameObject.SetActive(true);
     }
 
     IEnumerator mostarResultado()
     {
         PaperController paperController = papel.GetComponent<PaperController>();
-        tutorial.transform.GetChild(5).gameObject.SetActive(false);
         paperController.mostrarResultado();
         folhaResultado = true;
         resultadoMenu.SetActive(false);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -21,6 +22,7 @@ public class PaperController : MonoBehaviour
 
     public XRGrabInteractable ferramenta;
     public XiloController xilogravura;
+    public GameObject captureCam;
 
     private bool setarTexturas = false;
     private bool isPrint = false;
@@ -126,7 +128,6 @@ public class PaperController : MonoBehaviour
         resultado = true;
         transform.GetChild(2).GetComponent<AudioSource>().Play();
         Animator animator = GetComponent<Animator>();
-        ForSaveTexture();
         animator.SetBool("isResult", true);
     }
 
@@ -137,22 +138,17 @@ public class PaperController : MonoBehaviour
     {
         yield return frameEnd;
 
-        Texture2D texture = new Texture2D(width, height, TextureFormat.RGB24, true);    // create a texture2D for store the reading of the pixels
-        texture.ReadPixels(new Rect(0, 0, width, height), 0, 0);  // take the data of the GPU (of the RenderTexture active) and for the data of the CPU in one Texture2D.
+        Texture2D texture = new Texture2D(852, 1048, TextureFormat.RGB24, true);    // create a texture2D for store the reading of the pixels
+        texture.ReadPixels(new Rect(489, 2, captureCam.GetComponent<Camera>().pixelWidth, captureCam.GetComponent<Camera>().pixelHeight), 0, 0);  // take the data of the GPU (of the RenderTexture active) and for the data of the CPU in one Texture2D.
         texture.LoadRawTextureData(texture.GetRawTextureData());
         texture.Apply();    // load the pixels for GPU
-
-        /*Texture2D text = (Texture2D)GetComponent<MeshRenderer>().sharedMaterial.GetTexture("SketchMask");
-        RenderTexture render = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
-        GetComponent<MeshRenderer>.material.targetTexture = renderTexture;
-        text.LoadRawTextureData(text.GetRawTextureData());
-        text.Apply();*/   // load the pixels for GPU
 
         // Encode texture into PNG
         byte[] bytes = texture.EncodeToPNG();
 
         // write to a file in the project folder
-        System.IO.File.WriteAllBytes(Application.dataPath + "/../SavedScreen.png", bytes);
+        System.IO.File.WriteAllBytes(Application.dataPath + "/SavedScreen.png", bytes);
+        captureCam.GetComponent<Camera>().enabled = false;
     }
 
     public void ForSaveTexture()
