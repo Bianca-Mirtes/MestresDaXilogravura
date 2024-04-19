@@ -11,8 +11,6 @@ public class PaperController : MonoBehaviour
 {
     [SerializeField] private Camera cam;
 
-    [SerializeField] private GameObject camera1;
-
     private Material currentMaterial;
     private RaycastHit hit;
 
@@ -128,66 +126,7 @@ public class PaperController : MonoBehaviour
         resultado = true;
         transform.GetChild(2).GetComponent<AudioSource>().Play();
         Animator animator = GetComponent<Animator>();
-        ForSaveTexture();
         animator.SetBool("isResult", true);
-    }
-
-
-    WaitForEndOfFrame frameEnd = new WaitForEndOfFrame(); // wait the time for finish frame
-
-    public IEnumerator TakeSnapshot(int width, int height)
-    {
-        camera1.SetActive(false);
-        yield return frameEnd;
-
-        Texture2D texture = new Texture2D(width, height, TextureFormat.RGB24, true);    // create a texture2D for store the reading of the pixels
-        texture.ReadPixels(new Rect(0, 0, width, height), 0, 0);  // take the data of the GPU (of the RenderTexture active) and for the data of the CPU in one Texture2D.
-        texture.LoadRawTextureData(texture.GetRawTextureData());
-        texture.Apply();    // load the pixels for GPU
-
-        /*Texture2D text = (Texture2D)GetComponent<MeshRenderer>().sharedMaterial.GetTexture("SketchMask");
-        RenderTexture render = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
-        GetComponent<MeshRenderer>.material.targetTexture = renderTexture;
-        text.LoadRawTextureData(text.GetRawTextureData());
-        text.Apply();*/   // load the pixels for GPU
-
-        texture = RotateTexture(texture, true);
-
-        // Encode texture into PNG
-        byte[] bytes = texture.EncodeToPNG();
-
-        // write to a file in the project folder
-        System.IO.File.WriteAllBytes(Application.dataPath + "/../SavedScreen.png", bytes);
-        camera1.SetActive(true);
-    }
-
-    public void ForSaveTexture()
-    {
-        StartCoroutine(TakeSnapshot(Screen.width-580, Screen.height));
-    }
-
-    Texture2D RotateTexture(Texture2D originalTexture, bool clockwise)
-    {
-        Color32[] originalPixels = originalTexture.GetPixels32();
-        int width = originalTexture.width;
-        int height = originalTexture.height;
-        Color32[] rotatedPixels = new Color32[width * height];
-
-        for (int y = 0; y < height; y++)
-        {
-            for (int x = 0; x < width; x++)
-            {
-                int newX = clockwise ? y : (height - 1 - y);
-                int newY = clockwise ? (width - 1 - x) : x;
-                rotatedPixels[(newY * height) + newX] = originalPixels[(y * width) + x];
-            }
-        }
-
-        Texture2D rotatedTexture = new Texture2D(height, width);
-        rotatedTexture.SetPixels32(rotatedPixels);
-        rotatedTexture.Apply();
-
-        return rotatedTexture;
     }
 
     public void resetValues()
