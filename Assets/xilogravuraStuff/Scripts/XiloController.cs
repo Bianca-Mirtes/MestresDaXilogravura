@@ -24,7 +24,9 @@ public class XiloController : MonoBehaviour
     public XRGrabInteractable lixa;
     public GameObject roloDeTinta;
     public GameObject tutorial;
-    TouchController touch = new TouchController();
+
+    [SerializeField]
+    private TouchController touch;
 
     private bool isStart = false;
 

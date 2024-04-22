@@ -6,8 +6,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class TouchController : MonoBehaviour
 {
-    private List<UnityEngine.XR.InputDevice> devicesRight = new List<UnityEngine.XR.InputDevice>();
-    private List<UnityEngine.XR.InputDevice> devicesLeft = new List<UnityEngine.XR.InputDevice>();
+    private List<UnityEngine.XR.InputDevice> devicesRight = new();
+    private List<UnityEngine.XR.InputDevice> devicesLeft = new();
 
     public bool IsClickedWithRightHand()
     {

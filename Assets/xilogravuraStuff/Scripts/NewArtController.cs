@@ -27,7 +27,8 @@ public class NewArtController : MonoBehaviour
     private bool verifSound = true;
     private bool isSketched = false;
 
-    TouchController touch = new TouchController();
+    [SerializeField]
+    private TouchController touch;
 
     private Dictionary<string, RenderTexture> textureDictionary = new Dictionary<string, RenderTexture>();
     private string[] textureNames = { "SketchMask" };
