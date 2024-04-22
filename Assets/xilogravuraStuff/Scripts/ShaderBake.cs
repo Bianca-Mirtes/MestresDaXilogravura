@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using System.IO;
+using System.Text;
+using System;
 
 public class ShaderBaker : MonoBehaviour
 {
@@ -60,12 +62,15 @@ public class ShaderBaker : MonoBehaviour
     }
     private void SaveTexture(RenderTexture rt)
     {
-        string fullPath = Application.dataPath + "/../SavedImages/save0" + ".png";
+        DateTime currentTime = DateTime.Now;
+        String mergeTime = currentTime.Year.ToString() + currentTime.Month.ToString() + currentTime.Day.ToString() + currentTime.Hour.ToString() + currentTime.Minute.ToString();
+        string fullPath = Application.dataPath + "/../SavedImages/" + mergeTime + ".png";
         byte[] _bytes = toTexture2D(rt).EncodeToPNG();
         File.Delete(fullPath);
         File.WriteAllBytes(fullPath, _bytes);
         print("Salvo em SavedImages");
     }
+
     Texture2D toTexture2D(RenderTexture rTex)
     {
         Texture2D tex = new Texture2D(rTex.width - textureCrop.x, rTex.height - textureCrop.y, TextureFormat.RGB24, false);
