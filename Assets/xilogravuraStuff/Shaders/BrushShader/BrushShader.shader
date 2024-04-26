@@ -83,8 +83,8 @@ Shader "Unlit/BrushShader"
                     case 2: //hard
                         brushSize = float2(_BrushHeight, _BrushWidth);
                         falloff = 1.0 - saturate(diff / brushSize);
-                        drawSoft = pow(min(falloff.x, falloff.y), 2800) * _Size;
-                        draw = (drawSoft < hardness) ? 0 : 0.8;
+                        drawSoft = pow(min(falloff.x, falloff.y), 1800) * _Size;
+                        draw = drawSoft;
                         break;
                     case 3: //soft
                         brushSize = float2(_BrushWidth, _BrushHeight);
