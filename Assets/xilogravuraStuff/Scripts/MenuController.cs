@@ -265,6 +265,9 @@ public class MenuController : MonoBehaviour
         newArtController.resetTextures();
         newArtController.resetValues();
 
+        //Corrige preset ao reiniciar
+        FindObjectOfType<Painter>().SetBrushPreset(1);
+
         folhaPosicionada = false;
         folhaResultado = false;
 

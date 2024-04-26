@@ -10,7 +10,7 @@ Shader "Unlit/BrushShader"
         _Hardness("Hardness", Range(1, 15)) = 3
 
         _IsRoundBrush("RoundBrush", Range(0,1)) = 1
-        _BrushPreset("BrushPreset", Range(1, 3)) = 1
+        _BrushPreset("BrushPreset", Range(1, 4)) = 1
         _BrushWidth("BrushWidth", Range(1, 50)) = 45
         _BrushHeight("BrushHeight", Range(1, 50)) = 15
     }
@@ -72,11 +72,12 @@ Shader "Unlit/BrushShader"
                 float2 brushSize;
                 float2 falloff;
                 float drawSoft;
+                float dist;
 
                 switch (_BrushPreset) {
                     case 1:
                         // Calcular a distancia do fragmento a coordenada de desenho
-                        float dist = distance(i.uv, _Coordinates.xy) * 18 / _Size;
+                        dist = distance(i.uv, _Coordinates.xy) * 18 / (_Size/2);
 
                         draw = (dist > hardness) ? 0 : 1;
                         break;
@@ -91,6 +92,13 @@ Shader "Unlit/BrushShader"
                         falloff = 1.0 - saturate(diff / brushSize);
                         drawSoft = pow(min(falloff.x, falloff.y), 1800) * _Size;
                         draw = drawSoft;
+                        break;
+                    case 4: //Tinta
+                        //Baseado no 1
+                        // Calcular a distancia do fragmento a coordenada de desenho
+                        dist = distance(i.uv, _Coordinates.xy) * 18 / (_Size * 4);
+
+                        draw = (dist > hardness) ? 0 : 1;
                         break;
                 }
                 fixed4 drawcol = _Color * (draw * _Strength);

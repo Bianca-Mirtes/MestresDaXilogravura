@@ -59,13 +59,6 @@ public class Painter : MonoBehaviour
         //changeBrushStroke();
     }
 
-    public void SetInkBrush(float size)
-    {
-        drawMaterial.SetFloat("_BrushPreset", 1);
-        drawMaterial.SetFloat("_Size", size);
-        this.size = size;
-    }
-
     public void SetBrushPreset(int preset)
     {
         drawMaterial.SetFloat("_BrushPreset", preset);
