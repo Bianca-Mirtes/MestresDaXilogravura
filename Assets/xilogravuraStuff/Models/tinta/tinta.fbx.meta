@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1348c58541b3ce54b9c156687abb2bb9
+guid: b196e16da96f0be4a908d4567d5519fb
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material.003
-    second: {fileID: 2100000, guid: 4be1caf3e7ecc35439a8fadb914b563a, type: 2}
+      name: inkpot
+    second: {fileID: 2100000, guid: 14af160f6e21d8a468117b1dc4a39bdc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: inktag
+    second: {fileID: 2100000, guid: 97b87b95a99fb214e9ce2f0b5b3540c8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -40,7 +45,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 120
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -95,7 +100,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1.1999999
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
