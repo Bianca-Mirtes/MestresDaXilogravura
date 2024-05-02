@@ -26,6 +26,9 @@ public class XiloController : MonoBehaviour
     public GameObject tutorial;
 
     [SerializeField]
+    private List<GameObject> objectNames;
+
+    [SerializeField]
     private TouchController touch;
 
     private bool isStart = false;
@@ -45,10 +48,19 @@ public class XiloController : MonoBehaviour
     private Dictionary<string, RenderTexture> textureDictionary = new Dictionary<string, RenderTexture>();
     private string[] textureNames = { "SketchMask", "SculptMask", "SandpaperMask", "PaintMask", "PrintMaskOld" };
 
+    private void Awake()
+    {
+        for (int i = 0; i < objectNames.Count; i++)
+        {
+            objectNames[i].SetActive(false);
+            Debug.Log(objectNames[i].name);
+        }
+    }
     void Start()
     {
         currentMaterial = GetComponent<MeshRenderer>().materials[0];
         setTextures();
+
     }
 
     public void resetTextures()
