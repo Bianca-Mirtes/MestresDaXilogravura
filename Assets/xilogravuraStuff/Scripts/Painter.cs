@@ -23,6 +23,12 @@ public class Painter : MonoBehaviour
 
     private Input input;
 
+    [SerializeField]
+    private LineRenderer rayRightHand;
+
+    [SerializeField]
+    private LineRenderer rayLeftHand;
+
     void Start()
     {
         if (instance == null)
@@ -167,6 +173,8 @@ public class Painter : MonoBehaviour
     public void ChangeBrushStrokeWithButton(Slider slider)
     {
         float _newSize = slider.value;
+        rayLeftHand.startColor = Color.blue;
+        rayRightHand.startColor = Color.blue;
         if (textBrushStatus != null && slider != null)
         {
             drawMaterial.SetFloat("_Size", _newSize);
