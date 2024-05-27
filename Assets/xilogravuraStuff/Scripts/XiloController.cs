@@ -8,8 +8,6 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class XiloController : MonoBehaviour
 {
-    [SerializeField] private Camera cam;
-
     private Material currentMaterial;
     private RaycastHit? hit;
 

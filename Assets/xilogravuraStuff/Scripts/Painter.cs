@@ -13,10 +13,15 @@ public class Painter : MonoBehaviour
 {
     [SerializeField] private Shader drawShader;
 
+    [Header("Attributes")]
     [SerializeField][Range(2, 16)] private float size;
     [SerializeField][Range(1, 15)] private float hardness;
     [SerializeField][Range(0, 1)] private float strength;
 
+    [Header("Max distance from object")]
+    public float maxDistance = 2f;
+
+    [Header("Objects and controllers")]
     public GrabController grabController;
     [SerializeField] private Camera cam;
     [SerializeField] private TouchController touch;
@@ -80,7 +85,7 @@ public class Painter : MonoBehaviour
 
     public RaycastHit? CheckDraw(GameObject tool, int layerMask, bool prevStep, bool nextStep, ParticleSystem particles)
     {
-        RaycastHit hit = new RaycastHit();
+        RaycastHit hit;
         XRGrabInteractable interactable = tool.GetComponent<XRGrabInteractable>();
         if (grabController.isGrab(interactable) && prevStep && !nextStep)
         {
@@ -88,6 +93,9 @@ public class Painter : MonoBehaviour
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) 
             && (touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand() || click()))
             {
+                if(hit.distance > maxDistance)
+                    return null;
+
                 //excecao para angulo da goiva
                 if (tool.name.Equals("goiva") && !checkAngle(hit, 0.85f))
                     return null;
@@ -179,7 +187,6 @@ public class Painter : MonoBehaviour
     public void resetInterpolation()
     {
         lastHitCoord = Vector2.zero;
-        //print("Reset interpolation");
     }
 
     public Vector2 Interpolation(RenderTexture mask, RenderTexture temp, RaycastHit hit, Vector2 lastHitCoord)
@@ -187,7 +194,6 @@ public class Painter : MonoBehaviour
 
         float strokeSmoothingInterval = 0.01f;
         float distance = Vector2.Distance(lastHitCoord, hit.textureCoord);
-        //print(lastHitCoord);
 
         int numPoints = Mathf.Min((int) ((distance/strokeSmoothingInterval)*2.2f), 40);
 

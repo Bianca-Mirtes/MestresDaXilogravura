@@ -8216,7 +8216,7 @@ MonoBehaviour:
   painter: {fileID: 2010382326}
   grabController: {fileID: 1803742030}
   xiloController: {fileID: 1590503464}
-  tinta: {fileID: 1417462873}
+  tinta: {fileID: 1417462871}
   roloDeTinta: {fileID: 912334400}
   tintaDerramada: {fileID: 535631653}
 --- !u!54 &426879758
@@ -8473,7 +8473,7 @@ MonoBehaviour:
   cam: {fileID: 638536774}
   painter: {fileID: 2010382326}
   grabController: {fileID: 1803742030}
-  ferramenta: {fileID: 1792776873}
+  ferramenta: {fileID: 1792776871}
   xilogravura: {fileID: 1590503464}
 --- !u!95 &450551922
 Animator:
@@ -33704,7 +33704,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbbfdcd511f384743a51b7bcbcd2c18e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 638536774}
   painter: {fileID: 2010382326}
   grabController: {fileID: 1803742030}
   paperController: {fileID: 450551919}
@@ -43293,6 +43292,7 @@ MonoBehaviour:
   size: 10
   hardness: 6
   strength: 1
+  maxDistance: 2
   grabController: {fileID: 1803742030}
   cam: {fileID: 638536774}
   touch: {fileID: 1844487760}

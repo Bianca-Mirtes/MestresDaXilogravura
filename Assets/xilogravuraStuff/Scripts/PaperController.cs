@@ -12,14 +12,14 @@ public class PaperController : MonoBehaviour
     [SerializeField] private Camera cam;
 
     private Material currentMaterial;
-    private RaycastHit hit;
+    private RaycastHit? hit;
 
     private int[] dimensions = { 2048, 2048 };
 
     public Painter painter;
     public GrabController grabController;
 
-    public XRGrabInteractable ferramenta;
+    public GameObject ferramenta;
     public XiloController xilogravura;
 
     private bool setarTexturas = false;
@@ -58,32 +58,26 @@ public class PaperController : MonoBehaviour
 
     public void Draw()
     {
-        int layerMask = 1 << 12; //Fix layer
-        if (grabController.isGrab(ferramenta) && !resultado)
+        int layerMask = 1 << 12;
+        if ((hit = painter.CheckDraw(ferramenta, layerMask, true, resultado, null)) != null)
         {
-            Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(ferramenta));
-            if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
+            if (!setarTexturas)
             {
-                painter.initSound(ferramenta.gameObject);
-                if (!setarTexturas)
-                {
-                    painter.SetBrushPreset(Brush.HardSquare);
-                    currentMaterial.SetTexture("SketchMask", xilogravura.getTexture("SketchMask"));
-                    currentMaterial.SetTexture("SculptMask", xilogravura.getTexture("SculptMask"));
-                    currentMaterial.SetTexture("PaintMask", xilogravura.getTexture("PaintMask"));
-                    print("texturas setadas");
-                    setarTexturas = true;
-                }
-                //print("imprimindo");
-                RenderTexture mask = textureDictionary["PrintMask"];
-                //painter.SetBrush(10f);
-                painter.PaintMask(mask, hit, false);
-                marcarEtapa(ref isPrint);
+                painter.SetBrushPreset(Brush.HardSquare);
+                currentMaterial.SetTexture("SketchMask", xilogravura.getTexture("SketchMask"));
+                currentMaterial.SetTexture("SculptMask", xilogravura.getTexture("SculptMask"));
+                currentMaterial.SetTexture("PaintMask", xilogravura.getTexture("PaintMask"));
+                setarTexturas = true;
             }
-            else
-            {
+            marcarEtapa(ref isPrint);
+        }
+
+        if (hit != null)
+        {
+            RaycastHit validHit = hit.Value;
+            painter.PaintMask(textureDictionary["PrintMask"], validHit, false);
+            if (validHit.collider == null || grabController.isToolNull())
                 painter.stopSound(ferramenta.gameObject);
-            }
         }
     }
 

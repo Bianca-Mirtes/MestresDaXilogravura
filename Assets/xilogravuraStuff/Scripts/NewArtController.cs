@@ -12,7 +12,7 @@ public class NewArtController : MonoBehaviour
     [SerializeField] private Camera cam;
     
     private Material currentMaterial;
-    private RaycastHit hit;
+    private RaycastHit? hit;
 
     private int[] dimensions = { 2048, 2048 };
 
@@ -22,7 +22,7 @@ public class NewArtController : MonoBehaviour
 
     public Button voltar;
 
-    public XRGrabInteractable lapisDeRascunho;
+    public GameObject lapisDeRascunho;
 
     private bool verifSound = true;
     private bool isSketched = false;
@@ -85,35 +85,20 @@ public class NewArtController : MonoBehaviour
 
     public void Draw()
     {
-        int layerMask = 1 << 14; //Fix layer
-        if (grabController.isGrab(lapisDeRascunho))
+        int layerMask = 1 << 14;
+        if ((hit = painter.CheckDraw(lapisDeRascunho, layerMask, true, false, null)) != null)
         {
-                Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(lapisDeRascunho));
-                if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (click() || touch.IsClickedWithLeftHand() || touch.IsClickedWithRightHand()))
-            {
-                    if (verifSound)
-                    {
-                        lapisDeRascunho.gameObject.GetComponent<AudioSource>().Play();
-                        verifSound = false;
-                    }
-                    RenderTexture mask = textureDictionary["SketchMask"];
-                    painter.SetBrushPreset(Brush.HardCircle);
-                    painter.PaintMask(mask, hit, true);
-                    isSketched = true;
-                }
-                else
-                {
-                    lapisDeRascunho.gameObject.GetComponent<AudioSource>().Stop();
-                    verifSound = true;
-                    painter.resetInterpolation();
-                }
+            painter.SetBrushPreset(Brush.HardCircle);
+            isSketched = true;
         }
 
-        //if (hit.collider == null || grabController.isToolNull())
-        //{
-        //    //Parar todos os SFX
-            
-        //}
+        if (hit != null)
+        {
+            RaycastHit validHit = hit.Value;
+            painter.PaintMask(textureDictionary["SketchMask"], validHit, true);
+            if (validHit.collider == null || grabController.isToolNull())
+                painter.stopSound(lapisDeRascunho.gameObject);
+        }
     }
 
     public void resetValues()

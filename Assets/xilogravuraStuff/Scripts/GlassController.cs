@@ -9,7 +9,7 @@ public class GlassController : MonoBehaviour
     [SerializeField] private Camera cam;
 
     private Material currentMaterial;
-    private RaycastHit hit;
+    private RaycastHit? hit;
 
     private int[] dimensions = {2048, 2048};
 
@@ -17,7 +17,7 @@ public class GlassController : MonoBehaviour
     public GrabController grabController;
     public XiloController xiloController;
 
-    public XRGrabInteractable tinta;
+    public GameObject tinta;
     public GameObject roloDeTinta;
     public ParticleSystem tintaDerramada;
 
@@ -32,6 +32,7 @@ public class GlassController : MonoBehaviour
     {
         currentMaterial = GetComponent<MeshRenderer>().materials[0];
         setTextures();
+        painter.desligarParticulas(tintaDerramada);
     }
 
     public void resetTextures()
@@ -58,48 +59,21 @@ public class GlassController : MonoBehaviour
 
     public void Draw()
     {
-        int layerMask = 1 << 11; //Fix layer
-        if (grabController.isGrab(tinta) && xiloController.getSanded())
-        {
-            Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(tinta));
-            if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
-            {
-                //print("to colocanto tinta");
-                if (verifSound)
-                {
-                    tinta.gameObject.GetComponent<AudioSource>().Play();
-                    verifSound = false;
-                }
-                RenderTexture mask = textureDictionary["InkMask"];
-                painter.SetBrushPreset(Brush.Ink);
-                painter.PaintMask(mask, hit, false);
-                painter.instanciarParticulas(tintaDerramada, painter.isToolInteraction(tinta));
-                isInkEnable = true;
-            }
-            else
-            {
-                //if (tinta.gameObject.GetComponent<AudioSource>().isPlaying)
-                //{
-                    tinta.gameObject.GetComponent<AudioSource>().Stop();
-                    verifSound = true;
-                //}
-            }
-        }
+        int layerMask = 1 << 11;
 
-        if (grabController.isGrab(roloDeTinta.GetComponent<XRGrabInteractable>()))
-        {
-            Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(roloDeTinta.GetComponent<XRGrabInteractable>()));
-            if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && isInkEnable)
-            {
-                //print("to pegando tinta");
-                roloDeTinta.GetComponent<InkRollerController>().enableInk();
-            }
+        if ((hit = painter.CheckDraw(tinta, layerMask, xiloController.getSanded(), false, tintaDerramada)) != null) {
+            painter.SetBrushPreset(Brush.Ink);
+            isInkEnable = true;
         }
+        else
+        if (painter.CheckDraw(roloDeTinta, layerMask, isInkEnable, false, null) != null)
+            roloDeTinta.GetComponent<InkRollerController>().enableInk();
 
-        if (hit.collider == null || grabController.isToolNull())
-        {
-            //Parar todos os SFX
-            painter.desligarParticulas(tintaDerramada);
+        if (hit != null) {
+            RaycastHit validHit = hit.Value;
+            painter.PaintMask(textureDictionary["InkMask"], validHit, false);
+            if (validHit.collider == null || grabController.isToolNull())
+                painter.desligarParticulas(tintaDerramada);
         }
     }
 
