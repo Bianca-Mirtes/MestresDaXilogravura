@@ -67,7 +67,7 @@ public class PaperController : MonoBehaviour
                 xilogravura.initSound(ferramenta.gameObject);
                 if (!setarTexturas)
                 {
-                    painter.SetBrushPreset(2);
+                    painter.SetBrushPreset(Brush.HardSquare);
                     currentMaterial.SetTexture("SketchMask", xilogravura.getTexture("SketchMask"));
                     currentMaterial.SetTexture("SculptMask", xilogravura.getTexture("SculptMask"));
                     currentMaterial.SetTexture("PaintMask", xilogravura.getTexture("PaintMask"));

@@ -97,7 +97,7 @@ public class NewArtController : MonoBehaviour
                         verifSound = false;
                     }
                     RenderTexture mask = textureDictionary["SketchMask"];
-                    //painter.SetBrush(2f);
+                    painter.SetBrushPreset(Brush.HardCircle);
                     painter.PaintMask(mask, hit, true);
                     isSketched = true;
                 }

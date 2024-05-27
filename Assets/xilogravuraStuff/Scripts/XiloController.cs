@@ -145,7 +145,7 @@ public class XiloController : MonoBehaviour
                 {
                     initSound(lapisDeRascunho.gameObject);
                     mask = textureDictionary["SketchMask"];
-                    painter.SetBrushPreset(1);
+                    painter.SetBrushPreset(Brush.HardCircle);
                     marcarEtapa(ref isSketched);
                     interpolate = true;
                 }
@@ -174,7 +174,7 @@ public class XiloController : MonoBehaviour
                 {
                     initSound(goiva.gameObject);
                     mask = textureDictionary["SculptMask"];
-                    painter.SetBrushPreset(2);
+                    painter.SetBrushPreset(Brush.HardSquare);
                     painter.instanciarParticulas(lascasDeMadeira, hit.point);
                     marcarEtapa(ref isSculped);
                     interpolate = false;
@@ -193,7 +193,7 @@ public class XiloController : MonoBehaviour
                 {
                     initSound(lixa.gameObject);
                     mask = textureDictionary["SandpaperMask"];
-                    painter.SetBrushPreset(3);
+                    painter.SetBrushPreset(Brush.SoftSquare);
                     painter.instanciarParticulas(poDeMadeira, hit.point);
                     marcarEtapa(ref isSanded);
                     interpolate = false;
@@ -213,7 +213,7 @@ public class XiloController : MonoBehaviour
                     {
                         initSound(roloDeTinta.gameObject);
                         mask = textureDictionary["PaintMask"];
-                        painter.SetBrushPreset(3);
+                        painter.SetBrushPreset(Brush.SoftSquare);
                         marcarEtapa(ref isPaint);
                         interpolate = false;
                     }

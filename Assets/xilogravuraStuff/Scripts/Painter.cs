@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 
+public enum Brush { HardCircle, HardSquare, SoftSquare, Ink }
+
 public class Painter : MonoBehaviour
 {
     [SerializeField] private Shader drawShader;
@@ -28,6 +30,8 @@ public class Painter : MonoBehaviour
 
     [SerializeField]
     private LineRenderer rayLeftHand;
+
+    
 
     void Start()
     {
@@ -65,6 +69,10 @@ public class Painter : MonoBehaviour
         //changeBrushStroke();
     }
 
+    public void SetBrushPreset(Brush preset)
+    {
+        drawMaterial.SetFloat("_BrushPreset", (int) preset);
+    }
     public void SetBrushPreset(int preset)
     {
         drawMaterial.SetFloat("_BrushPreset", preset);
@@ -186,6 +194,4 @@ public class Painter : MonoBehaviour
             Debug.LogError("Objeto Contador do tamanho do pincel ou slider n�o encontrado!!");
         }
     }
-
-
 }

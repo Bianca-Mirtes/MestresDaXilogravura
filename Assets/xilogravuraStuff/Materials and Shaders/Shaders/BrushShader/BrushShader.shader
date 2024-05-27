@@ -74,29 +74,34 @@ Shader "Unlit/BrushShader"
                 float drawSoft;
                 float dist;
 
+                #define BRUSH_HARDCIRCLE 0
+                #define BRUSH_HARDSQUARE 1
+                #define BRUSH_SOFTSQUARE 2
+                #define BRUSH_INK 3
+
                 switch (_BrushPreset) {
-                    case 1:
+                    case BRUSH_HARDCIRCLE:
                         // Calcular a distancia do fragmento a coordenada de desenho
                         dist = distance(i.uv, _Coordinates.xy) * 18 / (_Size/2);
 
                         draw = (dist > hardness) ? 0 : 1;
                         break;
-                    case 2: //hard
+                    case BRUSH_HARDSQUARE: //hard
                         brushSize = float2(_BrushHeight, _BrushWidth);
                         falloff = 1.0 - saturate(diff / brushSize);
                         drawSoft = pow(min(falloff.x, falloff.y), 1800) * _Size;
                         draw = drawSoft;
                         break;
-                    case 3: //soft
+                    case BRUSH_SOFTSQUARE: //soft
                         brushSize = float2(_BrushWidth, _BrushHeight);
                         falloff = 1.0 - saturate(diff / brushSize);
                         drawSoft = pow(min(falloff.x, falloff.y), 1800) * _Size;
                         draw = drawSoft;
                         break;
-                    case 4: //Tinta
+                    case BRUSH_INK: //Tinta
                         //Baseado no 1
                         // Calcular a distancia do fragmento a coordenada de desenho
-                        dist = distance(i.uv, _Coordinates.xy) * 18 / (_Size * 4);
+                        dist = distance(i.uv, _Coordinates.xy) * 18 / 8;
 
                         draw = (dist > hardness) ? 0 : 1;
                         break;

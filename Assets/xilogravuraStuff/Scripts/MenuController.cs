@@ -266,7 +266,7 @@ public class MenuController : MonoBehaviour
         newArtController.resetValues();
 
         //Corrige preset ao reiniciar
-        FindObjectOfType<Painter>().SetBrushPreset(1);
+        FindObjectOfType<Painter>().SetBrushPreset(Brush.HardCircle);
 
         folhaPosicionada = false;
         folhaResultado = false;
