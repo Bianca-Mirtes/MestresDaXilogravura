@@ -64,7 +64,7 @@ public class PaperController : MonoBehaviour
             Vector3 pointerPosition = cam.WorldToScreenPoint(painter.isToolInteraction(ferramenta));
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask))
             {
-                xilogravura.initSound(ferramenta.gameObject);
+                painter.initSound(ferramenta.gameObject);
                 if (!setarTexturas)
                 {
                     painter.SetBrushPreset(Brush.HardSquare);
@@ -82,7 +82,7 @@ public class PaperController : MonoBehaviour
             }
             else
             {
-                xilogravura.stopSound(ferramenta.gameObject);
+                painter.stopSound(ferramenta.gameObject);
             }
         }
     }
@@ -103,16 +103,6 @@ public class PaperController : MonoBehaviour
     void Update()
     {
         Draw();
-
-        //if (Mouse.current.middleButton.isPressed)
-        //{
-        //    posicionarFolha();
-        //}
-
-        //if (Mouse.current.rightButton.isPressed)
-        //{
-        //    mostrarResultado();
-        //}
     }
 
     public void posicionarFolha()

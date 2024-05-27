@@ -33708,11 +33708,12 @@ MonoBehaviour:
   painter: {fileID: 2010382326}
   grabController: {fileID: 1803742030}
   paperController: {fileID: 450551919}
-  lapisDeRascunho: {fileID: 2079705415}
-  goiva: {fileID: 1398363406}
-  lixa: {fileID: 1593152236}
+  lapisDeRascunho: {fileID: 2079705410}
+  goiva: {fileID: 1398363404}
+  lixa: {fileID: 1593152231}
   roloDeTinta: {fileID: 912334400}
-  tutorial: {fileID: 0}
+  lascasDeMadeira: {fileID: 1655991622}
+  poDeMadeira: {fileID: 486970493}
   objectNames:
   - {fileID: 1487066566}
   - {fileID: 1036999583}
@@ -33721,8 +33722,6 @@ MonoBehaviour:
   - {fileID: 1811924521}
   - {fileID: 980949675}
   touch: {fileID: 1844487760}
-  lascasDeMadeira: {fileID: 1655991622}
-  poDeMadeira: {fileID: 486970493}
 --- !u!114 &1590503465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40929,6 +40928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xiloController: {fileID: 1590503464}
   glassController: {fileID: 426879757}
+  painter: {fileID: 2010382326}
   textTutorial: {fileID: 159908521}
   ganchos:
   - {fileID: 501466575}
@@ -43293,6 +43293,9 @@ MonoBehaviour:
   size: 10
   hardness: 6
   strength: 1
+  grabController: {fileID: 1803742030}
+  cam: {fileID: 638536774}
+  touch: {fileID: 1844487760}
   rayRightHand: {fileID: 1602059871}
   rayLeftHand: {fileID: 1917778191}
   textBrushStatus: {fileID: 201186424}

@@ -10,12 +10,15 @@ public class GrabController : MonoBehaviour
     private XRGrabInteractable ferramenta;
     private XRSocketInteractor socket;
 
+    [Header("Controllers")]
     public XiloController xiloController;
     public GlassController glassController;
+    public Painter painter;
 
     [SerializeField]
     private TextMeshProUGUI textTutorial;
 
+    [Header("Objects")]
     public GameObject[] ganchos;
     public GameObject marcador;
     // Start is called before the first frame update
@@ -50,7 +53,7 @@ public class GrabController : MonoBehaviour
                 if (ferramenta.gameObject.GetComponent<AudioSource>().isPlaying)
                 {
                     ferramenta.gameObject.GetComponent<AudioSource>().Stop();
-                    xiloController.setVerifSound(true);
+                    painter.setVerifSound(true);
                 }
                 socket.allowHover = true;
                 ferramenta.transform.position = socket.transform.position;

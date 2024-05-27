@@ -11,7 +11,7 @@ public class XiloController : MonoBehaviour
     [SerializeField] private Camera cam;
 
     private Material currentMaterial;
-    private RaycastHit hit;
+    private RaycastHit? hit;
 
     private int[] dimensions = {2048, 2048};
 
@@ -19,11 +19,15 @@ public class XiloController : MonoBehaviour
     public GrabController grabController;
     public PaperController paperController;
 
-    public XRGrabInteractable lapisDeRascunho;
-    public XRGrabInteractable goiva;
-    public XRGrabInteractable lixa;
+    [Header("Tools")]
+    public GameObject lapisDeRascunho;
+    public GameObject goiva;
+    public GameObject lixa;
     public GameObject roloDeTinta;
-    public GameObject tutorial;
+
+    [Header("Particles")]
+    public ParticleSystem lascasDeMadeira;
+    public ParticleSystem poDeMadeira;
 
     [SerializeField]
     private List<GameObject> objectNames;
@@ -32,13 +36,6 @@ public class XiloController : MonoBehaviour
     private TouchController touch;
 
     private bool isStart = false;
-
-    private bool verifSound = true;
-
-    private Vector2 lastHitGoiva = Vector2.zero;
-
-    public ParticleSystem lascasDeMadeira;
-    public ParticleSystem poDeMadeira;
 
     private bool isSketched = false;
     private bool isSculped = false;
@@ -60,7 +57,6 @@ public class XiloController : MonoBehaviour
     {
         currentMaterial = GetComponent<MeshRenderer>().materials[0];
         setTextures();
-
     }
 
     public void resetTextures()
@@ -76,39 +72,6 @@ public class XiloController : MonoBehaviour
     {
         Graphics.SetRenderTarget(textureDictionary[textureName]);
         GL.Clear(true, true, Color.black);
-
-    }
-
-    public void initSound(GameObject ferramenta)
-    {
-        if (verifSound)
-        {
-            ferramenta.gameObject.GetComponent<AudioSource>().Play();
-            verifSound = false;
-        }
-    }
-
-    public void stopSound(GameObject ferramenta)
-    {
-        if (ferramenta.gameObject.GetComponent<AudioSource>().isPlaying)
-        {
-            ferramenta.gameObject.GetComponent<AudioSource>().Stop();
-            verifSound = true;
-        }
-    }
-
-    public void pauseSound(GameObject ferramenta)
-    {
-        if (ferramenta.gameObject.GetComponent<AudioSource>().isPlaying)
-        {
-            ferramenta.gameObject.GetComponent<AudioSource>().Pause();
-            verifSound = true;
-        }
-    }
-
-    public void setVerifSound(bool value)
-    {
-        verifSound = value;
     }
 
     public void setTextures()
@@ -124,119 +87,46 @@ public class XiloController : MonoBehaviour
         }
     }
 
-    // Metodo para debug no simulador
-    private bool click()
-    {
-        return Mouse.current.leftButton.isPressed;
-    }
-
-    public void Draw()
-    {
+    public void Draw(){
         int layerMask = 1 << 10;
-        
         RenderTexture mask = null;
-
         bool interpolate = false;
 
-        if (grabController.isGrab(lapisDeRascunho) && !isSculped )
-        {     
-                Vector3 pointerPosition = getPointerPosition(lapisDeRascunho);
-                if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (click() || touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand()))
-                {
-                    initSound(lapisDeRascunho.gameObject);
-                    mask = textureDictionary["SketchMask"];
-                    painter.SetBrushPreset(Brush.HardCircle);
-                    marcarEtapa(ref isSketched);
-                    interpolate = true;
-                }
-                else {
-                    stopSound(lapisDeRascunho.gameObject);
-                    painter.resetInterpolation();
-                }
-                    
-            
-        } else if (grabController.isGrab(goiva) && isSketched && !isSanded)
+        if ((hit = painter.CheckDraw(lapisDeRascunho, layerMask, true, isSculped, null)) != null)
         {
-                float anguloDaGoiva = 0.85f;
-                Vector2 direction = new Vector2(1, 0);
-                if (lastHitGoiva != Vector2.zero)
-                {
-                    direction = hit.textureCoord - lastHitGoiva;
-                    float totalDistance = direction.magnitude;
-                    direction.Normalize();
-                    //print("direcao XY: " + direction);
-                }
-                lastHitGoiva = hit.textureCoord;
-
-                Vector3 pointerPosition = getPointerPosition(goiva);
-                if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) 
-                && (click() || touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand()) && (direction.y >= anguloDaGoiva))
-                {
-                    initSound(goiva.gameObject);
-                    mask = textureDictionary["SculptMask"];
-                    painter.SetBrushPreset(Brush.HardSquare);
-                    painter.instanciarParticulas(lascasDeMadeira, hit.point);
-                    marcarEtapa(ref isSculped);
-                    interpolate = false;
-                }
-                else {
-                    pauseSound(goiva.gameObject);
-                    painter.resetInterpolation();
-                    painter.desligarParticulas(lascasDeMadeira);
-                }
-
+            mask = textureDictionary["SketchMask"];
+            painter.SetBrushPreset(Brush.HardCircle);
+            marcarEtapa(ref isSketched);
+            interpolate = true;
+        } else if ((hit = painter.CheckDraw(goiva, layerMask, isSketched, isSanded, lascasDeMadeira)).HasValue)
+        {
+            mask = textureDictionary["SculptMask"];
+            painter.SetBrushPreset(Brush.HardSquare);
+            marcarEtapa(ref isSculped);
         }
-        else if (grabController.isGrab(lixa) && isSculped && !isPaint)
+        else if ((hit = painter.CheckDraw(lixa, layerMask, isSculped, isPaint, poDeMadeira)).HasValue)
         {
-                Vector3 pointerPosition = getPointerPosition(lixa);
-                if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (click() || touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand()))
-                {
-                    initSound(lixa.gameObject);
-                    mask = textureDictionary["SandpaperMask"];
-                    painter.SetBrushPreset(Brush.SoftSquare);
-                    painter.instanciarParticulas(poDeMadeira, hit.point);
-                    marcarEtapa(ref isSanded);
-                    interpolate = false;
-                }
-                else { 
-                    stopSound(lixa.gameObject);
-                    painter.resetInterpolation();
-                    painter.desligarParticulas(poDeMadeira);
-                }
+            mask = textureDictionary["SandpaperMask"];
+            painter.SetBrushPreset(Brush.SoftSquare);
+            marcarEtapa(ref isSanded);
         }
-        else if (grabController.isGrab(roloDeTinta.GetComponent<XRGrabInteractable>()) && isSanded && !paperController.isPrinted())
+        else if ((hit = painter.CheckDraw(roloDeTinta, layerMask, isSanded, paperController.isPrinted(), null)).HasValue)
         {
-                Vector3 pointerPosition = getPointerPosition(roloDeTinta.GetComponent<XRGrabInteractable>());
-                if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) && (click() || touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand()))
-                {
-                    if (roloDeTinta.GetComponent<InkRollerController>().isInkEnable())
-                    {
-                        initSound(roloDeTinta.gameObject);
-                        mask = textureDictionary["PaintMask"];
-                        painter.SetBrushPreset(Brush.SoftSquare);
-                        marcarEtapa(ref isPaint);
-                        interpolate = false;
-                    }
-                }
-                else {
-                    stopSound(lapisDeRascunho.gameObject);
-                    painter.resetInterpolation();
-                }
-        }
-        if(hit.collider == null || grabController.isToolNull())
-        {
-            painter.desligarParticulas(lascasDeMadeira);
-            painter.desligarParticulas(poDeMadeira);
+            mask = textureDictionary["PaintMask"];
+            painter.SetBrushPreset(Brush.SoftSquare);
+            marcarEtapa(ref isPaint);
         }
 
-        if(mask != null && hit.collider != null)
-            painter.PaintMask(mask, hit, interpolate);
-        
-    }
+        if (hit != null){
+            RaycastHit validHit = hit.Value;
+            if (validHit.collider == null || grabController.isToolNull()){
+                painter.desligarParticulas(lascasDeMadeira);
+                painter.desligarParticulas(poDeMadeira);
+            }
 
-    private Vector3 getPointerPosition(XRGrabInteractable ferramenta)
-    {
-        return cam.WorldToScreenPoint(painter.isToolInteraction(ferramenta));
+            if (mask != null && validHit.collider != null)
+                painter.PaintMask(mask, validHit, interpolate);
+        }
     }
 
     public void enableProcess()

@@ -17,6 +17,12 @@ public class Painter : MonoBehaviour
     [SerializeField][Range(1, 15)] private float hardness;
     [SerializeField][Range(0, 1)] private float strength;
 
+    public GrabController grabController;
+    [SerializeField] private Camera cam;
+    [SerializeField] private TouchController touch;
+    private bool verifSound = true;
+    private Vector2 lastHitAngle = Vector2.zero;
+
     private Material drawMaterial;
 
     public static Painter instance = null;
@@ -31,7 +37,6 @@ public class Painter : MonoBehaviour
     [SerializeField]
     private LineRenderer rayLeftHand;
 
-    
 
     void Start()
     {
@@ -64,11 +69,6 @@ public class Painter : MonoBehaviour
         input.Disable();
     }
 
-    void Update()
-    {
-        //changeBrushStroke();
-    }
-
     public void SetBrushPreset(Brush preset)
     {
         drawMaterial.SetFloat("_BrushPreset", (int) preset);
@@ -78,13 +78,88 @@ public class Painter : MonoBehaviour
         drawMaterial.SetFloat("_BrushPreset", preset);
     }
 
-    public void SetBrush(float hardness, float strength, float width, float height)
+    public RaycastHit? CheckDraw(GameObject tool, int layerMask, bool prevStep, bool nextStep, ParticleSystem particles)
     {
-        drawMaterial.SetFloat("_IsRoundBrush", 0);
-        drawMaterial.SetFloat("_BrushWidth", width);
-        drawMaterial.SetFloat("_BrushHeight", height);
-        drawMaterial.SetFloat("_Hardness", hardness);
-        drawMaterial.SetFloat("_Strength", strength);
+        RaycastHit hit = new RaycastHit();
+        XRGrabInteractable interactable = tool.GetComponent<XRGrabInteractable>();
+        if (grabController.isGrab(interactable) && prevStep && !nextStep)
+        {
+            Vector3 pointerPosition = getPointerPosition(interactable);
+            if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) 
+            && (touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand() || click()))
+            {
+                //excecao para angulo da goiva
+                if (tool.name.Equals("goiva") && !checkAngle(hit, 0.85f))
+                    return null;
+
+                initSound(tool);
+                if(particles != null)
+                    instanciarParticulas(particles, hit.point);
+                return hit;
+            }
+            else
+            {
+                stopSound(tool);
+                resetInterpolation();
+                if (particles != null)
+                    desligarParticulas(particles);
+            }
+        }
+        return null;
+    }
+
+    private bool checkAngle(RaycastHit hit, float angle)
+    {
+        Vector2 direction = new Vector2(1, 0);
+        if (lastHitAngle != Vector2.zero)
+        {
+            direction = hit.textureCoord - lastHitAngle;
+            direction.Normalize();
+        }
+        lastHitAngle = hit.textureCoord;
+        return direction.y >= angle;
+    }
+
+    public void setVerifSound(bool value)
+    {
+        verifSound = value;
+    }
+
+    public void initSound(GameObject ferramenta)
+    {
+        if (verifSound)
+        {
+            ferramenta.gameObject.GetComponent<AudioSource>().Play();
+            verifSound = false;
+        }
+    }
+
+    public void stopSound(GameObject ferramenta)
+    {
+        if (ferramenta.gameObject.GetComponent<AudioSource>().isPlaying)
+        {
+            ferramenta.gameObject.GetComponent<AudioSource>().Stop();
+            verifSound = true;
+        }
+    }
+
+    public void pauseSound(GameObject ferramenta)
+    {
+        if (ferramenta.gameObject.GetComponent<AudioSource>().isPlaying)
+        {
+            ferramenta.gameObject.GetComponent<AudioSource>().Pause();
+            verifSound = true;
+        }
+    }
+
+    private Vector3 getPointerPosition(XRGrabInteractable tool)
+    {
+        return cam.WorldToScreenPoint(isToolInteraction(tool));
+    }
+
+    private bool click()
+    {
+        return Mouse.current.leftButton.isPressed;
     }
 
     public void PaintMask(RenderTexture mask, RaycastHit hit, bool interpolate)
