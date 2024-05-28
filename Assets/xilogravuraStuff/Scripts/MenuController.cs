@@ -24,6 +24,8 @@ public class MenuController : MonoBehaviour
     public GameObject resultadoMenu;
     public GameObject restartMenu;
 
+    public GameObject outOfRangText;
+
     private Button posicionarFolhaButton;
     private Button resultadoButton;
     private Button restartButton;
@@ -57,6 +59,8 @@ public class MenuController : MonoBehaviour
         posicionarFolhaMenu.SetActive(false);
         resultadoMenu.SetActive(false);
         restartMenu.SetActive(false);
+
+        enableTextIndicator(false);
 
         left.onClick.AddListener(() => PreviousMenu());
         right.onClick.AddListener(() => NextMenu());
@@ -268,11 +272,18 @@ public class MenuController : MonoBehaviour
         //Corrige preset ao reiniciar
         FindObjectOfType<Painter>().SetBrushPreset(Brush.HardCircle);
 
+        enableTextIndicator(false);
+
         folhaPosicionada = false;
         folhaResultado = false;
 
         switchImage = false;
         artAutoral = false;
+    }
+
+    public void enableTextIndicator(bool state)
+    {
+        outOfRangText?.SetActive(state);
     }
 
 }

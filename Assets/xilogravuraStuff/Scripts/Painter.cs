@@ -24,6 +24,7 @@ public class Painter : MonoBehaviour
 
     [Header("Objects and controllers")]
     public GrabController grabController;
+    public MenuController menuController;
     [SerializeField] private Camera cam;
     [SerializeField] private TouchController touch;
     private bool verifSound = true;
@@ -97,13 +98,17 @@ public class Painter : MonoBehaviour
             {
                 float distance = Vector3.Distance(interactable.transform.position, hit.transform.position);
                 print(distance);
-                bool frontRaycast = layerMask == 1 << LayerMask.NameToLayer("wood") || layerMask == 1 << LayerMask.NameToLayer("paper");
+                bool frontRaycast = layerMask == 1 << LayerMask.NameToLayer("wood") 
+                                    || layerMask == 1 << LayerMask.NameToLayer("paper") 
+                                    || layerMask == 1 << LayerMask.NameToLayer("newArt");
                 if ((distance > maxDistance) && frontRaycast || (distance > maxDistanceGlass) && !frontRaycast)
                 {
                     disableActionTool(layerMask, tool, particles);
+                    menuController.enableTextIndicator(true);
                     return null;
                 }
-                    
+                menuController.enableTextIndicator(false);
+
                 //excecao para angulo da goiva
                 if (tool.name.Equals("goiva") && !checkAngle(hit, 0.85f))
                     return null;
@@ -145,7 +150,9 @@ public class Painter : MonoBehaviour
 
     private void checkLayer(int layer, bool state)
     {
-        if (layer == 1 << LayerMask.NameToLayer("wood") || layer == 1 << LayerMask.NameToLayer("paper"))
+        if (layer == 1 << LayerMask.NameToLayer("wood") 
+            || layer == 1 << LayerMask.NameToLayer("paper")
+            || layer == 1 << LayerMask.NameToLayer("newArt"))
             verifSoundWood = state;
         else
             verifSoundGlass = state;

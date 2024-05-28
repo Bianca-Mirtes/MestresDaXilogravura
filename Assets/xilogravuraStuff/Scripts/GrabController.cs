@@ -120,6 +120,7 @@ public class GrabController : MonoBehaviour
         if(ferramenta != null)
             ferramenta.transform.Rotate(Vector3.right, 30f);
         ferramenta = null;
+        FindObjectOfType<MenuController>().enableTextIndicator(false);
         //if (socket != null)
         //    socket.allowHover = false;
         //socket = null;
