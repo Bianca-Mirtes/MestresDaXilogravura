@@ -5089,7 +5089,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fc13b1e2a9315b4099873954da74463, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.214
+      value: 0.322
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fc13b1e2a9315b4099873954da74463, type: 3}
       propertyPath: m_LocalRotation.w
@@ -43297,7 +43297,7 @@ MonoBehaviour:
   size: 10
   hardness: 6
   strength: 1
-  maxDistance: 2
+  maxDistance: 0.62
   grabController: {fileID: 1803742030}
   cam: {fileID: 638536774}
   touch: {fileID: 1844487760}

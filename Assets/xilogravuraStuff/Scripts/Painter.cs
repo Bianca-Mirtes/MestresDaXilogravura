@@ -19,7 +19,8 @@ public class Painter : MonoBehaviour
     [SerializeField][Range(0, 1)] private float strength;
 
     [Header("Max distance from object")]
-    public float maxDistance = 2f;
+    public float maxDistance = 0.7f;
+    public float maxDistanceGlass = 0.3f;
 
     [Header("Objects and controllers")]
     public GrabController grabController;
@@ -94,11 +95,15 @@ public class Painter : MonoBehaviour
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) 
             && (touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand() || click()))
             {
-                //float distance = Vector3.Distance(pointerPosition, hit.transform.position);
-                //print(pointerPosition);
-                //if (distance > maxDistance)
-                //    return null;
-
+                float distance = Vector3.Distance(interactable.transform.position, hit.transform.position);
+                print(distance);
+                bool frontRaycast = layerMask == 1 << LayerMask.NameToLayer("wood") || layerMask == 1 << LayerMask.NameToLayer("paper");
+                if ((distance > maxDistance) && frontRaycast || (distance > maxDistanceGlass) && !frontRaycast)
+                {
+                    disableActionTool(layerMask, tool, particles);
+                    return null;
+                }
+                    
                 //excecao para angulo da goiva
                 if (tool.name.Equals("goiva") && !checkAngle(hit, 0.85f))
                     return null;
@@ -111,14 +116,19 @@ public class Painter : MonoBehaviour
             }
             else
             {
-                checkLayer(layerMask, false);
-                stopSound(tool);
-                resetInterpolation();
-                if (particles != null)
-                    desligarParticulas(particles);
+                disableActionTool(layerMask, tool, particles);
             }
         }
         return null;
+    }
+
+    private void disableActionTool(int layerMask, GameObject tool, ParticleSystem particles)
+    {
+        checkLayer(layerMask, false);
+        stopSound(tool);
+        resetInterpolation();
+        if (particles != null)
+            desligarParticulas(particles);
     }
 
     private bool checkAngle(RaycastHit hit, float angle)
