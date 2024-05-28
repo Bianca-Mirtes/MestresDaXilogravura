@@ -199,7 +199,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 53e9052c29f538244896caafaa9b85cc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5237,7 +5237,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.8679245, g: 0.093342766, b: 0.093342766, a: 1}
+    m_PressedColor: {r: 0.72955966, g: 0.61514276, b: 0.016059369, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -5897,7 +5897,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.8679245, g: 0.093342766, b: 0.093342766, a: 1}
+    m_PressedColor: {r: 0.72955966, g: 0.61514276, b: 0.016059369, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -8124,7 +8124,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.8679245, g: 0.093342766, b: 0.093342766, a: 1}
+    m_PressedColor: {r: 0.72955966, g: 0.61514276, b: 0.016059369, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -8212,7 +8212,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373334cea2351f6419014ef1a231283a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 638536774}
   painter: {fileID: 2010382326}
   grabController: {fileID: 1803742030}
   xiloController: {fileID: 1590503464}
@@ -8470,7 +8469,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 743a4b9f904c0c64eb0b8524679a92b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 638536774}
   painter: {fileID: 2010382326}
   grabController: {fileID: 1803742030}
   ferramenta: {fileID: 1792776871}
@@ -26634,7 +26632,7 @@ PrefabInstance:
       objectReference: {fileID: -6921944086556946763, guid: b196e16da96f0be4a908d4567d5519fb, type: 3}
     - target: {fileID: 919132149155446097, guid: b196e16da96f0be4a908d4567d5519fb, type: 3}
       propertyPath: m_Name
-      value: tinta
+      value: tintaOld
       objectReference: {fileID: 0}
     - target: {fileID: 5944548675878223023, guid: b196e16da96f0be4a908d4567d5519fb, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -27937,6 +27935,14 @@ PrefabInstance:
     - target: {fileID: 4664870890723215500, guid: 880db112787483b4bb85a9812586967c, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4769266373147861956, guid: 880db112787483b4bb85a9812586967c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4769266373147861956, guid: 880db112787483b4bb85a9812586967c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4769266373147861956, guid: 880db112787483b4bb85a9812586967c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -30064,7 +30070,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.8679245, g: 0.093342766, b: 0.093342766, a: 1}
+    m_PressedColor: {r: 0.72955966, g: 0.61514276, b: 0.016059369, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -39339,7 +39345,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.8679245, g: 0.093342766, b: 0.093342766, a: 1}
+    m_PressedColor: {r: 0.72955966, g: 0.61514276, b: 0.016059369, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -40404,12 +40410,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9818e1145c3bf304e804481009539148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 638536774}
   painter: {fileID: 2010382326}
   grabController: {fileID: 1803742030}
   matriz: {fileID: 1590503462}
   voltar: {fileID: 190122726}
-  lapisDeRascunho: {fileID: 2079705415}
+  lapisDeRascunho: {fileID: 2079705410}
   touch: {fileID: 1844487760}
 --- !u!1 &1792776871 stripped
 GameObject:
@@ -42712,7 +42717,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.8679245, g: 0.093342766, b: 0.093342766, a: 1}
+    m_PressedColor: {r: 0.72955966, g: 0.61514276, b: 0.016059369, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1

@@ -16,8 +16,6 @@ public class GlassController : InteractiveObject
     public GameObject roloDeTinta;
     public ParticleSystem tintaDerramada;
 
-    private bool verifSound = true;
-
     private bool isInkEnable = false;
 
     private Dictionary<string, RenderTexture> textureDictionary = new Dictionary<string, RenderTexture>();
@@ -54,7 +52,7 @@ public class GlassController : InteractiveObject
 
     public void Draw()
     {
-        int layerMask = 1 << 11;
+        int layerMask = 1 << LayerMask.NameToLayer("glass");
 
         if ((hit = painter.CheckDraw(tinta, layerMask, xiloController.getSanded(), false, tintaDerramada)) != null) {
             painter.SetBrushPreset(Brush.Ink);
@@ -80,7 +78,6 @@ public class GlassController : InteractiveObject
     public void resetValues()
     {
         isInkEnable = false;
-        verifSound = true;
         roloDeTinta.GetComponent<InkRollerController>().resetValues();
     }
 

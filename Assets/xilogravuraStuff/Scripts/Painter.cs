@@ -26,6 +26,8 @@ public class Painter : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private TouchController touch;
     private bool verifSound = true;
+    private bool verifSoundWood = false;
+    private bool verifSoundGlass = false;
     private Vector2 lastHitAngle = Vector2.zero;
 
     private Material drawMaterial;
@@ -41,7 +43,6 @@ public class Painter : MonoBehaviour
 
     [SerializeField]
     private LineRenderer rayLeftHand;
-
 
     void Start()
     {
@@ -93,13 +94,16 @@ public class Painter : MonoBehaviour
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) 
             && (touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand() || click()))
             {
-                if(hit.distance > maxDistance)
-                    return null;
+                //float distance = Vector3.Distance(pointerPosition, hit.transform.position);
+                //print(pointerPosition);
+                //if (distance > maxDistance)
+                //    return null;
 
                 //excecao para angulo da goiva
                 if (tool.name.Equals("goiva") && !checkAngle(hit, 0.85f))
                     return null;
 
+                checkLayer(layerMask, true);
                 initSound(tool);
                 if(particles != null)
                     instanciarParticulas(particles, hit.point);
@@ -107,6 +111,7 @@ public class Painter : MonoBehaviour
             }
             else
             {
+                checkLayer(layerMask, false);
                 stopSound(tool);
                 resetInterpolation();
                 if (particles != null)
@@ -128,6 +133,14 @@ public class Painter : MonoBehaviour
         return direction.y >= angle;
     }
 
+    private void checkLayer(int layer, bool state)
+    {
+        if (layer == 1 << LayerMask.NameToLayer("wood") || layer == 1 << LayerMask.NameToLayer("paper"))
+            verifSoundWood = state;
+        else
+            verifSoundGlass = state;
+    }
+
     public void setVerifSound(bool value)
     {
         verifSound = value;
@@ -144,18 +157,9 @@ public class Painter : MonoBehaviour
 
     public void stopSound(GameObject ferramenta)
     {
-        if (ferramenta.gameObject.GetComponent<AudioSource>().isPlaying)
+        if (ferramenta.gameObject.GetComponent<AudioSource>().isPlaying && !verifSoundWood && !verifSoundGlass)
         {
             ferramenta.gameObject.GetComponent<AudioSource>().Stop();
-            verifSound = true;
-        }
-    }
-
-    public void pauseSound(GameObject ferramenta)
-    {
-        if (ferramenta.gameObject.GetComponent<AudioSource>().isPlaying)
-        {
-            ferramenta.gameObject.GetComponent<AudioSource>().Pause();
             verifSound = true;
         }
     }

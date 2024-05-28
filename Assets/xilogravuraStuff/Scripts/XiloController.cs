@@ -83,7 +83,7 @@ public class XiloController : InteractiveObject
     }
 
     public void Draw(){
-        int layerMask = 1 << 10;
+        int layerMask = 1 << LayerMask.NameToLayer("wood");
         RenderTexture mask = null;
         bool interpolate = false;
 

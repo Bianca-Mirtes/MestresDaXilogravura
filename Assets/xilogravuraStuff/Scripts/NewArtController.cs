@@ -79,7 +79,7 @@ public class NewArtController : InteractiveObject
 
     public void Draw()
     {
-        int layerMask = 1 << 14;
+        int layerMask = 1 << LayerMask.NameToLayer("paper");
         if ((hit = painter.CheckDraw(lapisDeRascunho, layerMask, true, false, null)) != null)
         {
             painter.SetBrushPreset(Brush.HardCircle);
