@@ -7,14 +7,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class PaperController : MonoBehaviour
+public class PaperController : InteractiveObject
 {
-    [SerializeField] private Camera cam;
-
-    private Material currentMaterial;
     private RaycastHit? hit;
-
-    private int[] dimensions = { 2048, 2048 };
 
     public Painter painter;
     public GrabController grabController;
@@ -63,7 +58,7 @@ public class PaperController : MonoBehaviour
         {
             if (!setarTexturas)
             {
-                painter.SetBrushPreset(Brush.HardSquare);
+                painter.SetBrushPreset(Brush.Ink);
                 currentMaterial.SetTexture("SketchMask", xilogravura.getTexture("SketchMask"));
                 currentMaterial.SetTexture("SculptMask", xilogravura.getTexture("SculptMask"));
                 currentMaterial.SetTexture("PaintMask", xilogravura.getTexture("PaintMask"));

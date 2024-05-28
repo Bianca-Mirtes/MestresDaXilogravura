@@ -7,14 +7,9 @@ using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 using static TreeEditor.TextureAtlas;
 
-public class NewArtController : MonoBehaviour
+public class NewArtController : InteractiveObject
 {
-    [SerializeField] private Camera cam;
-    
-    private Material currentMaterial;
     private RaycastHit? hit;
-
-    private int[] dimensions = { 2048, 2048 };
 
     public Painter painter;
     public GrabController grabController;
@@ -24,7 +19,6 @@ public class NewArtController : MonoBehaviour
 
     public GameObject lapisDeRascunho;
 
-    private bool verifSound = true;
     private bool isSketched = false;
 
     [SerializeField]
@@ -104,7 +98,6 @@ public class NewArtController : MonoBehaviour
     public void resetValues()
     {
         isSketched = false;
-        verifSound = true;
     }
 
     public bool isArt()

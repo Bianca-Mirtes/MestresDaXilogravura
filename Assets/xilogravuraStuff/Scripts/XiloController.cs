@@ -6,12 +6,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class XiloController : MonoBehaviour
+public class XiloController : InteractiveObject
 {
-    private Material currentMaterial;
     private RaycastHit? hit;
-
-    private int[] dimensions = {2048, 2048};
 
     public Painter painter;
     public GrabController grabController;
