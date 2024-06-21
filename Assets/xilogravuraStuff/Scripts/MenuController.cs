@@ -177,7 +177,7 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    private void StartExp()
+    public void StartExp()
     {
         //verifStart = true;
         canva = GameObject.Find("Menu");

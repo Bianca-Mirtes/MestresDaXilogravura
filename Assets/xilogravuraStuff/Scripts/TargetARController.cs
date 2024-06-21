@@ -8,7 +8,7 @@ public class TargetARController : MonoBehaviour
     private Quaternion lastRotation = Quaternion.identity;
 
     [Header("Settings")]
-    public Transform target;
+    //public Transform target;
     [Range(0, 10)] public int stabilization = 5;
     public float limit = 0f;
 

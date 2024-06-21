@@ -61,6 +61,7 @@ public class GrabController : MonoBehaviour
         }
     }
 
+    //TODO: separar esse metodo
     private void atualizarMarcador()
     {
         if (ferramenta == null)
@@ -121,17 +122,13 @@ public class GrabController : MonoBehaviour
             ferramenta.transform.Rotate(Vector3.right, 30f);
         ferramenta = null;
         FindObjectOfType<MenuController>().enableTextIndicator(false);
-        //if (socket != null)
-        //    socket.allowHover = false;
-        //socket = null;
-        //Debug.LogError("voltou");
     }
 
-    public bool isGrab(XRGrabInteractable ferramenta)
-    {
+    public bool isGrab(GameObject tool){
+        XRGrabInteractable ferramenta = tool.GetComponent<XRGrabInteractable>();
         if (this.ferramenta == null)
-            return false; 
-        return this.ferramenta.Equals(ferramenta);
+            return false;
+        return this.ferramenta.Equals(ferramenta); 
     }
 
     public bool isToolNull()

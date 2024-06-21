@@ -13,10 +13,8 @@ public class Painter : MonoBehaviour
 {
     [SerializeField] private Shader drawShader;
 
-    [Header("Attributes")]
+    [Header("Brush")]
     [SerializeField][Range(2, 16)] private float size;
-    [SerializeField][Range(1, 15)] private float hardness;
-    [SerializeField][Range(0, 1)] private float strength;
 
     [Header("Max distance from object")]
     public float maxDistance = 0.7f;
@@ -26,7 +24,7 @@ public class Painter : MonoBehaviour
     public GrabController grabController;
     public MenuController menuController;
     [SerializeField] private Camera cam;
-    [SerializeField] private TouchController touch;
+    [SerializeField] private ExperienceMode mode;
     private bool verifSound = true;
     private bool verifSoundWood = false;
     private bool verifSoundGlass = false;
@@ -39,12 +37,6 @@ public class Painter : MonoBehaviour
     private Vector2 lastHitCoord = Vector2.zero;
 
     private Input input;
-
-    [SerializeField]
-    private LineRenderer rayRightHand;
-
-    [SerializeField]
-    private LineRenderer rayLeftHand;
 
     void Start()
     {
@@ -60,6 +52,7 @@ public class Painter : MonoBehaviour
 
         drawMaterial = new Material(drawShader);
         drawMaterial.SetVector("_Color", Color.white);
+        mode.getMode();
     }
 
     private void Awake()
@@ -86,18 +79,17 @@ public class Painter : MonoBehaviour
         drawMaterial.SetFloat("_BrushPreset", preset);
     }
 
-    public RaycastHit? CheckDraw(GameObject tool, int layerMask, bool prevStep, bool nextStep, ParticleSystem particles)
-    {
+    public RaycastHit? CheckDraw(GameObject tool, int layerMask, bool prevStep, bool nextStep, ParticleSystem particles){
         RaycastHit hit;
-        XRGrabInteractable interactable = tool.GetComponent<XRGrabInteractable>();
-        if (grabController.isGrab(interactable) && prevStep && !nextStep)
-        {
-            Vector3 pointerPosition = getPointerPosition(interactable);
+        if (mode.mode == Mode.VR && !grabController.isGrab(tool))
+            return null;
+        if (prevStep && !nextStep){
+            Vector3 pointerPosition = getPointerPosition(tool);
+            bool condicaoDePintura = mode.condicaoDePintura();
             if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) 
-            && (touch.IsClickedWithRightHand() || touch.IsClickedWithLeftHand() || click()))
-            {
-                float distance = Vector3.Distance(interactable.transform.position, hit.transform.position);
-                print(distance);
+            && (condicaoDePintura || click())){
+                float distance = Vector3.Distance(tool.transform.position, hit.transform.position);
+                //print(distance);
                 bool frontRaycast = layerMask == 1 << LayerMask.NameToLayer("wood") 
                                     || layerMask == 1 << LayerMask.NameToLayer("paper") 
                                     || layerMask == 1 << LayerMask.NameToLayer("newArt");
@@ -120,9 +112,7 @@ public class Painter : MonoBehaviour
                 return hit;
             }
             else
-            {
                 disableActionTool(layerMask, tool, particles);
-            }
         }
         return null;
     }
@@ -139,8 +129,7 @@ public class Painter : MonoBehaviour
     private bool checkAngle(RaycastHit hit, float angle)
     {
         Vector2 direction = new Vector2(1, 0);
-        if (lastHitAngle != Vector2.zero)
-        {
+        if (lastHitAngle != Vector2.zero){
             direction = hit.textureCoord - lastHitAngle;
             direction.Normalize();
         }
@@ -165,8 +154,7 @@ public class Painter : MonoBehaviour
 
     public void initSound(GameObject ferramenta)
     {
-        if (verifSound)
-        {
+        if (verifSound){
             ferramenta.gameObject.GetComponent<AudioSource>().Play();
             verifSound = false;
         }
@@ -174,20 +162,18 @@ public class Painter : MonoBehaviour
 
     public void stopSound(GameObject ferramenta)
     {
-        if (ferramenta.gameObject.GetComponent<AudioSource>().isPlaying && !verifSoundWood && !verifSoundGlass)
-        {
+        if (ferramenta.gameObject.GetComponent<AudioSource>().isPlaying && !verifSoundWood && !verifSoundGlass){
             ferramenta.gameObject.GetComponent<AudioSource>().Stop();
             verifSound = true;
         }
     }
 
-    private Vector3 getPointerPosition(XRGrabInteractable tool)
+    private Vector3 getPointerPosition(GameObject tool)
     {
         return cam.WorldToScreenPoint(isToolInteraction(tool));
     }
 
-    private bool click()
-    {
+    private bool click(){
         return Mouse.current.leftButton.isPressed;
     }
 
@@ -212,7 +198,6 @@ public class Painter : MonoBehaviour
 
     public Vector2 Interpolation(RenderTexture mask, RenderTexture temp, RaycastHit hit, Vector2 lastHitCoord)
     {
-
         float strokeSmoothingInterval = 0.01f;
         float distance = Vector2.Distance(lastHitCoord, hit.textureCoord);
 
@@ -240,7 +225,7 @@ public class Painter : MonoBehaviour
         return hit.textureCoord;
     }
 
-    public Vector3 isToolInteraction(XRGrabInteractable ferramenta)
+    public Vector3 isToolInteraction(GameObject ferramenta)
     {
         Transform transform = ferramenta.GetComponent<Transform>();
         Transform point = transform.GetChild(0);
@@ -283,15 +268,16 @@ public class Painter : MonoBehaviour
     public void ChangeBrushStrokeWithButton(Slider slider)
     {
         float _newSize = slider.value;
-        rayLeftHand.startColor = Color.blue;
-        rayRightHand.startColor = Color.blue;
+        //rayLeftHand.startColor = Color.blue;
+        //rayRightHand.startColor = Color.blue;
         if (textBrushStatus != null && slider != null)
         {
             drawMaterial.SetFloat("_Size", _newSize);
             textBrushStatus.text = slider.value.ToString();
             size = _newSize;
             print("new size: " + size);
-        } else
+        }
+        else
         {
             Debug.LogError("Objeto Contador do tamanho do pincel ou slider n�o encontrado!!");
         }

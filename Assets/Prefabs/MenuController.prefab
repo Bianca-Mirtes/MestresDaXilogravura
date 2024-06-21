@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7608707250347497940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 771352828119564360}
+  - component: {fileID: 2430343777162630483}
+  m_Layer: 0
+  m_Name: MenuController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &771352828119564360
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7608707250347497940}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.30988362, y: 1.8355026, z: 4.1459703}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2430343777162630483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7608707250347497940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa50a098e292af42a8da6571051154c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  start: {fileID: 0}
+  createYourArt: {fileID: 0}
+  desenho: {fileID: 0}
+  tituloMenu: {fileID: 0}
+  left: {fileID: 0}
+  right: {fileID: 0}
+  voltar: {fileID: 0}
+  textTutorial: {fileID: 0}
+  posicionarFolhaMenu: {fileID: 0}
+  resultadoMenu: {fileID: 0}
+  restartMenu: {fileID: 0}
+  outOfRangText: {fileID: 0}
+  desenhos:
+  - {fileID: 21300000, guid: 53b516c63e2b0ef499316b5da86e8dd4, type: 3}
+  - {fileID: 21300000, guid: 5f60e7d5d3f6aeb40b3027ad5e8d0c2b, type: 3}
+  - {fileID: 21300000, guid: a753b66ecb9b1924ebfc85b08aa01596, type: 3}
+  - {fileID: 21300000, guid: c6279444d499abb48839bd9ccf166f3e, type: 3}
+  - {fileID: 21300000, guid: a27f2a6974244f24986fb9f2700e3041, type: 3}
+  matriz: {fileID: 0}
+  vidro: {fileID: 0}
+  papel: {fileID: 0}
+  art: {fileID: 0}
+  cropRect:
+    serializedVersion: 2
+    x: 320
+    y: 280
+    width: 1400
+    height: 1400

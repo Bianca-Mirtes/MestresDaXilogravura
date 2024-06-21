@@ -44,8 +44,8 @@ public class XiloController : InteractiveObject
     {
         for (int i = 0; i < objectNames.Count; i++)
         {
-            objectNames[i].SetActive(false);
-            Debug.Log(objectNames[i].name);
+            objectNames[i]?.SetActive(false);
+            //Debug.Log(objectNames[i].name);
         }
     }
     void Start()

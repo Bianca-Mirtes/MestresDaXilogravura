@@ -5459,8 +5459,6 @@ GameObject:
   - component: {fileID: 1344940619}
   - component: {fileID: 1344940618}
   - component: {fileID: 1344940617}
-  - component: {fileID: 1344940623}
-  - component: {fileID: 1344940624}
   m_Layer: 0
   m_Name: ARCamera
   m_TagString: MainCamera
@@ -5604,33 +5602,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1344940623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1344940616}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 016133d12f51acd4b9d7fe76e888fb37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1344940624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1344940616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2b9116aba4cbc541959b69057770476, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  device: {fileID: 1344940622}
-  target: {fileID: 1565875935}
-  stabilization: 0.02
 --- !u!1 &1441792593
 GameObject:
   m_ObjectHideFlags: 0
@@ -5914,34 +5885,10 @@ MonoBehaviour:
     m_RotationOrder: 4
   OnTargetFound:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1675483752}
-        m_TargetAssemblyTypeName: ARCont, Assembly-CSharp
-        m_MethodName: enableTrack
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
   OnTargetLost:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1675483752}
-        m_TargetAssemblyTypeName: ARCont, Assembly-CSharp
-        m_MethodName: enableTrack
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1565875934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6138,7 +6085,6 @@ GameObject:
   - component: {fileID: 1675483751}
   - component: {fileID: 1675483750}
   - component: {fileID: 1675483749}
-  - component: {fileID: 1675483752}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -6234,21 +6180,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675483747}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1675483752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1675483747}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2b9116aba4cbc541959b69057770476, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  device: {fileID: 1344940622}
-  target: {fileID: 0}
-  stabilization: 0.02
 --- !u!1 &1953911370
 GameObject:
   m_ObjectHideFlags: 0
