@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5904,7 +5904,7 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: card
+  mTrackableName: tool1
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/MestresDaXilo.xml
   mAspectRatio: 1.89011
@@ -5944,7 +5944,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db67125da34e2fd4e8415fe24330fa48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1675483748}
   stabilization: 5
   limit: 0
 --- !u!114 &1565875937
@@ -5961,7 +5960,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 1565875934}
   mHiddenRoot: {fileID: 0}
-  mTargetName: card
+  mTargetName: tool1
   mDatasetName: Vuforia/MestresDaXilo.xml
   mCastedBehaviour: {fileID: 1565875934}
   mMeshFilter: {fileID: 0}

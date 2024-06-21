@@ -24,7 +24,7 @@ public class Painter : MonoBehaviour
     public GrabController grabController;
     public MenuController menuController;
     [SerializeField] private Camera cam;
-    [SerializeField] private ExperienceMode mode;
+    [SerializeField] public ExperienceMode mode;
     private bool verifSound = true;
     private bool verifSoundWood = false;
     private bool verifSoundGlass = false;
@@ -86,7 +86,8 @@ public class Painter : MonoBehaviour
         if (prevStep && !nextStep){
             Vector3 pointerPosition = getPointerPosition(tool);
             bool condicaoDePintura = mode.condicaoDePintura();
-            if (Physics.Raycast(cam.ScreenPointToRay(pointerPosition), out hit, Mathf.Infinity, layerMask) 
+            Ray ray = cam.ScreenPointToRay(pointerPosition);
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask) 
             && (condicaoDePintura || click())){
                 float distance = Vector3.Distance(tool.transform.position, hit.transform.position);
                 //print(distance);
@@ -111,7 +112,9 @@ public class Painter : MonoBehaviour
                     instanciarParticulas(particles, hit.point);
                 return hit;
             }
-            else
+            else if(mode.mode == Mode.VR)
+                disableActionTool(layerMask, tool, particles);
+            else if(mode.mode == Mode.PROJECTION && !(condicaoDePintura || click()))
                 disableActionTool(layerMask, tool, particles);
         }
         return null;
@@ -203,8 +206,7 @@ public class Painter : MonoBehaviour
 
         int numPoints = Mathf.Min((int) ((distance/strokeSmoothingInterval)*2.2f), 40);
 
-        for (int i = 0; i < numPoints; i++)
-        {
+        for (int i = 0; i < numPoints; i++){
             if (lastHitCoord == Vector2.zero)
                 break;
 

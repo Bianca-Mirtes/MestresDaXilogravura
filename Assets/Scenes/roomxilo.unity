@@ -920,6 +920,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 101379370}
   m_CullTransparentMesh: 1
+--- !u!1 &139265051 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7052861667795659405, guid: 38bf54c81e83a904889107316bc6c03f, type: 3}
+  m_PrefabInstance: {fileID: 7519504024714176870}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &159908521 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1435741682093510070, guid: 6a2b143e3471c9a4ca5ae0b4dc5d6425, type: 3}
@@ -7880,11 +7885,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1682395787}
   m_SourcePrefab: {fileID: 100100000, guid: 505d6e9f6310cd34fb9adeae50f29015, type: 3}
---- !u!1 &1771966480 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6668333112820690687, guid: 6a2b143e3471c9a4ca5ae0b4dc5d6425, type: 3}
-  m_PrefabInstance: {fileID: 6347404351560888896}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1792776871 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1348c58541b3ce54b9c156687abb2bb9, type: 3}
@@ -10054,7 +10054,7 @@ PrefabInstance:
     - target: {fileID: 2430343777162630483, guid: 666066beebd758d47a23c1d12b8d6cb9, type: 3}
       propertyPath: art
       value: 
-      objectReference: {fileID: 1771966480}
+      objectReference: {fileID: 139265051}
     - target: {fileID: 2430343777162630483, guid: 666066beebd758d47a23c1d12b8d6cb9, type: 3}
       propertyPath: left
       value: 
@@ -10318,7 +10318,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 638536774}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6668333112820690687, guid: 6a2b143e3471c9a4ca5ae0b4dc5d6425, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a2b143e3471c9a4ca5ae0b4dc5d6425, type: 3}
@@ -10334,6 +10335,30 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 1487704658}
+    - target: {fileID: 344264915416189103, guid: 38bf54c81e83a904889107316bc6c03f, type: 3}
+      propertyPath: touch
+      value: 
+      objectReference: {fileID: 1844487760}
+    - target: {fileID: 344264915416189103, guid: 38bf54c81e83a904889107316bc6c03f, type: 3}
+      propertyPath: matriz
+      value: 
+      objectReference: {fileID: 1590503462}
+    - target: {fileID: 344264915416189103, guid: 38bf54c81e83a904889107316bc6c03f, type: 3}
+      propertyPath: voltar
+      value: 
+      objectReference: {fileID: 190122726}
+    - target: {fileID: 344264915416189103, guid: 38bf54c81e83a904889107316bc6c03f, type: 3}
+      propertyPath: painter
+      value: 
+      objectReference: {fileID: 2010382326}
+    - target: {fileID: 344264915416189103, guid: 38bf54c81e83a904889107316bc6c03f, type: 3}
+      propertyPath: grabController
+      value: 
+      objectReference: {fileID: 1803742030}
+    - target: {fileID: 344264915416189103, guid: 38bf54c81e83a904889107316bc6c03f, type: 3}
+      propertyPath: lapisDeRascunho
+      value: 
+      objectReference: {fileID: 2079705410}
     - target: {fileID: 396817262538711229, guid: 38bf54c81e83a904889107316bc6c03f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

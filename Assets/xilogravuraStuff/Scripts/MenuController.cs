@@ -60,6 +60,8 @@ public class MenuController : MonoBehaviour
         resultadoMenu.SetActive(false);
         restartMenu.SetActive(false);
 
+        art?.SetActive(false);
+
         enableTextIndicator(false);
 
         left.onClick.AddListener(() => PreviousMenu());
@@ -177,7 +179,7 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    public void StartExp()
+    private void StartExp()
     {
         //verifStart = true;
         canva = GameObject.Find("Menu");
@@ -185,6 +187,7 @@ public class MenuController : MonoBehaviour
         {
             configurarSimulacao();
             canva.SetActive(false);
+            art?.SetActive(false);
             voltar.gameObject.SetActive(true);
         }
     }
@@ -198,6 +201,7 @@ public class MenuController : MonoBehaviour
         tituloMenu.SetActive(false);
         createYourArt.gameObject.SetActive(false);
         voltar.gameObject.SetActive(true);
+        art?.SetActive(true);
         artAutoral = true;
     }
 
@@ -286,4 +290,25 @@ public class MenuController : MonoBehaviour
         outOfRangText?.SetActive(state);
     }
 
+
+
+    public void firstOptionByProjection()
+    {
+        if (start != null && start.IsActive())
+            StartExp();
+        else if (posicionarFolhaButton != null && posicionarFolhaButton.IsActive())
+            posicionarFolha();
+        else if (resultadoButton != null && resultadoButton.IsActive())
+            mostarResultado();
+    }
+
+    public void secondOptionByProjection()
+    {
+        if (createYourArt != null && createYourArt.IsActive())
+            Create();
+        else if (voltar != null && voltar.IsActive())
+            ReturnProcess();
+        else if (restartButton != null && restartButton.IsActive())
+            restart();
+    }
 }

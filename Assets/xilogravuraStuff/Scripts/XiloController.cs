@@ -114,7 +114,7 @@ public class XiloController : InteractiveObject
 
         if (hit != null){
             RaycastHit validHit = hit.Value;
-            if (validHit.collider == null || grabController.isToolNull()){
+            if (validHit.collider == null || (painter.mode.mode == Mode.VR && grabController.isToolNull())){
                 painter.desligarParticulas(lascasDeMadeira);
                 painter.desligarParticulas(poDeMadeira);
             }
