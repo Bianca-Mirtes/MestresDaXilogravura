@@ -14,13 +14,7 @@ public class GrabController : MonoBehaviour
     public XiloController xiloController;
     public GlassController glassController;
     public Painter painter;
-
-    [SerializeField]
-    private TextMeshProUGUI textTutorial;
-
-    [Header("Objects")]
-    public GameObject[] ganchos;
-    public GameObject marcador;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +33,6 @@ public class GrabController : MonoBehaviour
     void Update()
     {
         reposicionarFerramenta();
-        atualizarMarcador();
     }
 
     private void reposicionarFerramenta()
@@ -57,49 +50,6 @@ public class GrabController : MonoBehaviour
                 }
                 socket.allowHover = true;
                 ferramenta.transform.position = socket.transform.position;
-            }
-        }
-    }
-
-    //TODO: separar esse metodo
-    private void atualizarMarcador()
-    {
-        if (ferramenta == null)
-        {
-            if (!xiloController.getSketched())
-            {
-                textTutorial.text = "Pegue o Lápis";
-                marcador.transform.position = ganchos[0].transform.position;
-            }
-                
-            if (xiloController.getSketched())
-            {
-                textTutorial.text = "Pegue a goiva";
-                marcador.transform.position = ganchos[1].transform.position;
-            }
-                
-            if (xiloController.getSculped())
-            {
-                textTutorial.text = "Pegue a lixa";
-                marcador.transform.position = ganchos[2].transform.position;
-            }
-                
-            if (xiloController.getSanded())
-            {
-                textTutorial.text = "Pegue o pote de tinta e derrame no vidro";
-                marcador.transform.position = ganchos[3].transform.position;
-            }
-
-            if (glassController.getInkEnable())
-            {
-                textTutorial.text = "Pegue o rolo de tinta e passe no vidro";
-                marcador.transform.position = ganchos[4].transform.position;
-            }
-
-            if (xiloController.getPaint()) 
-            {
-                textTutorial.text = "Posicione a folha por cima da madeira";
-                marcador.transform.position = ganchos[5].transform.position;
             }
         }
     }
