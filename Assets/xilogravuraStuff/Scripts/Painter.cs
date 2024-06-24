@@ -38,6 +38,8 @@ public class Painter : MonoBehaviour
 
     private Input input;
 
+    private bool raycastAnterior = false;
+
     void Start()
     {
         if (instance == null)
@@ -94,8 +96,7 @@ public class Painter : MonoBehaviour
                 bool frontRaycast = layerMask == 1 << LayerMask.NameToLayer("wood") 
                                     || layerMask == 1 << LayerMask.NameToLayer("paper") 
                                     || layerMask == 1 << LayerMask.NameToLayer("newArt");
-                if ((distance > maxDistance) && frontRaycast || (distance > maxDistanceGlass) && !frontRaycast)
-                {
+                if ((distance > maxDistance) && frontRaycast || (distance > maxDistanceGlass) && !frontRaycast){
                     disableActionTool(layerMask, tool, particles);
                     menuController.enableTextIndicator(true);
                     return null;
@@ -110,12 +111,17 @@ public class Painter : MonoBehaviour
                 initSound(tool);
                 if(particles != null)
                     instanciarParticulas(particles, hit.point);
+
+                raycastAnterior = true;
                 return hit;
             }
-            else if(mode.mode == Mode.VR)
-                disableActionTool(layerMask, tool, particles);
-            else if(mode.mode == Mode.PROJECTION && !(condicaoDePintura || click()))
-                disableActionTool(layerMask, tool, particles);
+            else
+            {
+                if(mode.mode == Mode.VR || (mode.mode == Mode.PROJECTION && !raycastAnterior))
+                    disableActionTool(layerMask, tool, particles);
+                raycastAnterior = false;
+            }
+                
         }
         return null;
     }
