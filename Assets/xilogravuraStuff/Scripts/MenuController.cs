@@ -47,6 +47,8 @@ public class MenuController : MonoBehaviour
     public GameObject art;
     public Rect cropRect;
 
+    public Slider slider;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -310,5 +312,21 @@ public class MenuController : MonoBehaviour
             ReturnProcess();
         else if (restartButton != null && restartButton.IsActive())
             restart();
+    }
+
+    public void leftArrowProjection()
+    {
+        if (left.IsActive())
+            PreviousMenu();
+        else
+            slider.value = Mathf.Clamp(slider.value + (-1), slider.minValue, slider.maxValue);
+    }
+
+    public void rightArrowProjection()
+    {
+        if (right.IsActive())
+            NextMenu();
+        else
+            slider.value = Mathf.Clamp(slider.value + 1, slider.minValue, slider.maxValue);
     }
 }
