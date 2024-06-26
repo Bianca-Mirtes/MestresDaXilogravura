@@ -90,7 +90,7 @@ public class NewArtController : InteractiveObject
         {
             RaycastHit validHit = hit.Value;
             painter.PaintMask(textureDictionary["SketchMask"], validHit, true);
-            if (validHit.collider == null || grabController.isToolNull())
+            if (validHit.collider == null || (painter.mode.mode == Mode.VR && grabController.isToolNull()))
                 painter.stopSound(lapisDeRascunho.gameObject);
         }
     }

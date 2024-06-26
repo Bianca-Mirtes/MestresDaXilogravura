@@ -301,7 +301,7 @@ public class MenuController : MonoBehaviour
         else if (posicionarFolhaButton != null && posicionarFolhaButton.IsActive())
             posicionarFolha();
         else if (resultadoButton != null && resultadoButton.IsActive())
-            mostarResultado();
+            StartCoroutine(mostarResultado());
     }
 
     public void secondOptionByProjection()

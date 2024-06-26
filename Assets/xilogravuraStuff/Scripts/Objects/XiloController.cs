@@ -93,19 +93,20 @@ public class XiloController : InteractiveObject
             painter.SetBrushPreset(Brush.HardCircle);
             marcarEtapa(ref isSketched);
             interpolate = true;
-        } else if ((hit = painter.CheckDraw(goiva, layerMask, isSketched, isSanded, lascasDeMadeira)).HasValue)
+        } else if ((hit = painter.CheckDraw(goiva, layerMask, isSketched, isSanded, lascasDeMadeira)) != null)
         {
             mask = textureDictionary["SculptMask"];
             painter.SetBrushPreset(Brush.HardSquare);
             marcarEtapa(ref isSculped);
         }
-        else if ((hit = painter.CheckDraw(lixa, layerMask, isSculped, isPaint, poDeMadeira)).HasValue)
+        else if ((hit = painter.CheckDraw(lixa, layerMask, isSculped, isPaint, poDeMadeira)) != null)
         {
             mask = textureDictionary["SandpaperMask"];
             painter.SetBrushPreset(Brush.SoftSquare);
             marcarEtapa(ref isSanded);
         }
-        else if ((hit = painter.CheckDraw(roloDeTinta, layerMask, isSanded, paperController.isPrinted(), null)).HasValue)
+        else if (roloDeTinta.GetComponent<InkRollerController>().isInkEnable() &&
+                (hit = painter.CheckDraw(roloDeTinta, layerMask, isSanded, paperController.isPrinted(), null)) != null)
         {
             mask = textureDictionary["PaintMask"];
             painter.SetBrushPreset(Brush.SoftSquare);

@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.ptc.vuforia.engine": {
-      "version": "file:com.ptc.vuforia.engine-10.22.5.tgz",
+      "version": "file:com.ptc.vuforia.engine-10.24.4.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {
@@ -177,7 +177,7 @@
       }
     },
     "com.unity.xr.core-utils": {
-      "version": "2.3.0",
+      "version": "2.2.3",
       "depth": 1,
       "source": "registry",
       "dependencies": {

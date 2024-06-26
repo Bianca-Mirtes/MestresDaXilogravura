@@ -65,7 +65,7 @@ public class GlassController : InteractiveObject
         if (hit != null) {
             RaycastHit validHit = hit.Value;
             painter.PaintMask(textureDictionary["InkMask"], validHit, false);
-            if (validHit.collider == null || grabController.isToolNull())
+            if (validHit.collider == null || (painter.mode.mode == Mode.VR && grabController.isToolNull()))
                 painter.desligarParticulas(tintaDerramada);
         }
     }

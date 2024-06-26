@@ -91,6 +91,10 @@ public class Painter : MonoBehaviour
             Ray ray = cam.ScreenPointToRay(pointerPosition);
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask) 
             && (condicaoDePintura || click())){
+                if (mode.mode == Mode.PROJECTION && !mode.GetComponent<ProjectionMode>().checkTool(tool)){
+                    raycastAnterior = false;
+                    return null;
+                }
                 float distance = Vector3.Distance(tool.transform.position, hit.transform.position);
                 //print(distance);
                 bool frontRaycast = layerMask == 1 << LayerMask.NameToLayer("wood") 
@@ -117,7 +121,7 @@ public class Painter : MonoBehaviour
             }
             else
             {
-                if(mode.mode == Mode.VR || (mode.mode == Mode.PROJECTION && !raycastAnterior))
+                if (mode.mode == Mode.VR || (mode.mode == Mode.PROJECTION && !raycastAnterior))
                     disableActionTool(layerMask, tool, particles);
                 raycastAnterior = false;
             }
