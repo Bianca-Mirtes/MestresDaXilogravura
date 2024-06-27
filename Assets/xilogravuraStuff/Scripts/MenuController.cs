@@ -49,6 +49,8 @@ public class MenuController : MonoBehaviour
 
     public Slider slider;
 
+    private bool unlock = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -328,5 +330,14 @@ public class MenuController : MonoBehaviour
             NextMenu();
         else
             slider.value = Mathf.Clamp(slider.value + 1, slider.minValue, slider.maxValue);
+    }
+
+    public void arrowsProjections(Transform tool)
+    {
+        if(tool.transform.eulerAngles.z <= 1 && tool.transform.eulerAngles.z)
+        if (unlock)
+        {
+
+        }
     }
 }

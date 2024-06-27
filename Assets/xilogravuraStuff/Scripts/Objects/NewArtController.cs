@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
-using static TreeEditor.TextureAtlas;
+//using static TreeEditor.TextureAtlas;
 
 public class NewArtController : InteractiveObject
 {

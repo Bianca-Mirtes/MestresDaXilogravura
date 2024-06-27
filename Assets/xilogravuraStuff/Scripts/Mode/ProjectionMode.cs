@@ -31,11 +31,6 @@ public class ProjectionMode : ExperienceMode
 
     public void resetTool()
     {
-        //if(tool != null){
-        //    tool.transform.eulerAngles = Vector3.zero;
-        //    tool.transform.position = Vector3.zero;
-        //}
-            
         tool = null;
     }
 
