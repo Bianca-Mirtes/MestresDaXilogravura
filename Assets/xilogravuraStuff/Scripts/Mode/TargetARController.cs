@@ -22,7 +22,6 @@ public class TargetARController : MonoBehaviour
             return;
 
         lastPosition = transform.position;
-
         transform.localPosition = new Vector3(transform.localPosition.x * (-1), transform.localPosition.y, transform.localPosition.z * (-1));
         transform.eulerAngles = new Vector3(transform.eulerAngles.x * (-1), transform.eulerAngles.y, transform.eulerAngles.z * (-1));
 

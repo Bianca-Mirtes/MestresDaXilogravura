@@ -50,6 +50,7 @@ public class MenuController : MonoBehaviour
     public Slider slider;
 
     private bool unlock = true;
+    private Transform tool = null;
 
     // Start is called before the first frame update
     void Start()
@@ -132,6 +133,10 @@ public class MenuController : MonoBehaviour
         {
             start.gameObject.SetActive(true);
         }
+
+        if (tool != null)
+            arrowsProjection();
+            
     }
 
     void posicionarFolha()
@@ -316,28 +321,48 @@ public class MenuController : MonoBehaviour
             restart();
     }
 
-    public void leftArrowProjection()
+    public void setArrow(Transform tool)
     {
-        if (left.IsActive())
-            PreviousMenu();
-        else
-            slider.value = Mathf.Clamp(slider.value + (-1), slider.minValue, slider.maxValue);
+        this.tool = tool;
+        //tool.transform.localPosition = new Vector3(0f, 0f, 0f);
     }
 
-    public void rightArrowProjection()
+    public void resetArrow()
     {
-        if (right.IsActive())
-            NextMenu();
-        else
-            slider.value = Mathf.Clamp(slider.value + 1, slider.minValue, slider.maxValue);
+        tool = null;
     }
 
-    public void arrowsProjections(Transform tool)
+    public void resetArrowsProjection()
     {
-        if(tool.transform.eulerAngles.z <= 1 && tool.transform.eulerAngles.z)
-        if (unlock)
-        {
+        //print(tool.transform.eulerAngles.z);
+        if (tool.transform.localPosition.x >= -0.25f && tool.transform.localPosition.x < 0.25f)
+            unlock = true;
+        else 
+            unlock = false;
+    }
 
+    public void arrowsProjection(){
+        //print(tool.transform.localPosition.x);
+        if (unlock){
+            if (tool.transform.localPosition.x < -0.15f)
+            {
+                if (right.IsActive())
+                    NextMenu();
+                else
+                    slider.value = Mathf.Clamp(slider.value + 1, slider.minValue, slider.maxValue);
+                unlock = false;
+            }
+            else
+            if (tool.transform.localPosition.x > 0.15f)
+            {
+                if (left.IsActive())
+                    PreviousMenu();
+                else
+                    slider.value = Mathf.Clamp(slider.value + (-1), slider.minValue, slider.maxValue);
+                unlock = false;
+            }
         }
+        if (tool.transform.localPosition.x >= -0.1f && tool.transform.localPosition.x < 0.1f)
+            unlock = true;
     }
 }

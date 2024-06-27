@@ -96,7 +96,7 @@ public class Painter : MonoBehaviour
                     return null;
                 }
                 float distance = Vector3.Distance(tool.transform.position, hit.transform.position);
-                //print(distance);
+                print(distance);
                 bool frontRaycast = layerMask == 1 << LayerMask.NameToLayer("wood") 
                                     || layerMask == 1 << LayerMask.NameToLayer("paper") 
                                     || layerMask == 1 << LayerMask.NameToLayer("newArt");
