@@ -29,6 +29,11 @@ public class ProjectionMode : ExperienceMode
         this.tool = tool;
     }
 
+    public Transform getTool()
+    {
+        return tool;
+    }
+
     public void resetTool()
     {
         tool = null;

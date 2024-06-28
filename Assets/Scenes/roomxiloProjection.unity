@@ -8684,7 +8684,7 @@ PrefabInstance:
       objectReference: {fileID: 2141915745}
     - target: {fileID: 4283899556503977442, guid: 6a2b143e3471c9a4ca5ae0b4dc5d6425, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4947689071594394868, guid: 6a2b143e3471c9a4ca5ae0b4dc5d6425, type: 3}
       propertyPath: m_Camera
@@ -10368,7 +10368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7190283522471155207, guid: 38bf54c81e83a904889107316bc6c03f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.395
+      value: 0.336
       objectReference: {fileID: 0}
     - target: {fileID: 7190283522471155207, guid: 38bf54c81e83a904889107316bc6c03f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10397,6 +10397,10 @@ PrefabInstance:
     - target: {fileID: 7622997422281248282, guid: 38bf54c81e83a904889107316bc6c03f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.461
+      objectReference: {fileID: 0}
+    - target: {fileID: 7622997422281248282, guid: 38bf54c81e83a904889107316bc6c03f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.176
       objectReference: {fileID: 0}
     - target: {fileID: 7622997422281248282, guid: 38bf54c81e83a904889107316bc6c03f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10817,7 +10821,7 @@ Transform:
   m_GameObject: {fileID: 5074303313919505709}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.43, z: -1.4399999}
+  m_LocalPosition: {x: 0, y: 1.45, z: -1.4399999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10834,6 +10838,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5074303313919505708}
+  - component: {fileID: 5074303313919505710}
   m_Layer: 0
   m_Name: CameraOffset
   m_TagString: Untagged
@@ -10841,6 +10846,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5074303313919505710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5074303313919505709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0c098a1faf08c442851ab33a6e5bc64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectionMode: {fileID: 1179590052}
+  inkRollerController: {fileID: 233653940}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
