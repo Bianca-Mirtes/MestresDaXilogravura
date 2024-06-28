@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     public ProjectionMode projectionMode;
+    public XiloController xiloController;
     public InkRollerController inkRollerController;
     private bool cameraDown = false;
     private float initialPosition;
@@ -20,7 +21,7 @@ public class CameraMovement : MonoBehaviour
     {
         Transform tool = projectionMode.getTool();
         float startPos = transform.position.y;
-        if (tool != null && tool.name.Equals("tinta") && !cameraDown)
+        if (tool != null && tool.name.Equals("tinta") && !cameraDown && xiloController.getSanded())
             StartCoroutine(MoveToPosition(startPos, 1.15f, true));
         if(inkRollerController.isInkEnable() && cameraDown)
             StartCoroutine(MoveToPosition(startPos, initialPosition, false));
