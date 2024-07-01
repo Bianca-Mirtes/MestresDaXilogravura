@@ -47,16 +47,28 @@ public class MenuController : MonoBehaviour
     public GameObject art;
     public Rect cropRect;
 
+
+    [Header("Only Projection")]
     public Slider slider;
 
     private bool unlock = true;
     private Transform tool = null;
 
+    //public float detectionInterval = 0.5f;
+    public float detectionThreshold = 0.35f;
+    private float lastDetectionTime;
+    private float lastPosX;
+
+    public Image bigArrowLeft;
+    public Image bigArrowRight;
+    public Color colorSelect = Color.green;
+    public Color colorDeselect= Color.white;
+
     // Start is called before the first frame update
     void Start()
     {
         drawingCurrent = GameObject.Find("Desenho");
-
+        
         posicionarFolhaButton = posicionarFolhaMenu.GetComponentInChildren<Button>();
         resultadoButton = resultadoMenu.GetComponentInChildren<Button>();
         restartButton = restartMenu.GetComponentInChildren<Button>();
@@ -134,9 +146,8 @@ public class MenuController : MonoBehaviour
             start.gameObject.SetActive(true);
         }
 
-        if (tool != null)
-            arrowsProjection();
-            
+        if (tool != null && tool.gameObject.activeSelf)
+            checkArrowsProjection();
     }
 
     void posicionarFolha()
@@ -299,8 +310,6 @@ public class MenuController : MonoBehaviour
         outOfRangText?.SetActive(state);
     }
 
-
-
     public void firstOptionByProjection()
     {
         if (start != null && start.IsActive())
@@ -324,7 +333,7 @@ public class MenuController : MonoBehaviour
     public void setArrow(Transform tool)
     {
         this.tool = tool;
-        //tool.transform.localPosition = new Vector3(0f, 0f, 0f);
+        tool.transform.localPosition = new Vector3(0f, 0f, 0f);
     }
 
     public void resetArrow()
@@ -332,37 +341,31 @@ public class MenuController : MonoBehaviour
         tool = null;
     }
 
-    public void resetArrowsProjection()
+    private void checkArrowsProjection()
     {
-        //print(tool.transform.eulerAngles.z);
-        if (tool.transform.localPosition.x >= -0.25f && tool.transform.localPosition.x < 0.25f)
-            unlock = true;
-        else 
-            unlock = false;
-    }
-
-    public void arrowsProjection(){
-        //print(tool.transform.localPosition.x);
-        if (unlock){
-            if (tool.transform.localPosition.x < -0.15f)
-            {
+        if (unlock){ 
+            if (tool.transform.localPosition.x <= -detectionThreshold){
                 if (right.IsActive())
                     NextMenu();
                 else
                     slider.value = Mathf.Clamp(slider.value + 1, slider.minValue, slider.maxValue);
                 unlock = false;
+                bigArrowRight.color = colorSelect;
             }
-            else
-            if (tool.transform.localPosition.x > 0.15f)
-            {
+            else if (tool.transform.localPosition.x >= detectionThreshold){
                 if (left.IsActive())
                     PreviousMenu();
                 else
-                    slider.value = Mathf.Clamp(slider.value + (-1), slider.minValue, slider.maxValue);
+                    slider.value = Mathf.Clamp(slider.value - 1, slider.minValue, slider.maxValue);
                 unlock = false;
+                bigArrowLeft.color = colorSelect;
             }
         }
-        if (tool.transform.localPosition.x >= -0.1f && tool.transform.localPosition.x < 0.1f)
+        if (tool.transform.localPosition.x > -detectionThreshold && tool.transform.localPosition.x < detectionThreshold)
+        {
             unlock = true;
+            bigArrowLeft.color = colorDeselect;
+            bigArrowRight.color = colorDeselect;
+        }
     }
 }
