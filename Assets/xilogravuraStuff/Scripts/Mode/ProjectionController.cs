@@ -6,7 +6,7 @@ public class ProjectionController : MonoBehaviour
 {
     [Header("Atributos da projeção")]
     [Tooltip("- para o usuário (em metros)")]
-    [Range(0.3f, 5f)][SerializeField] private float distaciaDaCamera;
+    [Range(0.1f, 5f)][SerializeField] private float distaciaDaCamera;
     [Tooltip("(em metros)")]
     [Range(0.5f, 1.5f)][SerializeField] private float AlturaDaCamera;
 
@@ -21,7 +21,7 @@ public class ProjectionController : MonoBehaviour
     public void Start()
     {
         float distancia = Mathf.Abs(virtualCamera.localPosition.z) - distaciaDaCamera;
-        TrackCameraOffset.localPosition = new Vector3(TrackCameraOffset.localPosition.x, AlturaDaCamera, distaciaDaCamera * (-1));
+        TrackCameraOffset.localPosition = new Vector3(TrackCameraOffset.localPosition.x, AlturaDaCamera, 0);
     }
 
     public void Update()

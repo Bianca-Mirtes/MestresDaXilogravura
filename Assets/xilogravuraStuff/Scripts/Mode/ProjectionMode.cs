@@ -22,7 +22,9 @@ public class ProjectionMode : ExperienceMode
         //print(tool.transform.eulerAngles.x);
         if(tool == null)
             return false;
-        return tool.transform.eulerAngles.x <= paintAngle && tool.transform.eulerAngles.x > 100;
+        //return true;
+        print(tool.parent.name +": "+tool.parent.transform.localPosition.z);
+        return tool.parent.transform.localPosition.z >= 0f;
     }
 
     public void setTool(Transform tool){

@@ -53,7 +53,11 @@ public class PaperController : InteractiveObject
 
     public void Draw()
     {
-        int layerMask = 1 << 12;
+        int layerMask;
+        if (painter.mode.mode == Mode.VR)
+            layerMask = 1 << 12;
+        else
+            layerMask = 1 << 10;// CORRIGE O PROBLEMA DA COLHER NA PROJECAO
         if ((hit = painter.CheckDraw(ferramenta, layerMask, true, resultado, null)) != null)
         {
             if (!setarTexturas)

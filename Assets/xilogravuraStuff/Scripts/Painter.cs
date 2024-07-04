@@ -95,15 +95,18 @@ public class Painter : MonoBehaviour
                     raycastAnterior = false;
                     return null;
                 }
-                float distance = Vector3.Distance(tool.transform.position, hit.transform.position);
-                //print(distance);
-                bool frontRaycast = layerMask == 1 << LayerMask.NameToLayer("wood") 
-                                    || layerMask == 1 << LayerMask.NameToLayer("paper") 
-                                    || layerMask == 1 << LayerMask.NameToLayer("newArt");
-                if ((distance > maxDistance) && frontRaycast || (distance > maxDistanceGlass) && !frontRaycast){
-                    disableActionTool(layerMask, tool, particles);
-                    menuController.enableTextIndicator(true);
-                    return null;
+
+                if(mode.mode == Mode.VR){
+                    float distance = Vector3.Distance(tool.transform.position, hit.transform.position);
+                    //print(distance);
+                    bool frontRaycast = layerMask == 1 << LayerMask.NameToLayer("wood") 
+                                        || layerMask == 1 << LayerMask.NameToLayer("paper") 
+                                        || layerMask == 1 << LayerMask.NameToLayer("newArt");
+                    if ((distance > maxDistance) && frontRaycast || (distance > maxDistanceGlass) && !frontRaycast){
+                        disableActionTool(layerMask, tool, particles);
+                        menuController.enableTextIndicator(true);
+                        return null;
+                    }
                 }
                 menuController.enableTextIndicator(false);
 
@@ -121,6 +124,9 @@ public class Painter : MonoBehaviour
             }
             else
             {
+                if(mode.mode == Mode.PROJECTION)
+                    menuController.enableTextIndicator(true);
+
                 if (mode.mode == Mode.VR || (mode.mode == Mode.PROJECTION && !raycastAnterior))
                     disableActionTool(layerMask, tool, particles);
                 raycastAnterior = false;

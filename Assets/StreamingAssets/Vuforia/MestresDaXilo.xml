@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig>
   <Tracking>
+    <ImageTarget name="tool14" size="0.800000 1.198238" />
+    <ImageTarget name="tool1New" size="0.800000 1.198238" />
     <ImageTarget name="tool5" size="0.800000 0.885686" />
     <ImageTarget name="tool6" size="0.800000 0.885686" />
     <ImageTarget name="tool3" size="0.800000 0.885686" />
