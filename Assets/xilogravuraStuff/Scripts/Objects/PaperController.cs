@@ -53,10 +53,8 @@ public class PaperController : InteractiveObject
 
     public void Draw()
     {
-        int layerMask;
-        if (painter.mode.mode == Mode.VR)
-            layerMask = 1 << 12;
-        else
+        int layerMask = 1 << 12;
+        if(painter.mode.mode == Mode.PROJECTION && xilogravura.isPainted())
             layerMask = 1 << 10;// CORRIGE O PROBLEMA DA COLHER NA PROJECAO
         if ((hit = painter.CheckDraw(ferramenta, layerMask, true, resultado, null)) != null)
         {

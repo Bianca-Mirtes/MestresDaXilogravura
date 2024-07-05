@@ -63,6 +63,7 @@ public class MenuController : MonoBehaviour
     public Image bigArrowRight;
     public Color colorSelect = Color.green;
     public Color colorDeselect= Color.white;
+    public TextMeshProUGUI textBrushStatus;
 
     // Start is called before the first frame update
     void Start()
@@ -367,5 +368,18 @@ public class MenuController : MonoBehaviour
             bigArrowLeft.color = colorDeselect;
             bigArrowRight.color = colorDeselect;
         }
+        if (!right.IsActive() && !left.IsActive()){
+            textBrushStatus.gameObject.SetActive(true);
+            textBrushStatus.text = "Tamanho do pincel: " + displaySlidValue();
+        }
+        else
+            textBrushStatus.gameObject.SetActive(false);
+    }
+
+    private float displaySlidValue()
+    {
+        if (slider != null)
+            return slider.value;
+        else return 0;
     }
 }

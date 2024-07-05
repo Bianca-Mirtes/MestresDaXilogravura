@@ -23,7 +23,7 @@ public class ProjectionMode : ExperienceMode
         if(tool == null)
             return false;
         //return true;
-        print(tool.parent.name +": "+tool.parent.transform.localPosition.z);
+        //print(tool.parent.name +": "+tool.parent.transform.localPosition.z);
         return tool.parent.transform.localPosition.z >= 0f;
     }
 
