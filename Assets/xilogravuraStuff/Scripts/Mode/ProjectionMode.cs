@@ -24,6 +24,9 @@ public class ProjectionMode : ExperienceMode
             return false;
         //return true;
         //print(tool.parent.name +": "+tool.parent.transform.localPosition.z);
+
+        if (tool.name.Equals("colher"))
+            return true;
         return tool.parent.transform.localPosition.z >= 0f;
     }
 
@@ -43,6 +46,8 @@ public class ProjectionMode : ExperienceMode
 
     public bool checkTool(GameObject toolCheck)
     {
-        return tool.name.Equals(toolCheck.name);
+        if(tool != null)
+            return tool.name.Equals(toolCheck.name);
+        return false;
     }
 }

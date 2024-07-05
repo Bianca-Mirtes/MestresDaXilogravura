@@ -39,6 +39,7 @@ public class Painter : MonoBehaviour
     private Input input;
 
     private bool raycastAnterior = false;
+    bool mirrorState = false;
 
     void Start()
     {
@@ -198,10 +199,12 @@ public class Painter : MonoBehaviour
         return Mouse.current.leftButton.isPressed;
     }
 
-    public void PaintMask(RenderTexture mask, RaycastHit hit, bool interpolate)
-    {
+    public void PaintMask(RenderTexture mask, RaycastHit hit, bool interpolate){
         //drawMaterial.SetVector("_Color", Color.white);
-        drawMaterial.SetVector("_Coordinates", new Vector4(hit.textureCoord.x, hit.textureCoord.y, 0, 0));
+        float x = hit.textureCoord.x;
+        if (mirrorState)
+            x = 1.0f - x;
+        drawMaterial.SetVector("_Coordinates", new Vector4(x, hit.textureCoord.y, 0, 0));
 
         RenderTexture temp = RenderTexture.GetTemporary(mask.width, mask.height, 0, RenderTextureFormat.ARGBFloat);
         Graphics.Blit(mask, temp);
@@ -210,6 +213,10 @@ public class Painter : MonoBehaviour
 
         if(interpolate)
             lastHitCoord = Interpolation(mask, temp, hit, lastHitCoord);
+    }
+    public void setMirror(bool state)
+    {
+        mirrorState = state;
     }
 
     public void resetInterpolation()
