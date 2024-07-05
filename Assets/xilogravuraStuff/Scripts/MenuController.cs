@@ -50,6 +50,7 @@ public class MenuController : MonoBehaviour
 
     [Header("Only Projection")]
     public Slider slider;
+    public GameObject save;
 
     private bool unlock = true;
     private Transform tool = null;
@@ -63,7 +64,10 @@ public class MenuController : MonoBehaviour
     public Image bigArrowRight;
     public Color colorSelect = Color.green;
     public Color colorDeselect= Color.white;
+    public Color colorDisable = Color.gray;
     public TextMeshProUGUI textBrushStatus;
+    public GameObject menu;
+    public AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -95,6 +99,11 @@ public class MenuController : MonoBehaviour
 
     private void ReturnProcess()
     {
+        if (art.activeSelf)
+        {
+            art.GetComponent<NewArtController>().ReturnProcess();
+        }
+
         if (matriz.GetComponent<XiloController>().getPaint())
         {
             matriz.GetComponent<XiloController>().ResetOneTexture("PaintMask");
@@ -102,7 +111,7 @@ public class MenuController : MonoBehaviour
         }
         else if (matriz.GetComponent<XiloController>().getSanded())
         {
-            matriz.GetComponent<XiloController>().ResetOneTexture("SandpaperMask");
+            matriz.GetComponent<XiloController>().ResetOneTexture("SandMask");
             matriz.GetComponent<XiloController>().setSanded(false);
         }
         else if (matriz.GetComponent<XiloController>().getSculped())
@@ -319,16 +328,34 @@ public class MenuController : MonoBehaviour
             posicionarFolha();
         else if (resultadoButton != null && resultadoButton.IsActive())
             StartCoroutine(mostarResultado());
+        else if (save != null && save.activeSelf)
+            papel.GetComponent<ShaderBaker>().captureTexture();
+        playClick();
     }
 
     public void secondOptionByProjection()
     {
+        if (voltar != null && voltar.IsActive() && art.activeSelf)
+            ReturnProcess();
         if (createYourArt != null && createYourArt.IsActive())
             Create();
         else if (voltar != null && voltar.IsActive())
             ReturnProcess();
-        else if (restartButton != null && restartButton.IsActive())
+        else if (restartButton != null && restartButton.IsActive()){
             restart();
+            menu.SetActive(true);
+            desenho.SetActive(true);
+            left.gameObject.SetActive(true);
+            right.gameObject.SetActive(true);
+            createYourArt.gameObject.SetActive(true);
+            tituloMenu.SetActive(true);
+        }
+        playClick();
+    }
+
+    private void playClick()
+    {
+        audioSource.Play();
     }
 
     public void setArrow(Transform tool)
@@ -348,25 +375,38 @@ public class MenuController : MonoBehaviour
             if (tool.transform.localPosition.x <= -detectionThreshold){
                 if (right.IsActive())
                     NextMenu();
-                else
-                    slider.value = Mathf.Clamp(slider.value + 1, slider.minValue, slider.maxValue);
-                unlock = false;
-                bigArrowRight.color = colorSelect;
+                else{
+                    if(slider.value != slider.maxValue){
+                        slider.value = Mathf.Clamp(slider.value + 1, slider.minValue, slider.maxValue);
+                        unlock = false;
+                        bigArrowRight.color = colorSelect;
+                    }
+                }
             }
             else if (tool.transform.localPosition.x >= detectionThreshold){
                 if (left.IsActive())
                     PreviousMenu();
-                else
-                    slider.value = Mathf.Clamp(slider.value - 1, slider.minValue, slider.maxValue);
-                unlock = false;
-                bigArrowLeft.color = colorSelect;
+                else{
+                    if(slider.value != slider.minValue){
+                        slider.value = Mathf.Clamp(slider.value - 1, slider.minValue, slider.maxValue);
+                        unlock = false;
+                        bigArrowLeft.color = colorSelect;
+                    }
+                }
             }
         }
         if (tool.transform.localPosition.x > -detectionThreshold && tool.transform.localPosition.x < detectionThreshold)
         {
             unlock = true;
-            bigArrowLeft.color = colorDeselect;
-            bigArrowRight.color = colorDeselect;
+            if (slider.value == slider.maxValue)
+                bigArrowRight.color = colorDisable;
+            else
+                bigArrowRight.color = colorDeselect;
+
+            if (slider.value == slider.minValue)
+                bigArrowLeft.color = colorDisable;
+            else
+                bigArrowLeft.color = colorDeselect;
         }
         if (!right.IsActive() && !left.IsActive()){
             textBrushStatus.gameObject.SetActive(true);

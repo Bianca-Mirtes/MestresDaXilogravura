@@ -4167,6 +4167,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1953467309}
     - target: {fileID: 2430343777162630483, guid: 666066beebd758d47a23c1d12b8d6cb9, type: 3}
+      propertyPath: newArtController
+      value: 
+      objectReference: {fileID: 1610165283}
+    - target: {fileID: 2430343777162630483, guid: 666066beebd758d47a23c1d12b8d6cb9, type: 3}
       propertyPath: detectionInterval
       value: 2
       objectReference: {fileID: 0}

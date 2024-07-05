@@ -34,7 +34,7 @@ public class NewArtController : InteractiveObject
         setTextures();
     }
 
-    private void ReturnProcess()
+    public void ReturnProcess()
     {
         if(!matriz.GetComponent<XiloController>().getSketched())
         {
