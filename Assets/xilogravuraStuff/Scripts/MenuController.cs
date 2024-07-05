@@ -82,8 +82,6 @@ public class MenuController : MonoBehaviour
         resultadoMenu.SetActive(false);
         restartMenu.SetActive(false);
 
-        art?.SetActive(false);
-
         enableTextIndicator(false);
 
         left.onClick.AddListener(() => PreviousMenu());
@@ -282,7 +280,7 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    void restart()
+    public void restart()
     {
         //E eu quis escrever um codigo que pudesse te fazer sentir [...]
         //com uma bela identacao pra dizer o que eu nao consigo documentar

@@ -32,6 +32,7 @@ public class NewArtController : InteractiveObject
         currentMaterial = GetComponent<MeshRenderer>().materials[0];
         voltar.onClick.AddListener(() => ReturnProcess());
         setTextures();
+        gameObject.SetActive(false);
     }
 
     public void ReturnProcess()
