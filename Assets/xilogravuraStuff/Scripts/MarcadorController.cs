@@ -9,6 +9,8 @@ public class MarcadorController : MonoBehaviour
     [Header("Objects")]
     public GameObject[] ganchos;
     public GameObject marcador;
+    public GameObject[] icons;
+    public GameObject cardText;
 
     [Header("Controllers")]
     public XiloController xiloController;
@@ -17,6 +19,20 @@ public class MarcadorController : MonoBehaviour
 
     [Header("Mode")]
     public ExperienceMode mode;
+
+    private void Start()
+    {
+        Reset();
+    }
+
+    public void Reset()
+    {
+        textTutorial.text = "";
+        marcador.gameObject.SetActive(false);
+        cardText.SetActive(false);
+        for (int i = 0; i < icons.Length; i++)
+            icons[i].SetActive(false);
+    }
 
     // Update is called once per frame
     void Update()
@@ -27,6 +43,11 @@ public class MarcadorController : MonoBehaviour
 
     private void atualizarMarcador()
     {
+        if (!xiloController.isStart)
+            return;
+
+        cardText.SetActive(true);
+
         string tutorialText = "";
         int ganchoIndex = 0;
 
@@ -35,7 +56,7 @@ public class MarcadorController : MonoBehaviour
             ganchoIndex = 0;
         }
         if (xiloController.getSketched()){
-            tutorialText = "Pegue a goiva";
+            tutorialText = "Use a goiva na vertical";
             ganchoIndex = 1;
         }
         if (xiloController.getSculped()){
@@ -55,7 +76,16 @@ public class MarcadorController : MonoBehaviour
             ganchoIndex = 5;
         }
 
+        if(mode.mode == Mode.PROJECTION)
+            refreshIcon(ganchoIndex);
+
         textTutorial.text = tutorialText;
+        marcador.gameObject.SetActive(true);
         marcador.transform.position = ganchos[ganchoIndex].transform.position;
+    }
+
+    private void refreshIcon(int index) {
+        for (int i = 0; i < icons.Length; i++)
+            icons[i].SetActive(i == index);
     }
 }

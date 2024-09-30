@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig>
   <Tracking>
-    <ImageTarget name="tool6" size="0.800000 1.198238" />
+    <ImageTarget name="back" size="0.800000 1.198238" />
     <ImageTarget name="tool5" size="0.800000 1.198238" />
+    <ImageTarget name="tool6" size="0.800000 1.198238" />
+    <ImageTarget name="next" size="0.800000 1.198238" />
+    <ImageTarget name="tool1" size="0.800000 1.198238" />
+    <ImageTarget name="setas" size="0.800000 1.198238" />
     <ImageTarget name="tool4" size="0.800000 1.198238" />
     <ImageTarget name="tool3" size="0.800000 1.198238" />
     <ImageTarget name="tool2" size="0.800000 1.198238" />
-    <ImageTarget name="tool1" size="0.800000 1.198238" />
-    <ImageTarget name="setas" size="0.800000 1.198238" />
-    <ImageTarget name="back" size="0.800000 1.198238" />
-    <ImageTarget name="next" size="0.800000 1.198238" />
   </Tracking>
 </QCARConfig>

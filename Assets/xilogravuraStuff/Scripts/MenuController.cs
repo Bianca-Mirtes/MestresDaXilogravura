@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -93,6 +94,8 @@ public class MenuController : MonoBehaviour
         posicionarFolhaButton.onClick.AddListener(() => posicionarFolha());
         resultadoButton.onClick.AddListener(() => StartCoroutine(mostarResultado()));
         restartButton.onClick.AddListener(() => restart());
+
+        Invoke("ClearLog", 1f);
     }
 
     private void ReturnProcess()
@@ -127,7 +130,7 @@ public class MenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Cursor.visible = false;
+        //Cursor.visible = false;
 
         if (matriz.GetComponent<XiloController>().isPainted() && !folhaPosicionada)
         {
@@ -301,6 +304,8 @@ public class MenuController : MonoBehaviour
         newArtController.resetTextures();
         newArtController.resetValues();
 
+        FindObjectOfType<MarcadorController>().Reset();
+
         //Corrige preset ao reiniciar
         FindObjectOfType<Painter>().SetBrushPreset(Brush.HardCircle);
 
@@ -419,5 +424,14 @@ public class MenuController : MonoBehaviour
         if (slider != null)
             return slider.value;
         else return 0;
+    }
+
+    public void ClearLog()
+    {
+        var assembly = System.Reflection.Assembly.GetAssembly(typeof(SceneView));
+        var logEntries = assembly.GetType("UnityEditor.LogEntries");
+        var clearMethod = logEntries.GetMethod("Clear");
+        clearMethod.Invoke(null, null);
+        Debug.Log("Lets go!");
     }
 }

@@ -30,7 +30,7 @@ public class XiloController : InteractiveObject
     [SerializeField]
     private TouchController touch;
 
-    private bool isStart = false;
+    public bool isStart = false;
 
     private bool isSketched = false;
     private bool isSculped = false;
