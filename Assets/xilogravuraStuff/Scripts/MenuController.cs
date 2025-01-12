@@ -68,6 +68,7 @@ public class MenuController : MonoBehaviour
     public Color colorDisable = Color.gray;
     public TextMeshProUGUI textBrushStatus;
     public GameObject menu;
+    public GameObject UIPanel;
     public AudioSource audioSource;
 
     // Start is called before the first frame update
@@ -83,10 +84,12 @@ public class MenuController : MonoBehaviour
         resultadoMenu.SetActive(false);
         restartMenu.SetActive(false);
 
+        UIPanel?.SetActive(false);
+
         enableTextIndicator(false);
 
-        left.onClick.AddListener(() => PreviousMenu());
-        right.onClick.AddListener(() => NextMenu());
+        //left.onClick.AddListener(() => PreviousMenu());
+        //right.onClick.AddListener(() => NextMenu());
         start.onClick.AddListener(() => StartExp());
         voltar.onClick.AddListener(() => ReturnProcess());
         createYourArt.onClick.AddListener(() => Invoke("Create", 1f));
@@ -221,6 +224,7 @@ public class MenuController : MonoBehaviour
             art?.SetActive(false);
             voltar.gameObject.SetActive(true);
         }
+        UIPanel?.SetActive(true);
     }
 
     private void Create()
@@ -316,6 +320,8 @@ public class MenuController : MonoBehaviour
 
         switchImage = false;
         artAutoral = false;
+
+        UIPanel?.SetActive(false);
     }
 
     public void enableTextIndicator(bool state)
@@ -377,7 +383,11 @@ public class MenuController : MonoBehaviour
         if (unlock){ 
             if (tool.transform.localPosition.x <= -detectionThreshold){
                 if (right.IsActive())
+                {
                     NextMenu();
+                    unlock = false;
+                    bigArrowRight.color = colorSelect;
+                }
                 else{
                     if(slider.value != slider.maxValue){
                         slider.value = Mathf.Clamp(slider.value + 1, slider.minValue, slider.maxValue);
@@ -387,10 +397,15 @@ public class MenuController : MonoBehaviour
                 }
             }
             else if (tool.transform.localPosition.x >= detectionThreshold){
-                if (left.IsActive())
+                if (left.IsActive()){
                     PreviousMenu();
-                else{
-                    if(slider.value != slider.minValue){
+                    unlock = false;
+                    bigArrowLeft.color = colorSelect;
+                }
+                else
+                {
+                    if (slider.value != slider.minValue)
+                    {
                         slider.value = Mathf.Clamp(slider.value - 1, slider.minValue, slider.maxValue);
                         unlock = false;
                         bigArrowLeft.color = colorSelect;

@@ -10,7 +10,6 @@ public class MarcadorController : MonoBehaviour
     public GameObject[] ganchos;
     public GameObject marcador;
     public GameObject[] icons;
-    public GameObject cardText;
 
     [Header("Controllers")]
     public XiloController xiloController;
@@ -29,7 +28,6 @@ public class MarcadorController : MonoBehaviour
     {
         textTutorial.text = "";
         marcador.gameObject.SetActive(false);
-        cardText.SetActive(false);
         for (int i = 0; i < icons.Length; i++)
             icons[i].SetActive(false);
     }
@@ -45,8 +43,6 @@ public class MarcadorController : MonoBehaviour
     {
         if (!xiloController.isStart)
             return;
-
-        cardText.SetActive(true);
 
         string tutorialText = "";
         int ganchoIndex = 0;
