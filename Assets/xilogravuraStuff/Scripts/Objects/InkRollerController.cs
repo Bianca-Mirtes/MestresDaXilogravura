@@ -57,6 +57,7 @@ public class InkRollerController : MonoBehaviour
     public void resetValues()
     {
         tintaNoRolinho = false;
+        isInk = false;
         borracha.SetFloat("inkLevel", 1);
     }
 }

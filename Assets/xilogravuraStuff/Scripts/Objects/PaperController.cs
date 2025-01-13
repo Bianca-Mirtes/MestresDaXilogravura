@@ -22,6 +22,8 @@ public class PaperController : InteractiveObject
     private bool resultado = false;
     private Dictionary<string, RenderTexture> textureDictionary = new Dictionary<string, RenderTexture>();
     private string[] textureNames = { "PrintMask" };
+
+    private bool sheetPositioned = false;
     
     void Start()
     {
@@ -93,7 +95,8 @@ public class PaperController : InteractiveObject
 
     void Update()
     {
-        Draw();
+        if(sheetPositioned)
+            Draw();
     }
 
     public void posicionarFolha()
@@ -101,6 +104,12 @@ public class PaperController : InteractiveObject
         transform.GetChild(1).GetComponent<AudioSource>().Play();
         Animator animator = GetComponent<Animator>();
         animator.SetBool("isPrint", true);
+        sheetPositioned = true;
+    }
+    
+    public bool isSheetPositioned()
+    {
+        return sheetPositioned;
     }
 
     public void mostrarResultado()
@@ -116,6 +125,7 @@ public class PaperController : InteractiveObject
         setarTexturas = false;
         isPrint = false;
         resultado = false;
+        sheetPositioned = false;
         Animator animator = GetComponent<Animator>();
         animator.SetBool("isPrint", false);
         animator.SetBool("isResult", false);

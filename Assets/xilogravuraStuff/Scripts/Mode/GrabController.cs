@@ -83,6 +83,6 @@ public class GrabController : MonoBehaviour
 
     public bool isToolNull()
     {
-        return this.ferramenta == null;
+        return ferramenta == null;
     }
 }

@@ -15,6 +15,7 @@ public class MarcadorController : MonoBehaviour
     public XiloController xiloController;
     public GlassController glassController;
     public GrabController grabController;
+    public PaperController paperController;
 
     [Header("Mode")]
     public ExperienceMode mode;
@@ -35,7 +36,7 @@ public class MarcadorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((mode.mode == Mode.VR && grabController.isToolNull()) || mode.mode == Mode.PROJECTION)
+        if ((mode.mode == Mode.VR && grabController.isToolNull()) || (mode.mode == Mode.PROJECTION && !mode.GetComponent<ProjectionMode>().isToolInUse()))
             atualizarMarcador();
     }
 
@@ -71,8 +72,13 @@ public class MarcadorController : MonoBehaviour
             tutorialText = "Posicione a folha por cima da madeira";
             ganchoIndex = 5;
         }
+        if (paperController.isSheetPositioned())
+        {
+            tutorialText = "Use o baren para transferir o desenho";
+            ganchoIndex = 5;
+        }
 
-        if(mode.mode == Mode.PROJECTION)
+        if (mode.mode == Mode.PROJECTION)
             refreshIcon(ganchoIndex);
 
         textTutorial.text = tutorialText;
