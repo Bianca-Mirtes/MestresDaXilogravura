@@ -19,13 +19,13 @@ public class collisionController : MonoBehaviour
         transform.position = newPosition + new Vector3(0f, 0f, 0f);
     }*/
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.transform.CompareTag("parede"))
-        {
-            //Debug.Log("paredeee");
-            Vector3 newPosition = new Vector3(origin.transform.position.x - 0.08f, origin.transform.position.y, origin.transform.position.z);
-            origin.transform.position = newPosition;
-        }
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if(collision.transform.CompareTag("parede"))
+    //    {
+    //        //Debug.Log("paredeee");
+    //        Vector3 newPosition = new Vector3(origin.transform.position.x - 0.08f, origin.transform.position.y, origin.transform.position.z);
+    //        origin.transform.position = newPosition;
+    //    }
+    //}
 }
