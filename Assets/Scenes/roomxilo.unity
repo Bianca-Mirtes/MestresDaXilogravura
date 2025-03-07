@@ -4759,6 +4759,11 @@ Transform:
   - {fileID: 569685997}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1209221822 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 496458579841233994, guid: 6a2b143e3471c9a4ca5ae0b4dc5d6425, type: 3}
+  m_PrefabInstance: {fileID: 6347404351560888896}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1228876949
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10083,6 +10088,10 @@ PrefabInstance:
       propertyPath: voltar
       value: 
       objectReference: {fileID: 190122726}
+    - target: {fileID: 2430343777162630483, guid: 666066beebd758d47a23c1d12b8d6cb9, type: 3}
+      propertyPath: UIPanel
+      value: 
+      objectReference: {fileID: 1209221822}
     - target: {fileID: 2430343777162630483, guid: 666066beebd758d47a23c1d12b8d6cb9, type: 3}
       propertyPath: desenho
       value: 
