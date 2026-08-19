@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028459, g: 0.22571498, b: 0.30692363, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10136,6 +10136,10 @@ PrefabInstance:
       propertyPath: mode
       value: 
       objectReference: {fileID: 982391366}
+    - target: {fileID: 1196934673355717750, guid: 62b9055dd98b8f74abb0399de14d9f21, type: 3}
+      propertyPath: cardText
+      value: 
+      objectReference: {fileID: 1121896416}
     - target: {fileID: 1196934673355717750, guid: 62b9055dd98b8f74abb0399de14d9f21, type: 3}
       propertyPath: marcador
       value: 
