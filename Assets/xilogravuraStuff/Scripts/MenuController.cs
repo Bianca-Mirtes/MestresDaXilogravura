@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEditor;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -68,7 +69,6 @@ public class MenuController : MonoBehaviour
     public Color colorDisable = Color.gray;
     public TextMeshProUGUI textBrushStatus;
     public GameObject menu;
-    public GameObject UIPanel;
     public AudioSource audioSource;
 
     // Start is called before the first frame update
@@ -78,18 +78,18 @@ public class MenuController : MonoBehaviour
         
         posicionarFolhaButton = posicionarFolhaMenu.GetComponentInChildren<Button>();
         resultadoButton = resultadoMenu.GetComponentInChildren<Button>();
-        restartButton = restartMenu.GetComponentInChildren<Button>();
+        restartButton = restartMenu.GetComponentsInChildren<Button>()[1];
 
         posicionarFolhaMenu.SetActive(false);
         resultadoMenu.SetActive(false);
         restartMenu.SetActive(false);
-
-        UIPanel?.SetActive(false);
+        foreach (Transform child in restartMenu.transform)
+            child.gameObject.SetActive(false);
 
         enableTextIndicator(false);
 
-        //left.onClick.AddListener(() => PreviousMenu());
-        //right.onClick.AddListener(() => NextMenu());
+        left.onClick.AddListener(() => PreviousMenu());
+        right.onClick.AddListener(() => NextMenu());
         start.onClick.AddListener(() => StartExp());
         voltar.onClick.AddListener(() => ReturnProcess());
         createYourArt.onClick.AddListener(() => Invoke("Create", 1f));
@@ -183,6 +183,8 @@ public class MenuController : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         restartMenu.SetActive(true);
+        foreach (Transform child in restartMenu.transform)
+            child.gameObject.SetActive(true);
     }
 
     void NextMenu()
@@ -224,7 +226,6 @@ public class MenuController : MonoBehaviour
             art?.SetActive(false);
             voltar.gameObject.SetActive(true);
         }
-        UIPanel?.SetActive(true);
     }
 
     private void Create()
@@ -289,39 +290,38 @@ public class MenuController : MonoBehaviour
 
     public void restart()
     {
-        //E eu quis escrever um codigo que pudesse te fazer sentir [...]
-        //com uma bela identacao pra dizer o que eu nao consigo documentar
-        restartMenu.SetActive(false);
-        XiloController xiloController = matriz.GetComponent<XiloController>();
-        xiloController.resetTextures();
-        xiloController.resetValues();
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
 
-        GlassController glassController = vidro.GetComponent<GlassController>();
-        glassController.resetTextures();
-        glassController.resetValues();
+        //restartMenu.SetActive(false);
+        //XiloController xiloController = matriz.GetComponent<XiloController>();
+        //xiloController.resetTextures();
+        //xiloController.resetValues();
 
-        PaperController paperController = papel.GetComponent<PaperController>();
-        paperController.resetTextures();
-        paperController.resetValues();
+        //GlassController glassController = vidro.GetComponent<GlassController>();
+        //glassController.resetTextures();
+        //glassController.resetValues();
 
-        NewArtController newArtController = art.GetComponent<NewArtController>();
-        newArtController.resetTextures();
-        newArtController.resetValues();
+        //PaperController paperController = papel.GetComponent<PaperController>();
+        //paperController.resetTextures();
+        //paperController.resetValues();
 
-        FindObjectOfType<MarcadorController>().Reset();
+        //NewArtController newArtController = art.GetComponent<NewArtController>();
+        //newArtController.resetTextures();
+        //newArtController.resetValues();
 
-        //Corrige preset ao reiniciar
-        FindObjectOfType<Painter>().SetBrushPreset(Brush.HardCircle);
+        //FindObjectOfType<MarcadorController>().Reset();
 
-        enableTextIndicator(false);
+        ////Corrige preset ao reiniciar
+        //FindObjectOfType<Painter>().SetBrushPreset(Brush.HardCircle);
 
-        folhaPosicionada = false;
-        folhaResultado = false;
+        //enableTextIndicator(false);
 
-        switchImage = false;
-        artAutoral = false;
+        //folhaPosicionada = false;
+        //folhaResultado = false;
 
-        UIPanel?.SetActive(false);
+        //switchImage = false;
+        //artAutoral = false;
     }
 
     public void enableTextIndicator(bool state)
@@ -383,11 +383,7 @@ public class MenuController : MonoBehaviour
         if (unlock){ 
             if (tool.transform.localPosition.x <= -detectionThreshold){
                 if (right.IsActive())
-                {
                     NextMenu();
-                    unlock = false;
-                    bigArrowRight.color = colorSelect;
-                }
                 else{
                     if(slider.value != slider.maxValue){
                         slider.value = Mathf.Clamp(slider.value + 1, slider.minValue, slider.maxValue);
@@ -397,15 +393,10 @@ public class MenuController : MonoBehaviour
                 }
             }
             else if (tool.transform.localPosition.x >= detectionThreshold){
-                if (left.IsActive()){
+                if (left.IsActive())
                     PreviousMenu();
-                    unlock = false;
-                    bigArrowLeft.color = colorSelect;
-                }
-                else
-                {
-                    if (slider.value != slider.minValue)
-                    {
+                else{
+                    if(slider.value != slider.minValue){
                         slider.value = Mathf.Clamp(slider.value - 1, slider.minValue, slider.maxValue);
                         unlock = false;
                         bigArrowLeft.color = colorSelect;

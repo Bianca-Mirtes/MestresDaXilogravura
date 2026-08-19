@@ -10,12 +10,12 @@ public class MarcadorController : MonoBehaviour
     public GameObject[] ganchos;
     public GameObject marcador;
     public GameObject[] icons;
+    public GameObject cardText;
 
     [Header("Controllers")]
     public XiloController xiloController;
     public GlassController glassController;
     public GrabController grabController;
-    public PaperController paperController;
 
     [Header("Mode")]
     public ExperienceMode mode;
@@ -29,6 +29,7 @@ public class MarcadorController : MonoBehaviour
     {
         textTutorial.text = "";
         marcador.gameObject.SetActive(false);
+        cardText.SetActive(false);
         for (int i = 0; i < icons.Length; i++)
             icons[i].SetActive(false);
     }
@@ -36,7 +37,7 @@ public class MarcadorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((mode.mode == Mode.VR && grabController.isToolNull()) || (mode.mode == Mode.PROJECTION && !mode.GetComponent<ProjectionMode>().isToolInUse()))
+        if ((mode.mode == Mode.VR && grabController.isToolNull()) || mode.mode == Mode.PROJECTION)
             atualizarMarcador();
     }
 
@@ -44,6 +45,8 @@ public class MarcadorController : MonoBehaviour
     {
         if (!xiloController.isStart)
             return;
+
+        cardText.SetActive(true);
 
         string tutorialText = "";
         int ganchoIndex = 0;
@@ -72,13 +75,8 @@ public class MarcadorController : MonoBehaviour
             tutorialText = "Posicione a folha por cima da madeira";
             ganchoIndex = 5;
         }
-        if (paperController.isSheetPositioned())
-        {
-            tutorialText = "Use o baren para transferir o desenho";
-            ganchoIndex = 5;
-        }
 
-        if (mode.mode == Mode.PROJECTION)
+        if(mode.mode == Mode.PROJECTION)
             refreshIcon(ganchoIndex);
 
         textTutorial.text = tutorialText;

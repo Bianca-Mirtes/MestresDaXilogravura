@@ -22,14 +22,14 @@ public class CameraMovement : MonoBehaviour
         Transform tool = projectionMode.getTool();
         float startPos = transform.position.y;
         if (tool != null && tool.name.Equals("tinta") && !cameraDown && xiloController.getSanded())
-            StartCoroutine(MoveToPosition(startPos, .98f));
+            StartCoroutine(MoveToPosition(startPos, 1.02f, true));
         if(inkRollerController.isInkEnable() && cameraDown)
-            StartCoroutine(MoveToPosition(startPos, initialPosition));
+            StartCoroutine(MoveToPosition(startPos, initialPosition, false));
     }
 
-    IEnumerator MoveToPosition(float StartPosition, float EndPosition)
+    IEnumerator MoveToPosition(float StartPosition, float EndPosition, bool status)
     {
-        cameraDown = !cameraDown;
+        cameraDown = status;
         float duration = .5f;
         float elapsedTime = 0.0f;
         Vector3 startPos = transform.position;

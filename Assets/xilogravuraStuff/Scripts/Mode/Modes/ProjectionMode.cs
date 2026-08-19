@@ -44,11 +44,6 @@ public class ProjectionMode : ExperienceMode
         tool = null;
     }
 
-    public bool isToolInUse()
-    {
-        return tool != null;
-    }
-
     public bool checkTool(GameObject toolCheck)
     {
         if(tool != null)
